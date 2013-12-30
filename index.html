@@ -9,33 +9,84 @@
             body {
                 background-image:url(/assets/img/nistriflip.png);
             }
+
+            .cover {
+                background-color:hsla(225, 60%, 40%, 0.7);
+                position: absolute;
+                top: 0; left: 0; bottom: 0; right: 0;
+            }
+
+            .energy {
+                margin: 0px 0px 6px 12px;
+            }
+
+            .energy label {
+                width: 20px;
+                display: inline-block;
+            }
+
+            .exp {
+                border-radius: 4px;
+            }
+
+            .exp label {
+                padding-left:12px;
+                display: inline-block;
+                width: 75px;
+            }
+
+            .basic-info {
+                top: 249px;
+                left: 210px;
+                width: 250px;
+            }
         </style>
     </head>
 
     <body class="ragnarok">
-        <div class="ragnarok-window" style="right: 0">
-            <div class="ragnarok-window-inner">
-                Check out this cool demo!
-            </div>
-        </div>
-
-        <div class="ragnarok-window" style="top: 249px; left: 210px;">
-            <div class="ragnarok-window-title-blue">
-                <div class="ragnarok-window-button"></div>
-
-                <p>
-                    So title!
-                </p>
-
-                <div class="ragnarok-right">
-                    <div class="ragnarok-window-button-minimize"></div>
-                    <div class="ragnarok-window-button-close"></div>
+        <div class="cover">
+            <div class="ragnarok-window" style="right: 0">
+                <div class="ragnarok-window-inner">
+                    Check out this cool demo!
                 </div>
             </div>
 
-            <div class="ragnarok-window-content">
-                <input type="text">
-                Very window
+            <div class="ragnarok-window basic-info">
+                <div class="ragnarok-window-title-blue">
+                    <div class="ragnarok-window-button"></div>
+
+                    <p>
+                        Basic Info
+                    </p>
+
+                    <div class="ragnarok-right">
+                        <div class="ragnarok-window-button-minimize"></div>
+                    </div>
+                </div>
+
+                <div class="ragnarok-window-content">
+                    Fiolina
+
+                    <div class="ragnarok-label">
+                        Priest
+
+                        <div class="energy">
+                            <label>HP</label> <div class="ragnarok-progress-bar"><div style="width: 88%"></div><span class="ragnarok-progress-value">5150 / 5830</span></div> 88%<br />
+                            <label>SP</label> <div class="ragnarok-progress-bar-red"><div style="width: 9%"></div><span class="ragnarok-progress-value">118 / 1318</span></div> 9%
+                        </div>
+                        
+                        <div class="ragnarok-gray exp">
+                            <label>Base Lv. 98</label> <div class="ragnarok-progress-bar-small"><div style="width: 30%"></div></div><br />
+                            <label>Job Lv. 49</label> <div class="ragnarok-progress-bar-small"><div style="width:77%"></div></div>
+                        </div>
+
+                        <div class="ragnarok-window-footer">
+                            Weight : 1299 / 4280
+                            &ensp;
+                            Zeny : 3,958,381
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
