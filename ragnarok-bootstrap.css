@@ -18,8 +18,12 @@
     bottom: 0;
 }
 
-.ragnarok-label, .ro-lbl {
+.ragnarok-small, .ro-sm {
     font-size:9pt;
+}
+
+.ragnarok-tiny, .ro-tny {
+    font-size:8pt;
 }
 
 .ragnarok-gray, .ro-gry {
@@ -123,7 +127,7 @@
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
     margin: 5px -5px -5px -5px;
-    padding: 2px 5px 5px 5px;
+    padding: 0px 5px 4px 5px;
     width: 100%;
     text-align: right;
 }
@@ -135,7 +139,7 @@
     background-image:url(./skin/ro-bar-gry.png);
     box-shadow: inset 10px 0 10px -10px rgba(0, 0, 0, 0.75), inset -10px 0 10px -10px rgba(0, 0, 0, 0.75);
     border-radius:8px;
-    width: 145px;
+    width: 150px;
     height: 8px;
 }
 
@@ -172,7 +176,7 @@
 }
 
 .ragnarok-progress-bar-small, .ro-pr-bar-sm {
-    width: 125px;
+    width: 130px;
     height: 4px;
     border: 1px solid #ACACAC;
     display: inline-block;
