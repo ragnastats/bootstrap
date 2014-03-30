@@ -1,8 +1,6 @@
 <html>
     <head>
         <title>Ragnarok Bootstrap Demo</title>
-        <script src='jquery.min.js'></script>
-        <script src='ragnarok-bootstrap.js'></script>
         <link rel="stylesheet" type="text/css" href="ragnarok-bootstrap.css" />
 
         <style>
@@ -40,11 +38,67 @@
                 left: 10px;
                 width: 250px;
             }
+
+            .inventory {
+                width: 300px;
+            }
         </style>
     </head>
 
     <body class="ragnarok">
         <div class="cover">
+            <div class="ro-win inventory" style="top: 228; left:10px;">
+                <div class="ro-win-title-b">
+                    <div class="ro-win-btn"></div>
+
+                    <p>
+                        Inventory
+                    </p>
+
+                    <div class="ro-rt">
+                        <div class="ro-win-btn-min"></div>
+                        <div class="ro-win-btn-close"></div>
+                    </div>
+                </div>
+
+                <div class="ro-win-content">
+                    <div class="ro-side ro-side-inv">
+                        <div></div>
+                    </div>
+
+                    <div class="ro-items">
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                        <div class="ro-item"></div>
+                    </div>
+                </div>
+
+                <div class="ro-win-foot">
+                    <div class="ro-win-resize"></div>
+                </div>
+            </div>
+            
             <div class="ragnarok-window" style="top: 10px; left: 10px;">
                 <div class="ragnarok-window-inner">
                     Check out this cool demo!
@@ -79,32 +133,41 @@
                             <label>Base Lv. 98</label> <div class="ragnarok-progress-bar-small"><div style="width: 30%"></div></div><br />
                             <label>Job Lv. 49</label> <div class="ragnarok-progress-bar-small"><div style="width:77%"></div></div>
                         </div>
-
-                        <div class="ragnarok-window-footer ragnarok-tiny">
-                            Weight : 1299 / 4280
-                            &ensp;
-                            Zeny : 2,147,483,647
-                        </div>
                     </div>
+                </div>
+
+                <div class="ragnarok-window-footer ragnarok-tiny">
+                    Weight : 1299 / 4280
+                    &ensp;
+                    Zeny : 2,147,483,647
                 </div>
             </div>
         </div>
+
+        <script src='jquery.min.js'></script>
+        <script src='ragnarok-bootstrap.js'></script>
     </body>
 </html>
 
 <!--
 
-Things to reproduce
+==================
+   In progress
+==================
+
     Basic Window
-        - Header bar
-        - Buttons
-        - Stats
-        - Small text (class name)
-        - HP / SP bars
-        - EXP bars
-        - Weight / Zeny
-        - Stripey background bar
         - Floating button control
+
+    Inventory window
+        - Lock drop checkbox
+        - Inner-content side tabs
+
+
+
+
+=============
+    Todo
+=============
 
     Chat Window
         - Stripey background
@@ -160,17 +223,6 @@ Things to reproduce
         - Chracter display
         - Icon slots
         - Highlight hover
-
-    Inventory window
-        - Basic header bar
-        - Useless button
-        - Title
-        - Minimize
-        - Close
-        - Stripey background
-        - Lock drop checkbox
-        - Inner-content side tabs
-        - Icon slot background
 
     Huge Map
         - Full screen overlay
