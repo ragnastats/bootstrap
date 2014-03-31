@@ -2,6 +2,56 @@
     cursor:url(../assets/skin/ro-mouse-cursor.gif), auto;
 }
 
+.ragnarok .jspVerticalBar {
+    width: 14px;
+}
+
+.ragnarok .jspTrack {
+    background-image: url(../assets/skin/ro-bar-gry-vert.png);
+    width: 9px;
+    margin-left: 2px;
+}
+
+.ragnarok .jspArrowUp {
+    background-image: url(../assets/skin/ro-scroll-up.png);
+    background-repeat: no-repeat;
+    width: 14px;
+}
+
+.ragnarok .jspArrowDown {
+    background-image: url(../assets/skin/ro-scroll-down.png);
+    background-repeat: no-repeat;
+    width: 14px;
+    margin-top:-1px;
+}
+
+.ragnarok .jspDrag {
+    background-image:url(../assets/skin/ro-bar-blue-vert.png);
+    background-clip:content-box;
+    padding:4px 0px;
+ //   margin-top:-5px;
+}
+
+.ragnarok .jspDragTop {
+    position: absolute;
+    top: 0px;
+    background-image:url(../assets/skin/ro-bar-top.png);
+    background-repeat: no-repeat;
+    background-position:top; 
+    height:50%;
+    width: 9px;
+}
+
+.ragnarok .jspDragBottom {
+    position: absolute;
+    bottom: 0px;
+    background-image:url(../assets/skin/ro-bar-bottom.png);
+    background-repeat: no-repeat;
+    background-position:bottom;
+    height:50%;
+    width: 9px;
+}
+
 .ragnarok-right, .ro-rt {
     position: absolute;
     left: auto;
@@ -229,4 +279,46 @@
     display: inline-block;
     height: 32px;
     width: 32px;
+}
+
+.ragnarok-scroll-pane, .ro-scroll {
+    background-color: #F7F7F7;
+    margin: 0px 0px 16px 0px;
+}
+
+/* A container for buttons with a bit of padding */
+.ragnarok-buttons, .ro-btns {
+    padding: 8px;
+}
+
+.ragnarok-button, .ro-btn {
+    background-image:url(../assets/skin/ro-btn.png);
+    background-repeat:repeat-x;
+    color:#000;
+    cursor:url(../assets/skin/ro-mouse-pointer.gif), auto;
+    margin:0px 2px 2px 0px;
+    height:16px;
+    line-height:16px;
+    padding:1px 8px 0px 8px;
+    border:1px solid #A3A3A3;
+    border-radius:4px;
+    font-size: 9pt;
+    display: inline-block;
+}
+
+.ragnarok-button:hover, .ro-btn:hover {
+    background-image:url(../assets/skin/ro-btn-hover.png);
+}
+
+.ragnarok-button div, .ro-btn div {
+    cursor:url(../assets/skin/ro-mouse-pointer.gif), auto;
+    line-height: 13px;
+}
+
+.ragnarok-clear, .ro-clear {
+    clear:both;
+}
+
+.ragnarok-clear:after, .ro-clear:after { 
+    content:"\00a0";
 }

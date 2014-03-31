@@ -21,4 +21,7 @@ $(document).ready(function()
            $(this).find('.ragnarok-window-content, .ro-win-content').css({'padding-bottom': footerHeight + 4});
         }
     });
+
+    $('.ragnarok-scroll-pane, .ro-scroll-pane').jScrollPane({showArrows: true, hideFocus: true});
+    $('.jspDrag').height($('.jspDrag').height() - 8);
 });
