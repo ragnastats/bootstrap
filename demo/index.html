@@ -54,6 +54,14 @@
                 height: 300px;
                 
             }
+
+            .equip {
+                width: 250px;
+            }
+
+            .todo {
+                width: 300px;
+            }
         </style>
     </head>
 
@@ -69,20 +77,13 @@
                 <div class="ragnarok-window-inner">
                     <div class="ragnarok-scroll-pane">
                         <p>WARNING: RAGNAROK ONLINE IS AWESOME</p>
-                        <p>La la la la la la~</p>
-                        <p>Woahh~~</p>
+
                         <p>
                             RagnaStats may induce previously undetected desires to use illegal 3rd party plugins for Ragnarok Online.
                             A very small percentage of indivudals may experience temper tantrums when exposed to 3rd party plugins such as bots.
-                            Exposure to certain plugins or cool features, also known as user created content, may induce irrational fits of rage in these indivudals and it would probably be best if they did not use this website.
+                            Exposure to certain plugins or cool features, also known as user created content, may induce irrational fits of rage in these indivudals.
                         </p>
-                        
-                        <p>
-                            If you, or anyone in your family, have a problem with botting, consult your psychiatrist prior to searching.
-                            The morality of hacking is a big deal.
-                            Why wait for someone else to make things better when anyone can contribute to an open source project?
-                        </p>
-                        
+                                                
                         <p>
                             [ TERMS OF AGREEMENT Last updated July 18, 2012 ]
                         </p>
@@ -138,7 +139,7 @@
                 </div>
             </div>
 
-            <div class="ragnarok-window basic-info">
+            <div class="ragnarok-window basic-info" style="top: 10px; left:200px;">
                 <div class="ragnarok-window-title-blue">
                     <div class="ragnarok-button ragnarok-window-button"></div>
 
@@ -176,7 +177,7 @@
                 </div>
             </div>
 
-            <div class="ro-win inventory" style="top: 228; left:10px;">
+            <div class="ro-win inventory" style="top: 10px; left:470px;">
                 <div class="ro-win-title-b">
                     <div class="ro-btn ro-win-btn"></div>
 
@@ -224,7 +225,57 @@
                 </div>
 
                 <div class="ro-win-foot">
-                    <div class="ro-win-resize"></div>
+                    <div class="ro-btn ro-win-resize"></div>
+                </div>
+            </div>
+
+            <div class="ro-win equip" style="top: 170px; left:200px;">
+                <div class="ro-win-title-b">
+                    <div class="ro-btn ro-win-btn"></div>
+
+                    <p>
+                        Equip
+                    </p>
+
+                    <div class="ro-rt">
+                        <div class="ro-btn ro-win-btn-close"></div>
+                    </div>
+                </div>
+
+                <div class="ro-win-content">
+                    <ul>
+                        <li>Item slots</li>
+                        <li>Character</li>
+                    </ul>
+                </div>
+
+                <div class="ro-win-foot">
+                    <div class="ro-btn ro-win-resize"></div>
+                </div>
+            </div>
+
+            <div class="ro-win todo" style="top: 170px; left:470px;">
+                <div class="ro-win-title-b">
+                    <div class="ro-btn ro-win-btn"></div>
+
+                    <p>
+                        Party (Actually A Todo List)
+                    </p>
+
+                    <div class="ro-rt">
+                        <div class="ro-btn ro-win-btn-close"></div>
+                    </div>
+                </div>
+
+                <div class="ro-win-content">
+                    <ul>
+                        <li>Make this look like a party window</li>
+                        <li>Checkboxes!!</li>
+                    </ul>
+                </div>
+
+                <div class="ro-win-foot">
+                    <div class="ro-btn ro-win-resize"></div>
                 </div>
             </div>
         </div> <!-- close background (.cover) -->

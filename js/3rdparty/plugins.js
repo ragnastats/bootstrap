@@ -1,7 +1,6 @@
 // From
 // http://css-tricks.com/snippets/jquery/draggable-without-jquery-ui/
 // lol
-
 (function($) {
     $.fn.drags = function(opt) {
 
