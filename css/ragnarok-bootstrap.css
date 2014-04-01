@@ -152,7 +152,7 @@
 
 .ragnarok-window-button-minimize:hover, .ro-win-btn-min:hover {
     background-image:url(../assets/skin/ro-win-btn-min-active.png);
-    cursor:url(../assets/skin/ro-mouse-pointer.gif), auto;
+
 }
 
 .ragnarok-window-button-close, .ro-win-btn-close {
@@ -161,7 +161,7 @@
 
 .ragnarok-window-button-close:hover, .ro-win-btn-close:hover {
     background-image:url(../assets/skin/ro-win-btn-close-active.png);
-    cursor:url(../assets/skin/ro-mouse-pointer.gif), auto;
+
 }
 
 .ragnarok-window-content, .ro-win-content {
@@ -291,11 +291,11 @@
     padding: 8px;
 }
 
-.ragnarok-button, .ro-btn {
+.ragnarok-text-button, .ro-text-btn {
     background-image:url(../assets/skin/ro-btn.png);
     background-repeat:repeat-x;
     color:#000;
-    cursor:url(../assets/skin/ro-mouse-pointer.gif), auto;
+
     margin:0px 2px 2px 0px;
     height:16px;
     line-height:16px;
@@ -306,12 +306,11 @@
     display: inline-block;
 }
 
-.ragnarok-button:hover, .ro-btn:hover {
+.ragnarok-text-button:hover, .ro-text-btn:hover {
     background-image:url(../assets/skin/ro-btn-hover.png);
 }
 
-.ragnarok-button div, .ro-btn div {
-    cursor:url(../assets/skin/ro-mouse-pointer.gif), auto;
+.ragnarok-text-button div, .ro-text-btn div {
     line-height: 13px;
 }
 
@@ -321,4 +320,20 @@
 
 .ragnarok-clear:after, .ro-clear:after { 
     content:"\00a0";
+}
+
+
+/* Generic button behavior */
+.ragnarok-button, .ro-btn,
+.ragnarok-button div, .ro-btn div,
+.ragnarok-button span, .ro-btn span {
+    cursor:url(../assets/skin/ro-mouse-point.png), auto;
+}
+
+.ragnarok-button.click, .ro-btn.click,
+.ragnarok-button.click div, .ro-btn.click div,
+.ragnarok-button.click span, .ro-btn.click span {
+    cursor:url(../assets/skin/ro-mouse-point-click.png), auto;
+    color: rgba(255, 255, 255, 0.3);
+    text-shadow:1px 1px #000;
 }

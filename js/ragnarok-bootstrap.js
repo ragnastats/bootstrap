@@ -26,4 +26,14 @@ $(document).ready(function()
     $('.jspDrag').height($('.jspDrag').height() - 8);
 
     $('.ragnarok-window, .ro-win').drags();
+
+    $('.ragnarok-button, .ro-btn').on('mousedown', function()
+    {
+        $(this).addClass('click');
+    });
+
+    $('.ragnarok-button, .ro-btn').on('mouseup', function()
+    {
+        $(this).removeClass('click');
+    });
 });
