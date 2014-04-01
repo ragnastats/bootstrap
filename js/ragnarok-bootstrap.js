@@ -24,4 +24,6 @@ $(document).ready(function()
 
     $('.ragnarok-scroll-pane, .ro-scroll-pane').jScrollPane({showArrows: true, hideFocus: true});
     $('.jspDrag').height($('.jspDrag').height() - 8);
+
+    $('.ragnarok-window, .ro-win').drags();
 });
