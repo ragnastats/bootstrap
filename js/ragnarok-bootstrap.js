@@ -36,4 +36,9 @@ $(document).ready(function()
     {
         $(this).removeClass('click');
     });
+
+    $('.ragnarok-checkbox, .ro-check').on('click', function()
+    {
+        $(this).toggleClass('checked');
+    });
 });

@@ -342,3 +342,23 @@
     color: rgba(255, 255, 255, 0.3);
     text-shadow:1px 1px #000;
 }
+
+.ragnarok-checkbox, .ro-check {
+    background-image:url(../assets/skin/ro-checkbox.png);
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    margin-top: 2px;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.ragnarok-checkbox[checked], .ro-check[checked] {
+    background-image:url(../assets/skin/ro-checkbox-checked.png);
+    
+}
+
+.ragnarok-checkbox.checked, .ro-check.checked {
+    background-image:url(../assets/skin/ro-checkbox-checked.png);
+    
+}
