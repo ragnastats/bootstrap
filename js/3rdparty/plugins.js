@@ -13,6 +13,22 @@
         }
 
         return $el.css('cursor', opt.cursor).on("mousedown", function(e) {
+            console.log($(this), e.target);
+
+            if(opt.target && opt.target.length)
+            {
+                var match = false;
+                
+                $.each(opt.target, function(index, target)
+                {
+                    if($(e.target).hasClass(target))
+                        match = true;
+                })
+
+                if(!match)
+                    return;
+            }
+            
             if(opt.handle === "") {
                 var $drag = $(this).addClass('drag');
             } else {

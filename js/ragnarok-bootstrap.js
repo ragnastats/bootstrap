@@ -25,7 +25,17 @@ $(document).ready(function()
     $('.ragnarok-scroll-pane, .ro-scroll-pane').jScrollPane({showArrows: true, hideFocus: true});
     $('.jspDrag').height($('.jspDrag').height() - 8);
 
-    $('.ragnarok-window, .ro-win').drags();
+    $('.ragnarok-window, .ro-win').each(function()
+    {
+        if($(this).find('.ragnarok-window-title-blue, .ro-win-title-b').length)
+        {
+            $(this).drags({target: ['ragnarok-window-title-blue', 'ro-win-title-b', 'ragnarok-handle', 'ro-handle']});
+        }
+        else
+        {
+            $(this).drags({target: ['ragnarok-window', 'ro-win', 'ragnarok-window-inner', 'ro-win-in', 'ragnarok-handle', 'ro-handle']});
+        }
+    });
 
     $('.ragnarok-button, .ro-btn').on('mousedown', function()
     {

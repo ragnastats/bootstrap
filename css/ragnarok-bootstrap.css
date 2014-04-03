@@ -129,6 +129,7 @@
     line-height:16px;
 }
 
+
 .ragnarok-window-title-blue p, .ro-win-title-b p {
     display: inline-block;
     padding-right: 5px;
@@ -335,6 +336,12 @@
     cursor:url(../assets/skin/ro-mouse-point.png), auto;
 }
 
+.ragnarok-button::selection, .ro-btn::selection,
+.ragnarok-button div::selection, .ro-btn div::selection,
+.ragnarok-button span::selection, .ro-btn span::selection {
+    background-color: transparent;
+}
+
 .ragnarok-button.click, .ro-btn.click,
 .ragnarok-button.click div, .ro-btn.click div,
 .ragnarok-button.click span, .ro-btn.click span {
@@ -350,7 +357,7 @@
     line-height: 10px;
     margin-top: 2px;
     display: inline-block;
-    margin-right: 8px;
+    margin-right: 5px;
 }
 
 .ragnarok-checkbox[checked], .ro-check[checked] {
