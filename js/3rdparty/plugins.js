@@ -8,7 +8,7 @@ Array.prototype.remove = function(from, to) {
 };
 
 // From
-// http://css-tricks.com/snippets/jquery/drag-without-jquery-ui/
+// http://css-tricks.com/snippets/jquery/draggable-without-jquery-ui/
 // Oh god this is so terrible...
 (function($) {
     var windows = [];
@@ -21,9 +21,9 @@ Array.prototype.remove = function(from, to) {
         });
     }
     
-    $.fn.drags = function(opt)
+    $.fn.drag = function(opt)
     {
-        opt = $.extend({handle:"",cursor:"move"}, opt);
+        opt = $.extend({handle:""}, opt);
 
         if(opt.handle === "") {
             var $el = this;
@@ -38,7 +38,7 @@ Array.prototype.remove = function(from, to) {
         $(this).attr('window', id);        
         $(this).css({'z-index': windows.length});
 
-        return $el.css('cursor', opt.cursor).on("mousedown", function(e)
+        return $el.on("mousedown", function(e)
         {
             if(opt.target && opt.target.length)
             {
@@ -59,14 +59,36 @@ Array.prototype.remove = function(from, to) {
             } else {
                 var $drag = $(this).addClass('active-handle').parent().addClass('drag');
             }
-            var drg_h = $drag.outerHeight(),
-                drg_w = $drag.outerWidth(),
+            var drg_h = $drag.outerHeight(true),
+                drg_w = $drag.outerWidth(true),
                 pos_y = $drag.offset().top + drg_h - e.pageY,
                 pos_x = $drag.offset().left + drg_w - e.pageX;
+                
             $drag.css('z-index', 1000).parents().on("mousemove", function(e) {
+                var top = e.pageY + pos_y - drg_h;
+                var left = e.pageX + pos_x - drg_w;
+
+                if(e.pageY + pos_y > $(window).height())
+                {
+                    top -= e.pageY + pos_y - $(window).height();
+                }
+                else if(e.pageY + pos_y < drg_h)
+                {
+                    top = 0;
+                }
+
+                if(e.pageX + pos_x > $(window).width())
+                {
+                    left -= e.pageX + pos_x - $(window).width();
+                }
+                else if(e.pageX + pos_x < drg_w)
+                {
+                    left = 0;
+                }
+                
                 $('.drag').offset({
-                    top:e.pageY + pos_y - drg_h,
-                    left:e.pageX + pos_x - drg_w
+                    top:top,
+                    left:left
                 });
             });
 

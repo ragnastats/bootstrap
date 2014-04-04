@@ -170,12 +170,22 @@
 
 }
 
+.ragnarok-window.ro-min .ragnarok-window-content, .ro-win.ro-min .ro-win-content {
+    display: none;
+}
+
 .ragnarok-window-content, .ro-win-content {
     border: 1px solid #C4C4C4;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 5px;
     position: relative;
+    display: block;
+}
+
+
+.ragnarok-window.ro-min .ragnarok-window-footer, .ro-win.ro-min .ro-win-foot {
+    display: none;
 }
 
 .ragnarok-window-footer, .ro-win-foot {
