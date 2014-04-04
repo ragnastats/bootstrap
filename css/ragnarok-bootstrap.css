@@ -148,8 +148,8 @@
     margin: 0px 5px 1px 0px;
 }
 
-.ragnarok-window-button:hover, .ro-win-btn:hover {
-    background-image:url(../assets/skin/ro-win-btn-min-active.png);
+.ragnarok-button.ragnarok-window-button:hover, .ro-btn.ro-win-btn:hover {
+    background-image:url(../assets/skin/ro-win-btn-active.png);
 }
 
 .ragnarok-window-button-minimize, .ro-win-btn-min {
@@ -290,6 +290,7 @@
 .ragnarok-scroll-pane, .ro-scroll {
     background-color: #F7F7F7;
     margin: 0px 0px 16px 0px;
+    overflow: hidden;
 }
 
 /* A container for buttons with a bit of padding */
