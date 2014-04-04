@@ -1,9 +1,28 @@
 // From
-// http://css-tricks.com/snippets/jquery/drag-without-jquery-ui/
-// lol
-(function($) {
-    $.fn.drags = function(opt) {
+// http://stackoverflow.com/questions/500606/javascript-array-delete-elements
+// Array Remove - By John Resig (MIT Licensed)
+Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
 
+// From
+// http://css-tricks.com/snippets/jquery/drag-without-jquery-ui/
+// Oh god this is so terrible...
+(function($) {
+    var windows = [];
+
+    function layer_windows()
+    {
+        $.each(windows, function(index, id)
+        {
+            $("[window='"+id+"']").css('z-index', index + 1);
+        });
+    }
+    
+    $.fn.drags = function(opt)
+    {
         opt = $.extend({handle:"",cursor:"move"}, opt);
 
         if(opt.handle === "") {
@@ -12,9 +31,15 @@
             var $el = this.find(opt.handle);
         }
 
-        return $el.css('cursor', opt.cursor).on("mousedown", function(e) {
-            console.log($(this), e.target);
 
+        var id = windows.length + 1;
+        windows.push(id);
+
+        $(this).attr('window', id);        
+        $(this).css({'z-index': windows.length});
+
+        return $el.css('cursor', opt.cursor).on("mousedown", function(e)
+        {
             if(opt.target && opt.target.length)
             {
                 var match = false;
@@ -34,8 +59,7 @@
             } else {
                 var $drag = $(this).addClass('active-handle').parent().addClass('drag');
             }
-            var z_idx = $drag.css('z-index'),
-                drg_h = $drag.outerHeight(),
+            var drg_h = $drag.outerHeight(),
                 drg_w = $drag.outerWidth(),
                 pos_y = $drag.offset().top + drg_h - e.pageY,
                 pos_x = $drag.offset().left + drg_w - e.pageX;
@@ -43,10 +67,9 @@
                 $('.drag').offset({
                     top:e.pageY + pos_y - drg_h,
                     left:e.pageX + pos_x - drg_w
-                }).on("mouseup", function() {
-                    $(this).removeClass('drag').css('z-index', z_idx);
                 });
             });
+
             e.preventDefault(); // disable selection
         }).on("mouseup", function() {
             if(opt.handle === "") {
@@ -54,6 +77,12 @@
             } else {
                 $(this).removeClass('active-handle').parent().removeClass('drag');
             }
+
+            var index = windows.indexOf(parseInt($(this).attr('window')));           
+            windows.remove(index);
+            windows.push(parseInt($(this).attr('window')));
+
+            layer_windows();
         });
 
     }
