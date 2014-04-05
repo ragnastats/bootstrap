@@ -106,7 +106,6 @@ Array.prototype.remove = function(from, to) {
 
             layer_windows();
         });
-
     }
 })(jQuery);
 

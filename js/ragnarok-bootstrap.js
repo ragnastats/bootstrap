@@ -62,4 +62,12 @@ $(document).ready(function()
     {
         $(this).parents('.ragnarok-window, .ro-win').toggleClass('ro-min');
     });
+
+    // Stop dragging when the mouse leaves the browser
+    $('body').on('mouseleave', function()
+    {
+        console.log('mouseout!');
+        $('.drag').trigger('mouseup');
+    });
+
 });
