@@ -25,6 +25,7 @@ $(document).ready(function()
     $('.ragnarok-scroll-pane, .ro-scroll-pane').jScrollPane({showArrows: true, hideFocus: true});
     $('.jspDrag').height($('.jspDrag').height() - 8);
     $('.jspTrack, .jspArrow').addClass('ro-btn');
+    $('.ragnarok-checkbox, .ro-check').addClass('ro-btn');
 
     $('.ragnarok-window, .ro-win').each(function()
     {
@@ -69,8 +70,6 @@ $(document).ready(function()
         'max': { 'height': 800, 'width': 400 }
     });
 
-
-
     $('.ragnarok-button, .ro-btn').on('mousedown', function()
     {
         $(this).addClass('click');
@@ -81,7 +80,7 @@ $(document).ready(function()
         $(this).removeClass('click');
     });
 
-    $('.ragnarok-checkbox, .ro-check').on('click', function()
+    $('.ragnarok-checkbox, .ro-check').on('mousedown', function()
     {
         $(this).toggleClass('checked');
     });
