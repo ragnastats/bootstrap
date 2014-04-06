@@ -30,6 +30,16 @@ $(document).ready(function()
     {
         if($(this).find('.ragnarok-window-title-blue, .ro-win-title-b').length)
         {
+            $(this).css({'height': $(this).height(), 'width': $(this).width()});
+            
+            $(this).find('.ragnarok-window-content, .ro-win-content').css({
+                'position': 'absolute',
+                'top': $(this).find('.ragnarok-window-title-blue, .ro-win-title-b').outerHeight(true),
+                'bottom': '0px',
+                'left': '0px',
+                'right': '0px'
+            });
+            
             $(this).drag({target: ['ragnarok-window-title-blue', 'ro-win-title-b', 'ragnarok-handle', 'ro-handle']});
         }
         else
@@ -76,5 +86,9 @@ $(document).ready(function()
      //   $('.resize').trigger('mouseup');
     });
 
-    $('.ragnarok-window-resize, .ro-win-resize').resize();
+    $.resize({
+        'handle': '.ragnarok-window-resize, .ro-win-resize',
+        'window': '.ragnarok-window, .ro-win',
+        'grid': 15
+    });
 });

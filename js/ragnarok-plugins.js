@@ -99,80 +99,57 @@
             layer_windows();
         });
     }
-
-
-    $.fn.resize = function(opt)
+    
+    // Requires:
+        // opt.handle - selector for the resize handle
+        // opt.window - selector for the parent window
+    // Optional:
+        // opt.grid - size of grid to snap to
+    $.resize = function(opt)
     {
-        opt = $.extend({handle:""}, opt);
+        console.log('hi');
+        opt = $.extend({'grid': 1}, opt);
 
-        if(opt.handle === "") {
-            var $el = this;
-        } else {
-            var $el = this.find(opt.handle);
-        }
-
-
-        var id = windows.length + 1;
-        windows.push(id);
-
-        $(this).attr('window', id);        
-        $(this).css({'z-index': windows.length});
-
-        return $el.on("mousedown", function(e)
-        {            
-            if(opt.target && opt.target.length)
-            {
-                var match = false;
-                
-                $.each(opt.target, function(index, target)
-                {
-                    if($(e.target).hasClass(target))
-                        match = true;
-                })
-
-                if(!match)
-                    return;
-            }
+        var resizing = false;
+        var resize = {'grid': opt.grid};
+        
+        $(document).on('mousedown', opt.handle, function()
+        {
+            console.log('mousedown');      
+            resizing = true;
+            $(this).addClass('resize');
             
-            if(opt.handle === "") {
-                var $resize = $(this).addClass('resize');
-            } else {
-                var $resize = $(this).addClass('resize-active').parent().addClass('resize');
+            resize.element = $(this);
+            resize.offset = $(this).parents(opt.window).offset();
+            resize.width = $(this).parents(opt.window).width();
+            resize.height = $(this).parents(opt.window).height();
+        });
+
+        $(document).on('mousemove', function(event)
+        {
+            if(resizing)
+            {
+                console.log('mousemove');
+
+                var width = event.pageX - resize.offset.left;
+                var height = event.pageY - resize.offset.top;
+
+                width -= width % resize.grid;
+                height -= height % resize.grid;
+
+                resize.element.parents(opt.window).css({'width': width, 'height': height});
+                return false;
             }
-            var drg_h = $resize.outerHeight(true),
-                drg_w = $resize.outerWidth(true),
-                pos_y = $resize.offset().top + drg_h - e.pageY,
-                pos_x = $resize.offset().left + drg_w - e.pageX,
-                width = $('.resize').width(),
-                height = $('.resize').height();
+        });
 
-                
-            $resize.css('z-index', 1000).parents().on("mousemove", function(e) {
-                var left = e.pageX + pos_x - drg_w;
-                var top = e.pageY + pos_y - drg_h;
+        $(document).on('mouseup', function()
+        {
+            resizing = false;
+        });
 
-//                console.log(e.pageX, pos_x, drg_w);
-//                console.log(e.pageY, pos_y, drg_h);
-                
-                $('.resize').css({
-                    width:  width + left,
-                    height: height + top
-                });
-            });
-
-            e.preventDefault(); // disable selection
-        }).on("mouseup", function() {
-            if(opt.handle === "") {
-                $(this).removeClass('resize');
-            } else {
-                $(this).removeClass('resize-active').parent().removeClass('resize');
-            }
-
-            var index = windows.indexOf(parseInt($(this).attr('window')));           
-            windows.remove(index);
-            windows.push(parseInt($(this).attr('window')));
-
-            layer_windows();
+        $(document).on('mouseleave', function()
+        {
+            resizing = false;
         });
     }
 })(jQuery);
