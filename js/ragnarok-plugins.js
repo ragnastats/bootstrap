@@ -102,27 +102,31 @@
     
     // Requires:
         // opt.handle - selector for the resize handle
-        // opt.window - selector for the parent window
     // Optional:
         // opt.grid - size of grid to snap to
-    $.resize = function(opt)
+    $.fn.resize = function(opt)
     {
-        console.log('hi');
-        opt = $.extend({'grid': 1}, opt);
+        opt = $.extend({'grid': 1, 'min': {}, 'max': {}}, opt);
 
         var resizing = false;
         var resize = {'grid': opt.grid};
+        var parent = $(this);
         
-        $(document).on('mousedown', opt.handle, function()
-        {
+        $(this).find(opt.handle).on('mousedown', function()
+        {            
             console.log('mousedown');      
             resizing = true;
             $(this).addClass('resize');
             
-            resize.element = $(this);
-            resize.offset = $(this).parents(opt.window).offset();
-            resize.width = $(this).parents(opt.window).width();
-            resize.height = $(this).parents(opt.window).height();
+            resize.offset = parent.offset();
+            resize.width = parent.width();
+            resize.height = parent.height();
+
+            var index = windows.indexOf(parseInt(parent.attr('window')));           
+            windows.remove(index);
+            windows.push(parseInt(parent.attr('window')));
+
+            layer_windows();
         });
 
         $(document).on('mousemove', function(event)
@@ -137,18 +141,48 @@
                 width -= width % resize.grid;
                 height -= height % resize.grid;
 
-                resize.element.parents(opt.window).css({'width': width, 'height': height});
+                if(width < opt.min.width)
+                    width = opt.min.width;
+
+                if(height < opt.min.height)
+                    height = opt.min.height;
+
+                if(width > opt.max.width)
+                    width = opt.max.width;
+
+                if(height > opt.max.height)
+                    height = opt.max.height;
+
+                parent.css({'width': width, 'height': height});
                 return false;
             }
         });
 
         $(document).on('mouseup', function()
         {
+            if(resizing)
+            {
+                var index = windows.indexOf(parseInt(parent.attr('window')));           
+                windows.remove(index);
+                windows.push(parseInt(parent.attr('window')));
+
+                layer_windows();
+            }
+
             resizing = false;
         });
 
         $(document).on('mouseleave', function()
         {
+            if(resizing)
+            {
+                var index = windows.indexOf(parseInt(parent.attr('window')));           
+                windows.remove(index);
+                windows.push(parseInt(parent.attr('window')));
+
+                layer_windows();
+            }
+
             resizing = false;
         });
     }

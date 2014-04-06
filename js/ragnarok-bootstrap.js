@@ -48,6 +48,29 @@ $(document).ready(function()
         }
     });
 
+    $('.inventory').resize({
+        'handle': '.ragnarok-window-resize, .ro-win-resize',
+        'grid': 33,
+        'min': { 'height': 120, 'width': 200 },
+        'max': { 'height': 300, 'width': 400 }
+    });
+
+    $('.equip').resize({
+        'handle': '.ragnarok-window-resize, .ro-win-resize',
+        'grid': 10,
+        'min': { 'height': 100, 'width': 200 },
+        'max': { 'height': 200, 'width': 300 }
+    });
+
+    $('.todo').resize({
+        'handle': '.ragnarok-window-resize, .ro-win-resize',
+        'grid': 10,
+        'min': { 'height': 100, 'width': 200 },
+        'max': { 'height': 800, 'width': 400 }
+    });
+
+
+
     $('.ragnarok-button, .ro-btn').on('mousedown', function()
     {
         $(this).addClass('click');
@@ -84,11 +107,5 @@ $(document).ready(function()
     {
        // console.log("get met out!");
      //   $('.resize').trigger('mouseup');
-    });
-
-    $.resize({
-        'handle': '.ragnarok-window-resize, .ro-win-resize',
-        'window': '.ragnarok-window, .ro-win',
-        'grid': 15
     });
 });
