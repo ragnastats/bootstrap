@@ -13,7 +13,7 @@
             $(document).ready(function()
             {
                 var resizing = false;
-                var resize = {};
+                var resize = {'grid': 50};
                 
                 $(document).on('mousedown', '.resize-handle', function()
                 {
@@ -35,6 +35,9 @@
                     {
                         var width = event.pageX - resize.offset.left;
                         var height = event.pageY - resize.offset.top;
+
+                        width -= width % resize.grid;
+                        height -= height % resize.grid;
 
                         $('.window').css({'width': width, 'height': height});
                         
