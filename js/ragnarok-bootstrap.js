@@ -70,4 +70,11 @@ $(document).ready(function()
         $('.drag').trigger('mouseup');
     });
 
+    $('body').on('mouseleave', '.resize', function()
+    {
+       // console.log("get met out!");
+     //   $('.resize').trigger('mouseup');
+    });
+
+    $('.ragnarok-window-resize, .ro-win-resize').resize();
 });

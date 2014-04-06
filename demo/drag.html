@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>Drag demo!</title>
+
+        <style>
+            .window { border: 1px solid #000; position: absolute; min-height:50px; }
+            .resize-handle { border: 1px solid red; position: absolute; bottom: 0; right: 0; }
+        </style>
+
+        <script src='../js/3rdparty/jquery.min.js'></script>
+
+        <script>
+            $(document).ready(function()
+            {
+                var resizing = false;
+                var resize = {};
+                
+                $(document).on('mousedown', '.resize-handle', function()
+                {
+                    console.log('mousedown');
+                    
+                    resizing = true;
+                    $(this).addClass('resize');
+
+                    resize.offset = $('.window').offset();
+                    resize.width = $('.window').width();
+                    resize.height = $('.window').height();
+                });
+
+                $(document).on('mousemove', function(event)
+                {
+                    console.log('mousemove');
+                    
+                    if(resizing)
+                    {
+                        var width = event.pageX - resize.offset.left;
+                        var height = event.pageY - resize.offset.top;
+
+                        $('.window').css({'width': width, 'height': height});
+                        
+                        console.log(event.pageX - resize.offset.left - resize.width);
+//                        console.log(event.pageX, resize.offset.left, );
+//                        console.log(event.pageX, resize.offset);
+                    }
+                });
+
+                $(document).on('mouseup', function()
+                {
+                    console.log('mouseup');
+                    resizing = false;
+                });
+
+                $(document).on('mouseleave', function()
+                {
+                    console.log('mouseleave');
+                    resizing = false;
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="window">
+            Wowie look at this cool window
+            
+            <div class="resize-handle">Hello World</div>
+        </div>
+    </body>
+</html>
