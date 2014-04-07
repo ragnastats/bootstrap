@@ -298,6 +298,10 @@
     width: 32px;
 }
 
+.ragnarok-item img, .ro-item img {
+    padding: 4px;
+}
+
 .ragnarok-scroll-pane, .ro-scroll {
     background-color: #F7F7F7;
     margin: 0px 0px 16px 0px;
