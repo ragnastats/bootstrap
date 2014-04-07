@@ -80,7 +80,12 @@
                 
                 $('.drag').offset({
                     top:top,
-                    left:left
+                    left:left,
+                });
+
+                $('.drag').css({
+                    right: 'auto',
+                    bottom: 'auto'
                 });
             });
 
