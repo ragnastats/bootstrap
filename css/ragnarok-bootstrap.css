@@ -294,12 +294,24 @@
 .ragnarok-item, .ro-item {
     background-image:url(../assets/skin/item-bg.png);
     display: inline-block;
+    position: relative;
     height: 32px;
     width: 32px;
 }
 
 .ragnarok-item img, .ro-item img {
     padding: 4px;
+}
+
+.ragnarok-item span, .ro-item span {
+    position: absolute;
+    bottom: -1px;
+    left: 18px;
+    font-size: 8pt;
+    text-shadow: -1px -1px 0 #fff,  
+                  1px -1px 0 #fff,
+                  -1px 1px 0 #fff,
+                   1px 1px 0 #fff;
 }
 
 .ragnarok-scroll-pane, .ro-scroll {
