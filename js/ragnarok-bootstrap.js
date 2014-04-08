@@ -104,6 +104,14 @@ $(document).ready(function()
 
     $('body').on('mouseenter', '.ragnarok-hover, .ro-hover', function(event)
     {
+        // Prevent hover when window is being dragged
+        if($(this).parents('.ragnarok-window, .ro-win').length && $(this).parents('.ragnarok-window, .ro-win').hasClass('drag'))
+            return;
+
+        // Remove any previously created hover boxes
+        $('.ro-hover-box').remove();
+        $('.ro-hover-handle').remove();
+            
         var offset = $(this).offset();
         var hover = $("<div class='ro-hover-box'>"+$(this).attr('hover')+"</div>");
         var handle = $("<div class='ro-hover-handle'></div>");
