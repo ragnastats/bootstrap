@@ -102,9 +102,21 @@ $(document).ready(function()
         $('.drag').trigger('mouseup');
     });
 
-    $('body').on('mouseleave', '.resize', function()
+    $('body').on('mouseenter', '.ragnarok-hover, .ro-hover', function(event)
     {
-       // console.log("get met out!");
-     //   $('.resize').trigger('mouseup');
+        var offset = $(this).offset();
+        var hover = $("<div class='ro-hover-box'>"+$(this).attr('hover')+"</div>");
+        var handle = $("<div class='ro-hover-handle'></div>");
+        
+        hover.css({'left': offset.left, 'top': offset.top - 16});
+        handle.css({'left': offset.left, 'top': offset.top, 'width': $(this).outerWidth(true), 'height': $(this).outerHeight(true)});
+        $('body').append(hover);
+        $('body').append(handle);
+    });
+
+    $('body').on('mouseleave', '.ragnarok-hover-handle, .ro-hover-handle', function(event)
+    {
+        $('.ro-hover-box').remove();
+        $('.ro-hover-handle').remove();
     });
 });
