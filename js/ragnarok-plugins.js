@@ -60,32 +60,30 @@
                 var top = e.pageY + pos_y - drg_h;
                 var left = e.pageX + pos_x - drg_w;
 
-                if(e.pageY + pos_y > $(window).height())
+                if(e.pageY + pos_y > $(document).height())
                 {
-                    top -= e.pageY + pos_y - $(window).height();
+                    top -= e.pageY + pos_y - $(document).height();
                 }
                 else if(e.pageY + pos_y < drg_h)
                 {
                     top = 0;
                 }
 
-                if(e.pageX + pos_x > $(window).width())
+                if(e.pageX + pos_x > $(document).width())
                 {
-                    left -= e.pageX + pos_x - $(window).width();
+                    left -= e.pageX + pos_x - $(document).width();
                 }
                 else if(e.pageX + pos_x < drg_w)
                 {
                     left = 0;
                 }
                 
-                $('.drag').offset({
-                    top:top,
-                    left:left,
-                });
-
                 $('.drag').css({
+                    position: 'absolute',
                     right: 'auto',
-                    bottom: 'auto'
+                    bottom: 'auto',
+                    top:top,
+                    left:left
                 });
             });
 
