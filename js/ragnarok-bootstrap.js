@@ -119,16 +119,18 @@ $(document).ready(function()
         var offset = $(this).offset();
         var hover = $("<div class='ro-hover-box'>"+$(this).attr('hover')+"</div>");
         var handle = $("<div class='ro-hover-handle'></div>");
-        hover.css({'left': offset.left, 'top': offset.top - 16});
-        handle.css({'left': offset.left, 'top': offset.top, 'width': $(this).outerWidth(true), 'height': $(this).outerHeight(true)});
+
         $('body').append(hover);
         $('body').append(handle);
 
+        hover.css({'left': offset.left, 'top': offset.top - (hover.outerHeight(true) - $(this).outerHeight(true) * 0.2) });
+        handle.css({'left': offset.left, 'top': offset.top, 'width': $(this).outerWidth(true), 'height': $(this).outerHeight(true)});
+
         // Make sure the hover box doesn't go outside the window
-        if(offset.left + $('.ro-hover-box').outerWidth(true) > $(window).width())
+        if(offset.left + hover.outerWidth(true) > $(window).width())
         {
-            var overflow = offset.left + $('.ro-hover-box').outerWidth(true) - $(window).width() 
-            $('.ro-hover-box').css({'left': offset.left - overflow});
+            var overflow = offset.left + hover.outerWidth(true) - $(window).width() 
+            hover.css({'left': offset.left - overflow});
         }
     });
 
