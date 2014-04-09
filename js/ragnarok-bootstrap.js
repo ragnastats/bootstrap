@@ -115,11 +115,17 @@ $(document).ready(function()
         var offset = $(this).offset();
         var hover = $("<div class='ro-hover-box'>"+$(this).attr('hover')+"</div>");
         var handle = $("<div class='ro-hover-handle'></div>");
-        
         hover.css({'left': offset.left, 'top': offset.top - 16});
         handle.css({'left': offset.left, 'top': offset.top, 'width': $(this).outerWidth(true), 'height': $(this).outerHeight(true)});
         $('body').append(hover);
         $('body').append(handle);
+
+        // Make sure the hover box doesn't go outside the window
+        if(offset.left + $('.ro-hover-box').outerWidth(true) > $(window).width())
+        {
+            var overflow = offset.left + $('.ro-hover-box').outerWidth(true) - $(window).width() 
+            $('.ro-hover-box').css({'left': offset.left - overflow});
+        }
     });
 
     $('body').on('mouseleave', '.ragnarok-hover-handle, .ro-hover-handle', function(event)
