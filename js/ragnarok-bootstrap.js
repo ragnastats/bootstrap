@@ -111,7 +111,11 @@ $(document).ready(function()
         // Remove any previously created hover boxes
         $('.ro-hover-box').remove();
         $('.ro-hover-handle').remove();
-            
+        $('.ro-hovering').removeClass('ro-hovering');
+
+        // Add hovering class to current element
+        $(this).addClass('ro-hovering');
+        
         var offset = $(this).offset();
         var hover = $("<div class='ro-hover-box'>"+$(this).attr('hover')+"</div>");
         var handle = $("<div class='ro-hover-handle'></div>");
@@ -128,9 +132,20 @@ $(document).ready(function()
         }
     });
 
-    $('body').on('mouseleave', '.ragnarok-hover-handle, .ro-hover-handle', function(event)
+    $('body').on('mouseleave', '.ro-hover-handle', function(event)
     {
         $('.ro-hover-box').remove();
         $('.ro-hover-handle').remove();
+    });
+
+    $('body').on('click', '.ro-hover-handle', function()
+    {
+        // Pass click event to the actual element being clicked on
+        $('.ro-hovering').trigger('click');
+    });
+
+    $('body').on('click', '.ragnarok-item, .ro-item', function()
+    {
+        alert('CLICK');
     });
 });
