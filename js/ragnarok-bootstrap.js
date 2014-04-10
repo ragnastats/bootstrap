@@ -140,13 +140,13 @@ $(document).ready(function()
         $('.ro-hover-handle').remove();
     });
 
-    $('body').on('click', '.ro-hover-handle', function()
+    $('body').on('mousedown', '.ro-hover-handle', function()
     {
         // Pass click event to the actual element being clicked on
-        $('.ro-hovering').trigger('click');
+        $('.ro-hovering').trigger('mousedown');
     });
 
-    $('body').on('click', '.ragnarok-item, .ro-item', function()
+    $('body').on('mousedown', '.ragnarok-item, .ro-item', function()
     {
         alert('CLICK');
     });
