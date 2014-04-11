@@ -138,6 +138,10 @@
     font-size: 10pt;
 }
 
+.ragnarok-window-title-blue p span, .ro-win-title-b p span {
+    text-shadow:none;
+}
+
 .ragnarok-window-button, .ro-win-btn,
 .ragnarok-window-button-minimize, .ro-win-btn-min,
 .ragnarok-window-button-close, .ro-win-btn-close {
@@ -171,6 +175,17 @@
 
 }
 
+.ragnarok-window.ro-min, .ro-win.ro-min {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.ragnarok-border.ro-min, .ro-win.ro-min {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+
 .ragnarok-window.ro-min .ragnarok-window-content, .ro-win.ro-min .ro-win-content {
     display: none;
 }
@@ -184,6 +199,17 @@
     overflow: hidden;
 }
 
+.ragnarok-window-minimized-content, .ro-win-min-content {
+    display: none;
+    border: 1px solid #C4C4C4;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 3px 5px;
+}
+
+.ragnarok-window.ro-min .ragnarok-window-minimized-content, .ro-win.ro-min .ro-win-min-content {
+    display: block;
+}
 
 .ragnarok-window.ro-min .ragnarok-window-footer, .ro-win.ro-min .ro-win-foot {
     display: none;

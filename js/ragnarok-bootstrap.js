@@ -92,7 +92,44 @@ $(document).ready(function()
 
     $('.ragnarok-window-button-minimize, .ro-win-btn-min').on('click', function()
     {
-        $(this).parents('.ragnarok-window, .ro-win').toggleClass('ro-min');
+        // This is so gross
+        var parent = $(this).parents('.ragnarok-window, .ro-win');
+
+        var height = parent.height();
+        var previous_height = parent.attr('previous-height');
+        
+        if(previous_height)
+        {
+            parent.css({'height': previous_height});
+            parent.removeAttr('previous-height');
+        }
+        else
+        {
+            parent.attr('previous-height', height);
+            parent.css({'height': 'auto'});
+        }
+        
+        parent.toggleClass('ro-min');
+
+        // Especially this part
+        parent.find('[ro-min-text]').each(function()
+        {
+            var text = $(this).html();
+            var minimized = $(this).attr('ro-min-text');
+
+            $(this).html(minimized);
+            $(this).attr('ro-min-text', text);
+        });
+
+        // A little gross here too
+        if(parent.hasClass('ro-min'))
+        {
+            if(parent.find('.ragnarok-window-minimized-content, .ro-win-min-content').length)
+            {
+                parent.css({'border-bottom-right-radius': '8px', 'border-bottom-left-radius': '8px'});
+            }
+        }
+        
     });
 
     // Stop dragging when the mouse leaves the browser
