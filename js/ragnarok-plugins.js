@@ -190,3 +190,59 @@
         });
     }
 })(jQuery);
+
+// Custom functions!
+var ragnarok = (function()
+{
+    // Information about your character
+    var character = {};
+
+    // Item lookup table
+    var items = {};
+
+    // Functions for a character's personal inventory 
+    var inventory = {
+        // Array contaning all inventory items
+        items: [],
+
+        
+        add: function(item, quantity)
+        {
+
+        },
+
+        remove: function(item, quantity)
+        {
+
+        },
+
+        // Use a consumable item, or equip some equipment
+        use: function(item)
+        {
+
+        }
+    };
+
+
+    // Functions for a character's storage
+    var storage = {
+        // Array containing all stored items
+        items: [],
+
+        add: function(item, quantity)
+        {
+
+        },
+
+        remove: function(item, quantity)
+        {
+
+        }
+    };
+    
+    return {
+        character: character,
+        inventory: inventory,
+        storage: storage
+    };
+})();
