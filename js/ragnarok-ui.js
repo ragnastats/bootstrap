@@ -4,6 +4,22 @@
  *
  */
 
+// Add UI functions to main ragnarok object
+ragnarok.ui = {
+    inventory: {
+        // Function to build inventory HTML from ragnarok.inventory.items
+        populate: function()
+        {
+
+        },
+
+        // Function to fill remaining space in container with empty item slots
+        fill: function()
+        {
+
+        }
+    }
+};
 
 $(document).ready(function()
 {
