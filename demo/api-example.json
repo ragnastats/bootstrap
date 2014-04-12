@@ -1,0 +1,92 @@
+{
+    "501": {
+        "name": "Red Potion",
+        "desc": "A potion made from grinded Red Herbs that restores about 45 HP.",
+        "weight": 7,
+        "type": ["usable", "potion"]
+    },
+
+    "502": {
+        "name": "Orange Potion",
+        "desc": "A potion made from grinded Red and Yellow Herbs that restores about 105 HP.",
+        "weight": 10,
+        "type": ["usable", "potion"]
+    },
+
+    "503": {
+        "name": "Yellow Potion",
+        "desc": "A potion made from grinded Yellow Herbs that restores about 175 HP.",
+        "weight": 13,
+        "type": ["usable", "potion"]
+    },
+
+    "504": {
+        "name": "White Potion",
+        "desc": "A potion made from grinded White Herbs that restores about 325 HP.",
+        "weight": 15,
+        "type": ["usable", "potion"]
+    },
+
+    "505": {
+        "name": "Blue Potion",
+        "desc": "A potion made from grinded Blue Herbs that restores about 60 SP.",
+        "weight": 15,
+        "type": ["usable", "potion"]
+    },
+
+    "506": {
+        "name": "Green Potion",
+        "desc": "A potion which cures Poison, Silence, Blind and Chaos effects.",
+        "weight": 7,
+        "type": ["usable", "potion"]
+    },
+
+    "601": {
+        "name": "Fly Wing",
+        "desc": "An enchanted fly's wing that instantly sends its user to a random spot when waved in the air. Instant teleport.",
+        "weight": 5,
+        "type": ["usable"]
+    },
+
+    "602": {
+        "name": "Butterfly Wing",
+        "desc": "An enchanted butterfly's wing that instantly sends its user to his Save Point when waved in the air. Instant teleport to character's Save Point.",
+        "weight": 5,
+        "type": ["usable"]
+    },
+
+    "603": {
+        "name": "Old Blue Box",
+        "desc": "A mysterious blue box that seems to hold something inside, but you'll have to open it to find out.",
+        "weight": 20,
+        "type": ["usable", "gift"]
+    },
+
+    "909": {
+        "name": "Jellopy",
+        "desc": "A small crystallization created by some monsters.",
+        "weight": 1,
+        "type": ["misc"]
+    },
+
+    "910": {
+        "name": "Garlet",
+        "desc": "A small crystallization created by some monsters.",
+        "weight": 1,
+        "type": ["misc"]
+    },
+
+    "911": {
+        "name": "Scell",
+        "desc": "A small crystallization created by some monsters.",
+        "weight": 1,
+        "type": ["misc"]
+    },
+
+    "912": {
+        "name": "Zargon",
+        "desc": "A small crystallization created by some monsters.",
+        "weight": 1,
+        "type": ["misc"]
+    }
+}
