@@ -23,6 +23,12 @@ ragnarok.ui = {
 
                 $(selector).append(html);
             });
+
+            // Um...
+            for(var i = 0; i < 100; i++)
+            {
+                $(selector).append("<div class='ro-item'></div>");
+            }
         }
     }
 };
