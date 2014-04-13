@@ -24,10 +24,15 @@ ragnarok.ui = {
                 $(selector).append(html);
             });
 
-            // Um...
-            for(var i = 0; i < 100; i++)
+            // Filler function!
+            var filler = 100 - ragnarok.inventory.items.length;
+
+            if(filler > 0)
             {
-                $(selector).append("<div class='ro-item'></div>");
+                for(var i = 0; i < filler; i++)
+                {
+                    $(selector).append("<div class='ro-item'></div>");
+                }
             }
         }
     }
