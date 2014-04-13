@@ -1,5 +1,6 @@
 {
     "501": {
+        "icon": "../assets/item/501.png",
         "name": "Red Potion",
         "desc": "A potion made from grinded Red Herbs that restores about 45 HP.",
         "weight": 7,
@@ -7,6 +8,7 @@
     },
 
     "502": {
+        "icon": "../assets/item/502.png",
         "name": "Orange Potion",
         "desc": "A potion made from grinded Red and Yellow Herbs that restores about 105 HP.",
         "weight": 10,
@@ -14,6 +16,7 @@
     },
 
     "503": {
+        "icon": "../assets/item/503.png",
         "name": "Yellow Potion",
         "desc": "A potion made from grinded Yellow Herbs that restores about 175 HP.",
         "weight": 13,
@@ -21,6 +24,7 @@
     },
 
     "504": {
+        "icon": "../assets/item/504.png",
         "name": "White Potion",
         "desc": "A potion made from grinded White Herbs that restores about 325 HP.",
         "weight": 15,
@@ -28,6 +32,7 @@
     },
 
     "505": {
+        "icon": "../assets/item/505.png",
         "name": "Blue Potion",
         "desc": "A potion made from grinded Blue Herbs that restores about 60 SP.",
         "weight": 15,
@@ -35,6 +40,7 @@
     },
 
     "506": {
+        "icon": "../assets/item/506.png",
         "name": "Green Potion",
         "desc": "A potion which cures Poison, Silence, Blind and Chaos effects.",
         "weight": 7,
@@ -42,6 +48,7 @@
     },
 
     "601": {
+        "icon": "../assets/item/601.png",
         "name": "Fly Wing",
         "desc": "An enchanted fly's wing that instantly sends its user to a random spot when waved in the air. Instant teleport.",
         "weight": 5,
@@ -49,6 +56,7 @@
     },
 
     "602": {
+        "icon": "../assets/item/602.png",
         "name": "Butterfly Wing",
         "desc": "An enchanted butterfly's wing that instantly sends its user to his Save Point when waved in the air. Instant teleport to character's Save Point.",
         "weight": 5,
@@ -56,6 +64,7 @@
     },
 
     "603": {
+        "icon": "../assets/item/603.png",
         "name": "Old Blue Box",
         "desc": "A mysterious blue box that seems to hold something inside, but you'll have to open it to find out.",
         "weight": 20,
@@ -63,6 +72,7 @@
     },
 
     "909": {
+        "icon": "../assets/item/909.png",
         "name": "Jellopy",
         "desc": "A small crystallization created by some monsters.",
         "weight": 1,
@@ -70,6 +80,7 @@
     },
 
     "910": {
+        "icon": "../assets/item/910.png",
         "name": "Garlet",
         "desc": "A small crystallization created by some monsters.",
         "weight": 1,
@@ -77,6 +88,7 @@
     },
 
     "911": {
+        "icon": "../assets/item/911.png",
         "name": "Scell",
         "desc": "A small crystallization created by some monsters.",
         "weight": 1,
@@ -84,6 +96,7 @@
     },
 
     "912": {
+        "icon": "../assets/item/912.png",
         "name": "Zargon",
         "desc": "A small crystallization created by some monsters.",
         "weight": 1,

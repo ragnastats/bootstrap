@@ -9,12 +9,25 @@ var ragnarok = (function()
 {
     var api = {
         populate: {
-            items: function(url) {
+            inventory: function(url, callback) {
+                $.getJSON(url, function(response)
+                {
+                    ragnarok.inventory.items = response;
+
+                    if(typeof callback == "function")
+                        callback();
+                });                
+            },
+            
+            items: function(url, callback) {
                 $.getJSON(url, function(response)
                 {
                     ragnarok.items = response;
+
+                    if(typeof callback == "function")
+                        callback();
                 });                
-            }
+            },
         }
     };
     

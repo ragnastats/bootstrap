@@ -6,25 +6,36 @@
 
 // Add UI functions to main ragnarok object
 ragnarok.ui = {
-    inventory: {
-        // Function to build inventory HTML from ragnarok.inventory.items
-        populate: function()
-        {
+    populate: {
+        inventory: function(selector) {
+            // Function to build inventory HTML from ragnarok.inventory.items
+            $.each(ragnarok.inventory.items, function(index, inventory)
+            {
+                var item = ragnarok.items[inventory.item];
+                
+                var html = $("<div class='ro-item ro-hover'>"), 
+                    hover = [item.name, ': ', inventory.quantity, ' ea.'].join(""),
+                    icon = $("<img src='"+ item.icon +"'>"),
+                    quantity = $("<span>"+ inventory.quantity +"</span>");
 
-        },
+                html.attr('hover', hover);
+                html.append(icon).append(quantity);
 
-        // Function to fill remaining space in container with empty item slots
-        fill: function()
-        {
-
+                $(selector).append(html);
+            });
         }
     }
 };
 
 $(document).ready(function()
 {
-    ragnarok.api.populate.items('../demo/api-example.json');
-        
+    ragnarok.api.populate.items('../demo/item-api-example.json');
+    ragnarok.api.populate.inventory('../demo/inventory-api-example.json', function()
+    {
+        // Populate inventory window after API request completes
+        ragnarok.ui.populate.inventory('.inventory .ro-items');
+    });
+    
     // Auto-correct the content's margin based on sidebar and footer
     $('.ragnarok-window, .ro-win').each(function()
     {
