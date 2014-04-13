@@ -22,6 +22,22 @@ ragnarok.ui = {
                 html.append(icon).append(quantity);
 
                 $(selector).append(html);
+
+                // Quantity position
+                (function(html)
+                {
+                    var position = html.find("span").position(),
+                        width = html.find("span").width(),
+                        container = html.width();
+
+                    var difference = container - (position.left + width);
+
+                    if(difference < 0)
+                    {
+                        console.log("TOO BIG!");
+                        html.find("span").css({left: position.left + difference});
+                    }
+                })(html);
             });
 
             // Filler function!
