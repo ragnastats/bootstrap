@@ -6,6 +6,12 @@
 
 // Add UI functions to main ragnarok object
 ragnarok.ui = {
+    clear: {
+        inventory: function(selector) {
+            $(selector).find('.ro-item').remove();
+        }
+    },
+    
     populate: {
         inventory: function(selector, type) {
             // Function to build inventory HTML from ragnarok.inventory.items
@@ -68,6 +74,9 @@ $(document).ready(function()
     $('body').on('click', '.ragnarok-tab-inventory, .ro-tab-inv', function()
     {
         $('.ragnarok-tab-inventory-background, .ro-tab-inv-bg').css({"background-image": "url("+$(this).attr('img')+")"});
+
+        ragnarok.ui.clear.inventory('.inventory .ro-items');
+        ragnarok.ui.populate.inventory('.inventory .ro-items', $(this).attr('tab'));
     });
     
     // Auto-correct the content's margin based on sidebar and footer
