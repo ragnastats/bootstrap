@@ -7,37 +7,39 @@
 // Add UI functions to main ragnarok object
 ragnarok.ui = {
     populate: {
-        inventory: function(selector) {
+        inventory: function(selector, type) {
             // Function to build inventory HTML from ragnarok.inventory.items
             $.each(ragnarok.inventory.items, function(index, inventory)
             {
                 var item = ragnarok.items[inventory.item];
-                
-                var html = $("<div class='ro-item ro-hover'>"), 
-                    hover = [item.name, ': ', inventory.quantity, ' ea.'].join(""),
-                    icon = $("<img src='"+ item.icon +"'>"),
-                    quantity = $("<span>"+ inventory.quantity +"</span>");
 
-                html.attr('hover', hover);
-                html.append(icon).append(quantity);
-
-                $(selector).append(html);
-
-                // Quantity position
-                (function(html)
+                if(typeof type == "undefined" || item.type.indexOf(type) != -1)
                 {
-                    var position = html.find("span").position(),
-                        width = html.find("span").width(),
-                        container = html.width();
+                    var html = $("<div class='ro-item ro-hover'>"), 
+                        hover = [item.name, ': ', inventory.quantity, ' ea.'].join(""),
+                        icon = $("<img src='"+ item.icon +"'>"),
+                        quantity = $("<span>"+ inventory.quantity +"</span>");
 
-                    var difference = container - (position.left + width);
+                    html.attr('hover', hover);
+                    html.append(icon).append(quantity);
 
-                    if(difference < 0)
+                    $(selector).append(html);
+
+                    // Quantity position
+                    (function(html)
                     {
-                        console.log("TOO BIG!");
-                        html.find("span").css({left: position.left + difference});
-                    }
-                })(html);
+                        var position = html.find("span").position(),
+                            width = html.find("span").width(),
+                            container = html.width();
+
+                        var difference = container - (position.left + width);
+
+                        if(difference < 0)
+                        {
+                            html.find("span").css({left: position.left + difference});
+                        }
+                    })(html);
+                }
             });
 
             // Filler function!
@@ -60,7 +62,7 @@ $(document).ready(function()
     ragnarok.api.populate.inventory('../demo/inventory-api-example.json', function()
     {
         // Populate inventory window after API request completes
-        ragnarok.ui.populate.inventory('.inventory .ro-items');
+        ragnarok.ui.populate.inventory('.inventory .ro-items', 'usable');
     });
     
     // Auto-correct the content's margin based on sidebar and footer
@@ -72,8 +74,6 @@ $(document).ready(function()
                 width: $(this).find('.ragnarok-sidebar, .ro-side').outerWidth(true),
                 height: $(this).find('.ragnarok-sidebar, .ro-side div').outerHeight(true),
             };
-
-            console.log(sidebar);
 
            $(this).find('.ragnarok-window-content, .ro-win-content').css({'padding-left': sidebar.width + 4, 'min-height': sidebar.height});
         }
@@ -198,7 +198,6 @@ $(document).ready(function()
     // Stop dragging when the mouse leaves the browser
     $('body').on('mouseleave', function()
     {
-        console.log('mouseout!');
         $('.drag').trigger('mouseup');
     });
 
