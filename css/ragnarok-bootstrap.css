@@ -307,10 +307,20 @@
     z-index: 1;
 }
 
-.ragnarok-sidebar-inventory div, .ro-side-inv div {
-    background-image: url(../assets/skin/item-tab-item.png);
-    height:82px;
+.ragnarok-inventory-sidebar, .ro-inv-side {
+    min-height:82px;
     width: 19px;
+}
+
+.ragnarok-tab-inventory-background, .ro-tab-inv-bg {
+    background-image:url(../assets/skin/item-tab-usable.png);
+    min-height:82px;
+    width: 19px;
+}
+
+.ragnarok-tab-inventory, .ro-tab-inv {
+    height: 26px;
+    width:19px;
 }
 
 .ragnarok-items, .ro-items {

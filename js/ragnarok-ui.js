@@ -64,6 +64,11 @@ $(document).ready(function()
         // Populate inventory window after API request completes
         ragnarok.ui.populate.inventory('.inventory .ro-items', 'usable');
     });
+
+    $('body').on('click', '.ragnarok-tab-inventory, .ro-tab-inv', function()
+    {
+        $('.ragnarok-tab-inventory-background, .ro-tab-inv-bg').css({"background-image": "url("+$(this).attr('img')+")"});
+    });
     
     // Auto-correct the content's margin based on sidebar and footer
     $('.ragnarok-window, .ro-win').each(function()

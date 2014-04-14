@@ -16,7 +16,7 @@ var ragnarok = (function()
 
                     if(typeof callback == "function")
                         callback();
-                });                
+                });
             },
             
             items: function(url, callback) {
@@ -26,7 +26,7 @@ var ragnarok = (function()
 
                     if(typeof callback == "function")
                         callback();
-                });                
+                });
             },
         }
     };
