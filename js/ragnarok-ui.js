@@ -14,6 +14,7 @@ ragnarok.ui = {
     
     populate: {
         inventory: function(selector, type) {
+            console.log('hello?');
             // Function to build inventory HTML from ragnarok.inventory.items
             $.each(ragnarok.inventory.items, function(index, inventory)
             {
@@ -21,6 +22,10 @@ ragnarok.ui = {
 
                 if(typeof type == "undefined" || item.type.indexOf(type) != -1)
                 {
+                    // Fallback to ragnastats CDN if item image is unspecified
+                    if(typeof item.icon == "undefined")
+                        item.icon = 'http://cdn.ragnastats.com/item/'+inventory.item+'.png';
+                    
                     var html = $("<div class='ro-item ro-hover'>"), 
                         hover = [item.name, ': ', inventory.quantity, ' ea.'].join(""),
                         icon = $("<img src='"+ item.icon +"'>"),
@@ -64,11 +69,13 @@ ragnarok.ui = {
 
 $(document).ready(function()
 {
-    ragnarok.api.populate.items('../demo/item-api-example.json');
-    ragnarok.api.populate.inventory('../demo/inventory-api-example.json', function()
+    ragnarok.api.populate.items('http://api.ragnastats.com/items.json', function()
     {
-        // Populate inventory window after API request completes
-        ragnarok.ui.populate.inventory('.inventory .ro-items', 'usable');
+        ragnarok.api.populate.inventory('../demo/inventory-api-example.json', function()
+        {
+            // Populate inventory window after API request completes
+            ragnarok.ui.populate.inventory('.inventory .ro-items');
+        });
     });
 
     $('body').on('click', '.ragnarok-tab-inventory, .ro-tab-inv', function()
@@ -261,6 +268,7 @@ $(document).ready(function()
 
     $('body').on('mousedown', '.ragnarok-item, .ro-item', function()
     {
-        alert('CLICK');
+//        alert('CLICK');
+        console.log('click!');
     });
 });
