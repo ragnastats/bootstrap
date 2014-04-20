@@ -28,13 +28,22 @@ ragnarok.ui = {
                     
                     var html = $("<div class='ro-item ro-hover'>"), 
                         hover = [item.name, ': ', inventory.quantity, ' ea.'].join(""),
-                        icon = $("<img src='"+ item.icon +"'>"),
+                        icon = $("<div><img src='"+ item.icon +"'></div>"),
                         quantity = $("<span>"+ inventory.quantity +"</span>");
 
                     html.attr('hover', hover);
                     html.append(icon).append(quantity);
 
                     $(selector).append(html);
+
+                    // Icon position
+                    (function(html)
+                    {
+                        var width = html.find("img").width(),
+                            height = html.find("img").height();
+
+                        html.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2});
+                    })(html);
 
                     // Quantity position
                     (function(html)

@@ -333,10 +333,19 @@
     position: relative;
     height: 32px;
     width: 32px;
+    margin: 1px;
+}
+
+.ragnarok-item div, .ro-item div {
+    width: 24px;
+    height: 24px;
+    margin: 4px;
+    position: relative;
 }
 
 .ragnarok-item img, .ro-item img {
-    padding: 4px;
+    
+    position: absolute;
 }
 
 .ragnarok-item span, .ro-item span {
