@@ -37,28 +37,31 @@ ragnarok.ui = {
                     $(selector).append(html);
 
                     // Icon position
-                    (function(html)
+                    html.imagesLoaded().always(function()
                     {
-                        var width = html.find("img").width(),
-                            height = html.find("img").height();
-
-                        html.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2});
-                    })(html);
-
-                    // Quantity position
-                    (function(html)
-                    {
-                        var position = html.find("span").position(),
-                            width = html.find("span").width(),
-                            container = html.width();
-
-                        var difference = container - (position.left + width);
-
-                        if(difference < 0)
+                        (function(html)
                         {
-                            html.find("span").css({left: position.left + difference});
-                        }
-                    })(html);
+                            var width = html.find("img").width(),
+                                height = html.find("img").height();
+
+                            html.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2});
+                        })(html);
+
+                        // Quantity position
+                        (function(html)
+                        {
+                            var position = html.find("span").position(),
+                                width = html.find("span").width(),
+                                container = html.width();
+
+                            var difference = container - (position.left + width);
+
+                            if(difference < 0)
+                            {
+                                html.find("span").css({left: position.left + difference});
+                            }
+                        })(html);
+                    });
                 }
             });
 
