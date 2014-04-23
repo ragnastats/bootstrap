@@ -20,7 +20,7 @@ ragnarok.ui = {
             {
                 var item = ragnarok.items[inventory.item];
 
-                if(typeof type == "undefined" || item.type.indexOf(type) != -1)
+                if(typeof type == "undefined" || (typeof item.type != "undefined" && item.type.indexOf(type) != -1))
                 {
                     // Fallback to ragnastats CDN if item image is unspecified
                     if(typeof item.icon == "undefined")
@@ -86,7 +86,7 @@ $(document).ready(function()
         ragnarok.api.populate.inventory('../demo/inventory-api-example.json', function()
         {
             // Populate inventory window after API request completes
-            ragnarok.ui.populate.inventory('.inventory .ro-items');
+            ragnarok.ui.populate.inventory('.inventory .ro-items', 'usable');
         });
     });
 
