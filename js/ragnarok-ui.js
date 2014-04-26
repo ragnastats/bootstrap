@@ -12,7 +12,7 @@ ragnarok.ui = {
         },
 
         storage: function(selector) {
-            $(selector).find('.ro-item').remove();
+            $(selector).find('.ro-item-wrap').remove();
         }
     },
     
