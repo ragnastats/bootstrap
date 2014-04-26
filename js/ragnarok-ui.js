@@ -9,12 +9,15 @@ ragnarok.ui = {
     clear: {
         inventory: function(selector) {
             $(selector).find('.ro-item').remove();
+        },
+
+        storage: function(selector) {
+            $(selector).find('.ro-item').remove();
         }
     },
     
     populate: {
         inventory: function(selector, type) {
-            console.log('hello?');
             // Function to build inventory HTML from ragnarok.inventory.items
             $.each(ragnarok.inventory.items, function(index, inventory)
             {
@@ -75,6 +78,69 @@ ragnarok.ui = {
                     $(selector).append("<div class='ro-item'></div>");
                 }
             }
+        },
+
+        storage: function(selector, type) {
+            // Function to build storage HTML from ragnarok.storage.items
+            $.each(ragnarok.storage.items, function(index, storage)
+            {
+                var item = ragnarok.items[storage.item];
+
+                if(typeof type == "undefined" || typeof item.type == "undefined" || (typeof item.type != "undefined" && item.type.indexOf(type) != -1))
+                {
+                    // Fallback to ragnastats CDN if item image is unspecified
+                    if(typeof item.icon == "undefined")
+                        item.icon = 'http://cdn.ragnastats.com/item/'+storage.item+'.png';
+                    
+                    var html = $("<div class='ro-item ro-hover'>"), 
+                        hover = [item.name, ': ', storage.quantity, ' ea.'].join(""),
+                        icon = $("<div><img src='"+ item.icon +"'></div>"),
+                        quantity = $("<span>"+ storage.quantity +"</span>");
+
+                    html.attr('hover', hover);
+                    html.append(icon).append(quantity);
+
+                    $(selector).append(html);
+
+                    // Icon position
+                    html.imagesLoaded().always(function()
+                    {
+                        (function(html)
+                        {
+                            var width = html.find("img").width(),
+                                height = html.find("img").height();
+
+                            html.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2});
+                        })(html);
+
+                        // Quantity position
+                        (function(html)
+                        {
+                            var position = html.find("span").position(),
+                                width = html.find("span").width(),
+                                container = html.width();
+
+                            var difference = container - (position.left + width);
+
+                            if(difference < 0)
+                            {
+                                html.find("span").css({left: position.left + difference});
+                            }
+                        })(html);
+                    });
+                }
+            });
+
+            // Filler function!
+            var filler = 100 - ragnarok.storage.items.length;
+
+            if(filler > 0)
+            {
+                for(var i = 0; i < filler; i++)
+                {
+                    $(selector).append("<div class='ro-item'></div>");
+                }
+            }
         }
     }
 };
@@ -87,7 +153,12 @@ $(document).ready(function()
         {
             // Populate inventory window after API request completes
             ragnarok.ui.populate.inventory('.inventory .ro-items', 'usable');
-            ragnarok.ui.populate.inventory('.storage .ro-items', 'usable');
+        });
+
+        ragnarok.api.populate.storage('../demo/storage-api-example.json', function()
+        {
+            // Populate storage window after API request completes
+            ragnarok.ui.populate.storage('.storage .ro-items', 'usable');
         });
     });
 
@@ -103,8 +174,8 @@ $(document).ready(function()
     {
         $('.ragnarok-tab-storage-background, .ro-tab-stor-bg').css({"background-image": "url("+$(this).attr('img')+")"});
 
-        ragnarok.ui.clear.inventory('.storage .ro-items');
-        ragnarok.ui.populate.inventory('.storage .ro-items', $(this).attr('tab'));
+        ragnarok.ui.clear.storage('.storage .ro-items');
+        ragnarok.ui.populate.storage('.storage .ro-items', $(this).attr('tab'));
     });
     
     // Auto-correct the content's margin based on sidebar and footer

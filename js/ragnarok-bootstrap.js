@@ -28,6 +28,16 @@ var ragnarok = (function()
                         callback();
                 });
             },
+
+            storage: function(url, callback) {
+                $.getJSON(url, function(response)
+                {
+                    ragnarok.storage.items = response;
+
+                    if(typeof callback == "function")
+                        callback();
+                });
+            }
         }
     };
     
