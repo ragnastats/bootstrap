@@ -217,7 +217,7 @@ $(document).ready(function()
             $(this).find('.ragnarok-window-content, .ro-win-content').css({
                 'position': 'absolute',
                 'top': $(this).find('.ragnarok-window-title-blue, .ro-win-title-b').outerHeight(true),
-                'bottom': '0px',
+                'bottom': '1px',
                 'left': '0px',
                 'right': '0px'
             });
@@ -240,7 +240,7 @@ $(document).ready(function()
     $('.storage').resize({
         'handle': '.ragnarok-window-resize, .ro-win-resize',
         'grid': 30,
-        'min': { 'height': 250, 'width': 200 },
+        'min': { 'height': 260, 'width': 200 },
         'max': { 'height': 400, 'width': 400 }
     });
 
