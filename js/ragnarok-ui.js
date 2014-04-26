@@ -87,6 +87,7 @@ $(document).ready(function()
         {
             // Populate inventory window after API request completes
             ragnarok.ui.populate.inventory('.inventory .ro-items', 'usable');
+            ragnarok.ui.populate.inventory('.storage .ro-items', 'usable');
         });
     });
 
@@ -96,6 +97,14 @@ $(document).ready(function()
 
         ragnarok.ui.clear.inventory('.inventory .ro-items');
         ragnarok.ui.populate.inventory('.inventory .ro-items', $(this).attr('tab'));
+    });
+
+    $('body').on('click', '.ragnarok-tab-storage, .ro-tab-stor', function()
+    {
+        $('.ragnarok-tab-storage-background, .ro-tab-stor-bg').css({"background-image": "url("+$(this).attr('img')+")"});
+
+        ragnarok.ui.clear.inventory('.storage .ro-items');
+        ragnarok.ui.populate.inventory('.storage .ro-items', $(this).attr('tab'));
     });
     
     // Auto-correct the content's margin based on sidebar and footer

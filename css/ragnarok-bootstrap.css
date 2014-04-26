@@ -307,11 +307,7 @@
     z-index: 1;
 }
 
-.ragnarok-inventory-sidebar, .ro-inv-side {
-    min-height:82px;
-    width: 19px;
-}
-
+/* Inventory! */
 .ragnarok-tab-inventory-background, .ro-tab-inv-bg {
     background-image:url(../assets/skin/item-tab-usable.png);
     min-height:82px;
@@ -323,6 +319,19 @@
     width:19px;
 }
 
+/* Storage! */
+.ragnarok-tab-storage-background, .ro-tab-stor-bg {
+    background-image:url(../assets/skin/stor-tab-usable.png);
+    min-height:209px;
+    width: 19px;
+}
+
+.ragnarok-tab-stor, .ro-tab-stor {
+    height: 26px;
+    width:19px;
+}
+
+/* Items! */
 .ragnarok-items, .ro-items {
     font-size: 2px;
 }
