@@ -92,41 +92,46 @@ ragnarok.ui = {
                     if(typeof item.icon == "undefined")
                         item.icon = 'http://cdn.ragnastats.com/item/'+storage.item+'.png';
                     
-                    var html = $("<div class='ro-item ro-hover'>"), 
-                        hover = [item.name, ': ', storage.quantity, ' ea.'].join(""),
+                    var wrap = $("<div class='ro-item-wrap'>"),
+                        html = $("<div class='ro-item ro-hover'>"), 
+                        hover = item.name,
+                        name = $("<p>"+item.name+"</p>"),
                         icon = $("<div><img src='"+ item.icon +"'></div>"),
                         quantity = $("<span>"+ storage.quantity +"</span>");
 
                     html.attr('hover', hover);
                     html.append(icon).append(quantity);
 
-                    $(selector).append(html);
+                    wrap.prepend(name);
+                    wrap.append(html);
 
+                    $(selector).append(wrap);
+                    
                     // Icon position
-                    html.imagesLoaded().always(function()
+                    wrap.imagesLoaded().always(function()
                     {
-                        (function(html)
+                        (function(wrap)
                         {
-                            var width = html.find("img").width(),
-                                height = html.find("img").height();
+                            var width = wrap.find("img").width(),
+                                height = wrap.find("img").height();
 
-                            html.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2});
-                        })(html);
+                            wrap.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2});
+                        })(wrap);
 
                         // Quantity position
-                        (function(html)
+                        (function(wrap)
                         {
-                            var position = html.find("span").position(),
-                                width = html.find("span").width(),
-                                container = html.width();
+                            var position = wrap.find("span").position(),
+                                width = wrap.find("span").width(),
+                                container = wrap.width();
 
                             var difference = container - (position.left + width);
 
                             if(difference < 0)
                             {
-                                html.find("span").css({left: position.left + difference});
+                                wrap.find("span").css({left: position.left + difference});
                             }
-                        })(html);
+                        })(wrap);
                     });
                 }
             });
@@ -138,7 +143,7 @@ ragnarok.ui = {
             {
                 for(var i = 0; i < filler; i++)
                 {
-                    $(selector).append("<div class='ro-item'></div>");
+                    $(selector).append("<div class='ro-item-wrap'><div class='ro-item'></div></div>");
                 }
             }
         }
@@ -227,9 +232,16 @@ $(document).ready(function()
 
     $('.inventory').resize({
         'handle': '.ragnarok-window-resize, .ro-win-resize',
-        'grid': 33,
+        'grid': 30,
         'min': { 'height': 120, 'width': 200 },
         'max': { 'height': 300, 'width': 400 }
+    });
+
+    $('.storage').resize({
+        'handle': '.ragnarok-window-resize, .ro-win-resize',
+        'grid': 30,
+        'min': { 'height': 250, 'width': 200 },
+        'max': { 'height': 400, 'width': 400 }
     });
 
     $('.equip').resize({

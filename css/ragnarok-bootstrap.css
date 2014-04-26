@@ -331,7 +331,19 @@
     width:19px;
 }
 
+
 /* Items! */
+.ragnarok-item-wrap, .ro-item-wrap { 
+    position: relative;
+}
+
+.ragnarok-item-wrap p, .ro-item-wrap p { 
+    font-size: 10pt;
+    position: absolute;
+    left: 40px;
+    text-shadow:1px 1px #ccc;
+}
+
 .ragnarok-items, .ro-items {
     font-size: 2px;
 }
@@ -360,7 +372,7 @@
 .ragnarok-item span, .ro-item span {
     position: absolute;
     bottom: -1px;
-    left: 18px;
+    left: 17px;
     font-size: 8pt;
     text-shadow: -1px -1px 0 #fff,  
                   1px -1px 0 #fff,
