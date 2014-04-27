@@ -118,6 +118,7 @@
     $('body').on('mouseup', function(event)
     {
         dragging = false;
+        $('.ro-item-drag').css({display: 'none'});
     });
 
     $('body').on('mousemove', function(event)
@@ -134,9 +135,12 @@
         {
             dragging = true;
 
+            // Remove previous items once we click on a new one
+            $('.ro-item-drag').remove();
+
             var item = $(this).find('img').clone();
             item.addClass('ro-item-drag');
-            item.css({opacity: 0, position: 'fixed', 'z-index': 9001});
+            item.css({opacity: 0, position: 'fixed', 'z-index': 9001, 'pointer-events': 'none'});
 
             if(typeof opt.from != "undefined")
                 item.attr('from', opt.from);
@@ -154,18 +158,27 @@
             window_drag(this, opt);
     }
 
-    $.fn.drop = function(opt)
+    $.fn.drop = function(callback)
     {
         var drop = false;
         
         $(this).on('mouseenter', function(event)
         {
-            console.log('drop me here!');
+            drop = true;
         });
 
         $(this).on('mouseleave', function(event)
         {
-            console.log('oh bye');
+            drop = false;
+        });
+
+        $('body').on('mouseup', function(event)
+        {
+            if(drop)
+            {
+                if(typeof callback == "function")
+                    callback(event);
+            }
         });
     }
     

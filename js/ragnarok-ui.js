@@ -187,32 +187,16 @@ $(document).ready(function()
         ragnarok.ui.populate.storage('.storage .ro-items', $(this).attr('tab'));
     });
 
-    // Fun drag stuff
-    $('body').on('mouseup', function(event)
+    // Fun droppable stuff
+    $('.inventory').drop(function(event)
     {
-        console.log(event.target);
         var from = $('.ro-item-drag').attr('from');
 
-        if(typeof from != "undefined")
+        if(from == "storage")
         {
-            // Find the position it was dropped
-            console.log(event);
-            
-            
-            if(from == "inventory")
-            {
-                
-            }
-            else if(from == "storage")
-            {
-
-            }
+            console.log('hi storage');
         }
-        
-        $('.ro-item-drag').remove();
     });
-
-    $('.inventory').drop();
     
     // Auto-correct the content's margin based on sidebar and footer
     $('.ragnarok-window, .ro-win').each(function()
