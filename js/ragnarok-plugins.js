@@ -29,12 +29,11 @@
             var $el = element.find(opt.handle);
         }
 
-
         var id = windows.length + 1;
         windows.push(id);
-
-        $(this).attr('window', id);        
-        $(this).css({'z-index': windows.length});
+ 
+        $(element).attr('window', id);
+        $(element).css({'z-index': windows.length});
 
         return $el.on("mousedown", function(e)
         {
@@ -119,14 +118,13 @@
     $('body').on('mouseup', function(event)
     {
         dragging = false;
-        $('.ro-item-drag').remove();
     });
 
     $('body').on('mousemove', function(event)
     {
         if(dragging)
         {
-            $('.ro-item-drag').css({opacity: 1, top: event.clientY - 8, left: event.clientX - 8});
+            $('.ro-item-drag').css({opacity: 1, top: event.clientY - 10, left: event.clientX - 6});
         }
     });
 
@@ -139,6 +137,9 @@
             var item = $(this).find('img').clone();
             item.addClass('ro-item-drag');
             item.css({opacity: 0, position: 'fixed', 'z-index': 9001});
+
+            if(typeof opt.from != "undefined")
+                item.attr('from', opt.from);
             
             $('body').append(item);
         });
@@ -151,6 +152,21 @@
 
         else if($(this).is('.ragnarok-window, .ro-win'))
             window_drag(this, opt);
+    }
+
+    $.fn.drop = function(opt)
+    {
+        var drop = false;
+        
+        $(this).on('mouseenter', function(event)
+        {
+            console.log('drop me here!');
+        });
+
+        $(this).on('mouseleave', function(event)
+        {
+            console.log('oh bye');
+        });
     }
     
     // Requires:
@@ -167,7 +183,6 @@
         
         $(this).find(opt.handle).on('mousedown', function()
         {            
-            console.log('mousedown');      
             resizing = true;
             $(this).addClass('resize');
             
@@ -186,8 +201,6 @@
         {
             if(resizing)
             {
-                console.log('mousemove');
-
                 var width = event.pageX - resize.offset.left;
                 var height = event.pageY - resize.offset.top;
 

@@ -39,7 +39,7 @@ ragnarok.ui = {
 
                     $(selector).append(html);
 
-                    html.drag();
+                    html.drag({from: 'inventory'});
 
                     // Icon position
                     html.imagesLoaded().always(function()
@@ -109,7 +109,7 @@ ragnarok.ui = {
 
                     $(selector).append(wrap);
 
-                    html.drag();
+                    html.drag({from: 'storage'});
                     
                     // Icon position
                     wrap.imagesLoaded().always(function()
@@ -186,6 +186,33 @@ $(document).ready(function()
         ragnarok.ui.clear.storage('.storage .ro-items');
         ragnarok.ui.populate.storage('.storage .ro-items', $(this).attr('tab'));
     });
+
+    // Fun drag stuff
+    $('body').on('mouseup', function(event)
+    {
+        console.log(event.target);
+        var from = $('.ro-item-drag').attr('from');
+
+        if(typeof from != "undefined")
+        {
+            // Find the position it was dropped
+            console.log(event);
+            
+            
+            if(from == "inventory")
+            {
+                
+            }
+            else if(from == "storage")
+            {
+
+            }
+        }
+        
+        $('.ro-item-drag').remove();
+    });
+
+    $('.inventory').drop();
     
     // Auto-correct the content's margin based on sidebar and footer
     $('.ragnarok-window, .ro-win').each(function()
@@ -197,7 +224,11 @@ $(document).ready(function()
                 height: $(this).find('.ragnarok-sidebar, .ro-side div').outerHeight(true),
             };
 
-           $(this).find('.ragnarok-window-content, .ro-win-content').css({'padding-left': sidebar.width + 4, 'min-height': sidebar.height});
+            var footer = {
+                height: $(this).find('.ragnarok-window-footer, .ro-win-foot').outerHeight(true)
+            };
+
+           $(this).find('.ragnarok-window-content, .ro-win-content').css({'padding-left': sidebar.width + 4, 'min-height': sidebar.height - footer.height});
         }
 
         if($(this).find('.ragnarok-window-footer, .ro-win-foot').length)
@@ -348,9 +379,24 @@ $(document).ready(function()
         var hover = $("<div class='ro-hover-box'>"+$(this).attr('hover')+"</div>");
         var handle = $("<div class='ro-hover-handle'></div>");
 
-        $('body').append(hover);
-        $('body').append(handle);
+        if($(this).parents('.ragnarok-window, .ro-win'))
+        {
+            var parent_offset = $(this).parents('.ragnarok-window, .ro-win').offset();
 
+            offset = {
+                top: offset.top - parent_offset.top,
+                left: offset.left - parent_offset.left
+            };
+            
+            $(this).parents('.ragnarok-window, .ro-win').append(hover);
+            $(this).parents('.ragnarok-window, .ro-win').append(handle);
+        }
+        else
+        {
+            $('body').append(hover);
+            $('body').append(handle);
+        }
+        
         hover.css({'left': offset.left, 'top': offset.top - (hover.outerHeight(true) - $(this).outerHeight(true) * 0.2) });
         handle.css({'left': offset.left, 'top': offset.top, 'width': $(this).outerWidth(true), 'height': $(this).outerHeight(true)});
 

@@ -89,7 +89,6 @@
     opacity: 1;
     position: absolute;
     transition: opacity 0.1s linear;
-    overflow: hidden;
 }
 
 .ragnarok-window.drag, .ro-win.drag {
