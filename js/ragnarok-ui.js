@@ -39,6 +39,8 @@ ragnarok.ui = {
 
                     $(selector).append(html);
 
+                    html.drag();
+
                     // Icon position
                     html.imagesLoaded().always(function()
                     {
@@ -106,6 +108,8 @@ ragnarok.ui = {
                     wrap.append(html);
 
                     $(selector).append(wrap);
+
+                    html.drag();
                     
                     // Icon position
                     wrap.imagesLoaded().always(function()
@@ -368,11 +372,5 @@ $(document).ready(function()
     {
         // Pass click event to the actual element being clicked on
         $('.ro-hovering').trigger('mousedown');
-    });
-
-    $('body').on('mousedown', '.ragnarok-item, .ro-item', function()
-    {
-//        alert('CLICK');
-        console.log('click!');
     });
 });

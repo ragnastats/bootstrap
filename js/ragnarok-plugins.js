@@ -18,15 +18,15 @@
             $("[window='"+id+"']").css('z-index', index + 1);
         });
     }
-    
-    $.fn.drag = function(opt)
+
+    function window_drag(element, opt)
     {
         opt = $.extend({handle:""}, opt);
 
         if(opt.handle === "") {
-            var $el = this;
+            var $el = element;
         } else {
-            var $el = this.find(opt.handle);
+            var $el = element.find(opt.handle);
         }
 
 
@@ -107,6 +107,50 @@
 
             layer_windows();
         });
+    }
+
+    var dragging = false;
+
+    $('body').on('mousedown', function(event)
+    {
+        event.preventDefault();
+    });
+
+    $('body').on('mouseup', function(event)
+    {
+        dragging = false;
+        $('.ro-item-drag').remove();
+    });
+
+    $('body').on('mousemove', function(event)
+    {
+        if(dragging)
+        {
+            $('.ro-item-drag').css({opacity: 1, top: event.clientY - 8, left: event.clientX - 8});
+        }
+    });
+
+    function item_drag(element, opt)
+    {        
+        element.on('mousedown', function(event)
+        {
+            dragging = true;
+
+            var item = $(this).find('img').clone();
+            item.addClass('ro-item-drag');
+            item.css({opacity: 0, position: 'fixed', 'z-index': 9001});
+            
+            $('body').append(item);
+        });
+    }
+    
+    $.fn.drag = function(opt)
+    {
+        if($(this).is('.ragnarok-item, .ro-item'))
+            item_drag(this, opt);
+
+        else if($(this).is('.ragnarok-window, .ro-win'))
+            window_drag(this, opt);
     }
     
     // Requires:
