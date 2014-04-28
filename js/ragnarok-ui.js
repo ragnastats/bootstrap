@@ -194,7 +194,27 @@ $(document).ready(function()
 
         if(from == "storage")
         {
-            console.log('hi storage');
+            console.log("Remove from storage, add to inventory!");
+        }
+    });
+
+    $('.storage').drop(function(event)
+    {
+        var from = $('.ro-item-drag').attr('from');
+
+        if(from == "inventory")
+        {
+            console.log("Remove from inventory, add to storage!");
+        }
+    });
+
+    $('.cover').drop({children: false}, function(event)
+    {
+        var from = $('.ro-item-drag').attr('from');
+
+        if(from == "inventory")
+        {
+            console.log("Remove item from inventory!");
         }
     });
     

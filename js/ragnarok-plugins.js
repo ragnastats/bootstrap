@@ -158,20 +158,50 @@
             window_drag(this, opt);
     }
 
-    $.fn.drop = function(callback)
+    $.fn.drop = function(options, callback)
     {
         var drop = false;
+
+        // Allow options to be.. optional!
+        if(typeof options == "function")
+        {
+            callback = options;
+            options = undefined;
+        }
+
+        options = $.extend({children: true}, options);
         
-        $(this).on('mouseenter', function(event)
+        if(options.children)
         {
-            drop = true;
-        });
+            $(this).on('mouseenter', function(event)
+            {
+                drop = true;
+            });
 
-        $(this).on('mouseleave', function(event)
-        {
-            drop = false;
-        });
+            $(this).on('mouseleave', function(event)
+            {
+                drop = false;
+            });
+        }
+        else
+        {            
+            $(this).on('mouseover', function(event)
+            {
+                if(event.target != this)
+                    return false;
+                    
+                drop = true;
+            });
 
+            $(this).on('mouseout', function(event)
+            {
+                if(event.target != this)
+                    return false;
+
+                drop = false;
+            });
+        }
+        
         $('body').on('mouseup', function(event)
         {
             if(drop)
