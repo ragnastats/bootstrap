@@ -49,14 +49,48 @@ var ragnarok = (function()
         // Array contaning all inventory items
         items: [],
 
+        index: function(item)
+        {
+            var item_count = inventory.items.length;
+            
+            for(var i = 0; i < item_count; i++)
+            {
+                if(inventory.items[i].item == item)
+                    return i;
+            }
+
+            return -1;
+        },
+
         add: function(item, quantity)
         {
+            var index = inventory.index(item);
 
+            if(index < 0)
+            {
+                // If the item wasn't found, add it to the inventory!
+                inventory.items.push({item: item, quantity: quantity});
+            }
+            else
+            {
+                // If the item was found, increase the quantity!
+                inventory.items[index].quantity += quantity;
+            }
         },
 
         remove: function(item, quantity)
         {
+            var index = inventory.index(item);
 
+            if(index >= 0)
+            {
+                // You can only remove an item that exists!
+                inventory.items[index].quantity -= quantity;
+
+                // Get rid of empty items
+                if(inventory.items[index].quantity <= 0)
+                    inventory.items.remove(index);
+            }
         },
 
         // Use a consumable item, or equip some equipment
@@ -74,14 +108,45 @@ var ragnarok = (function()
         // Array containing all stored items
         items: [],
 
+        index: function(item)
+        {
+            var item_count = storage.items.length;
+            
+            for(var i = 0; i < item_count; i++)
+            {
+                if(storage.items[i].item == item)
+                    return i;
+            }
+
+            return -1;
+        },
+
         add: function(item, quantity)
         {
+            var index = storage.index(item);
 
+            if(index < 0)
+            {
+                storage.items.push({item: item, quantity: quantity});
+            }
+            else
+            {
+                storage.items[index].quantity += quantity;
+            }
         },
 
         remove: function(item, quantity)
         {
+            var index = storage.index(item);
 
+            if(index >= 0)
+            {
+                storage.items[index].quantity -= quantity;
+
+                // Get rid of empty items
+                if(storage.items[index].quantity <= 0)
+                    storage.items.remove(index);
+            }
         }
     };
     
