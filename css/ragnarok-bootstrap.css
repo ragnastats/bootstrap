@@ -480,3 +480,7 @@
     position: absolute;
     z-index: 101;
 }
+
+.ragnarok-loading, .ro-loading {
+    opacity: 0;
+}

@@ -31,7 +31,7 @@ ragnarok.ui = {
                     
                     var html = $("<div class='ro-item ro-hover'>"), 
                         hover = [item.name, ': ', inventory.quantity, ' ea.'].join(""),
-                        icon = $("<div><img src='"+ item.icon +"'></div>"),
+                        icon = $("<div><img src='"+ item.icon +"' class='ro-loading'></div>"),
                         quantity = $("<span>"+ inventory.quantity +"</span>");
 
 
@@ -51,7 +51,7 @@ ragnarok.ui = {
                             var width = html.find("img").width(),
                                 height = html.find("img").height();
 
-                            html.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2});
+                            html.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2}).removeClass('ro-loading');
                         })(html);
 
                         // Quantity position
@@ -100,7 +100,7 @@ ragnarok.ui = {
                         html = $("<div class='ro-item ro-hover'>"), 
                         hover = item.name,
                         name = $("<p>"+item.name+"</p>"),
-                        icon = $("<div><img src='"+ item.icon +"'></div>"),
+                        icon = $("<div><img src='"+ item.icon +"' class='ro-loading'></div>"),
                         quantity = $("<span>"+ storage.quantity +"</span>");
 
                     icon.find('img').attr('item', storage.item);
@@ -122,7 +122,7 @@ ragnarok.ui = {
                             var width = wrap.find("img").width(),
                                 height = wrap.find("img").height();
 
-                            wrap.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2});
+                            wrap.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2}).removeClass('ro-loading');
                         })(wrap);
 
                         // Quantity position
