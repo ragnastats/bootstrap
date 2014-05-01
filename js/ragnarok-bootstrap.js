@@ -76,6 +76,8 @@ var ragnarok = (function()
                 // If the item was found, increase the quantity!
                 inventory.items[index].quantity += quantity;
             }
+
+            return true;
         },
 
         remove: function(item, quantity)
@@ -90,7 +92,11 @@ var ragnarok = (function()
                 // Get rid of empty items
                 if(inventory.items[index].quantity <= 0)
                     inventory.items.remove(index);
+
+                return true;
             }
+
+            return false;
         },
 
         // Use a consumable item, or equip some equipment
@@ -133,6 +139,8 @@ var ragnarok = (function()
             {
                 storage.items[index].quantity += quantity;
             }
+
+            return true;
         },
 
         remove: function(item, quantity)
@@ -146,7 +154,11 @@ var ragnarok = (function()
                 // Get rid of empty items
                 if(storage.items[index].quantity <= 0)
                     storage.items.remove(index);
+
+                return true;
             }
+
+            return false;
         }
     };
     
