@@ -188,7 +188,7 @@
             $(this).on('mouseover', function(event)
             {
                 if(event.target != this)
-                    return false;
+                    return;
                     
                 drop = true;
             });
@@ -196,7 +196,7 @@
             $(this).on('mouseout', function(event)
             {
                 if(event.target != this)
-                    return false;
+                    return;
 
                 drop = false;
             });
