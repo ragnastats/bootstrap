@@ -220,6 +220,8 @@ $(document).ready(function()
                 ragnarok.ui.populate.inventory('.inventory .ro-items', $('.ragnarok-tab-inventory.active, .ro-tab-inv.active').attr('tab'));
             }
         }
+
+        $('.ro-item-drag').remove();
     });
 
     $('.storage').drop(function(event)
@@ -243,6 +245,8 @@ $(document).ready(function()
                 ragnarok.ui.populate.inventory('.inventory .ro-items', $('.ragnarok-tab-inventory.active, .ro-tab-inv.active').attr('tab'));
             }
         }
+
+        $('.ro-item-drag').remove();
     });
 
     $('.cover').drop({children: false}, function(event)
@@ -261,6 +265,8 @@ $(document).ready(function()
                 ragnarok.ui.populate.inventory('.inventory .ro-items', $('.ragnarok-tab-inventory.active, .ro-tab-inv.active').attr('tab'));
             }
         }
+
+        $('.ro-item-drag').remove();
     });
     
     // Auto-correct the content's margin based on sidebar and footer
