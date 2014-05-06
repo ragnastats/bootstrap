@@ -363,6 +363,12 @@ $(document).ready(function()
         $(this).toggleClass('checked');
     });
 
+    $('.ro-text-btn').on('click', function()
+    {
+        // Temporary behavior to close terms
+        $(this).parents('.ragnarok-window, .ro-win').remove();
+    });
+
     $('.ragnarok-window-button-close, .ro-win-btn-close').on('click', function()
     {
         $(this).parents('.ragnarok-window, .ro-win').remove();
