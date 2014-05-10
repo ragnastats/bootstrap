@@ -15,6 +15,38 @@ ragnarok.ui = {
             $(selector).find('.ro-item-wrap').remove();
         }
     },
+
+    position: {
+        item: {
+            icon: function(html)
+            {
+                (function(html)
+                {
+                    var width = html.find("img").width(),
+                        height = html.find("img").height();
+
+                    html.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2}).removeClass('ro-loading');
+                })(html);
+
+                // Quantity position
+                (function(html)
+                {
+                    var position = html.find("span").position(),
+                        width = html.find("span").width(),
+                        container = html.find('.ro-item').width();
+
+console.log(container);
+
+                    var difference = container - (position.left + width);
+
+                    if(difference < 0)
+                    {
+                        html.find("span").css({left: position.left + difference});
+                    }
+                })(html);
+            }
+        }
+    },
     
     populate: {
         inventory: function(selector, type) {
@@ -48,28 +80,7 @@ ragnarok.ui = {
                     // Icon position
                     html.imagesLoaded().always(function()
                     {
-                        (function(html)
-                        {
-                            var width = html.find("img").width(),
-                                height = html.find("img").height();
-
-                            html.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2}).removeClass('ro-loading');
-                        })(html);
-
-                        // Quantity position
-                        (function(html)
-                        {
-                            var position = html.find("span").position(),
-                                width = html.find("span").width(),
-                                container = html.width();
-
-                            var difference = container - (position.left + width);
-
-                            if(difference < 0)
-                            {
-                                html.find("span").css({left: position.left + difference});
-                            }
-                        })(html);
+                        ragnarok.ui.position.item.icon(html);
                     });
                 }
             });
@@ -127,28 +138,7 @@ ragnarok.ui = {
                     // Icon position
                     wrap.imagesLoaded().always(function()
                     {
-                        (function(wrap)
-                        {
-                            var width = wrap.find("img").width(),
-                                height = wrap.find("img").height();
-
-                            wrap.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2}).removeClass('ro-loading');
-                        })(wrap);
-
-                        // Quantity position
-                        (function(wrap)
-                        {
-                            var position = wrap.find("span").position(),
-                                width = wrap.find("span").width(),
-                                container = wrap.width();
-
-                            var difference = container - (position.left + width);
-
-                            if(difference < 0)
-                            {
-                                wrap.find("span").css({left: position.left + difference});
-                            }
-                        })(wrap);
+                        ragnarok.ui.position.item.icon(wrap);
                     });
                 }
             });
