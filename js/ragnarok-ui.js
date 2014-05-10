@@ -20,7 +20,6 @@ ragnarok.ui = {
         inventory: function(selector, type) {
             var pane = $(selector).attr('ro-pane-id');
             var height = $(selector).parents('.ragnarok-window, .ro-win').height();
-
             
             // Function to build inventory HTML from ragnarok.inventory.items
             $.each(ragnarok.inventory.items, function(index, inventory)
@@ -92,7 +91,11 @@ ragnarok.ui = {
             ragnarok.ui.panefix(pane);
         },
 
-        storage: function(selector, type) {
+        storage: function(selector, type)
+        {
+            var pane = $(selector).attr('ro-pane-id');
+            var height = $(selector).parents('.ragnarok-window, .ro-win').height();
+
             // Function to build storage HTML from ragnarok.storage.items
             $.each(ragnarok.storage.items, function(index, storage)
             {
@@ -118,8 +121,7 @@ ragnarok.ui = {
                     wrap.prepend(name);
                     wrap.append(html);
 
-                    $(selector).append(wrap);
-
+                    ragnarok.panes[pane].getContentPane().append(wrap);
                     html.drag({from: 'storage'});
                     
                     // Icon position
@@ -161,6 +163,11 @@ ragnarok.ui = {
                     $(selector).append("<div class='ro-item-wrap'><div class='ro-item'></div></div>");
                 }
             }
+
+            ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - 44});
+            ragnarok.panes[pane].reinitialise();
+
+            ragnarok.ui.panefix(pane);
         }
     },
 
