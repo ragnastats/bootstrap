@@ -19,6 +19,8 @@ ragnarok.ui = {
     populate: {
         inventory: function(selector, type) {
             var pane = $(selector).attr('ro-pane-id');
+            var height = $(selector).parents('.ragnarok-window, .ro-win').height();
+
             
             // Function to build inventory HTML from ragnarok.inventory.items
             $.each(ragnarok.inventory.items, function(index, inventory)
@@ -83,6 +85,9 @@ ragnarok.ui = {
                     ragnarok.panes[pane].getContentPane().append("<div class='ro-item'></div>");
                 }
             }
+
+            ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - 44});
+            ragnarok.panes[pane].reinitialise();
         },
 
         storage: function(selector, type) {
@@ -299,11 +304,16 @@ $(document).ready(function()
 
     $('.ragnarok-scroll-pane, .ro-scroll-pane').each(function()
     {
-        var length = ragnarok.panes.length;
+        var pane = ragnarok.panes.length;
         $(this).jScrollPane({showArrows: true, hideFocus: true});
-        $(this).attr('ro-pane-id', length);
+        $(this).attr('ro-pane-id', pane);                
 
         var api = $(this).data('jsp');
+        var height = $(this).parents('.ragnarok-window, .ro-win').height();
+
+        api.getContentPane().parents('.jspContainer').css({'height': height - 44});
+        api.reinitialise();
+
         ragnarok.panes.push(api);
     });
     
