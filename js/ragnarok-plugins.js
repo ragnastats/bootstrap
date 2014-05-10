@@ -263,6 +263,11 @@
                     height = opt.max.height;
 
                 parent.css({'width': width, 'height': height});
+
+                var pane = parent.find('.ragnarok-scroll-pane').attr('ro-pane-id');
+                ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - 44});
+                ragnarok.panes[pane].reinitialise();
+                
                 return false;
             }
         });

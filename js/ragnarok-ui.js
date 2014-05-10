@@ -18,6 +18,8 @@ ragnarok.ui = {
     
     populate: {
         inventory: function(selector, type) {
+            var pane = $(selector).attr('ro-pane-id');
+            
             // Function to build inventory HTML from ragnarok.inventory.items
             $.each(ragnarok.inventory.items, function(index, inventory)
             {
@@ -39,8 +41,7 @@ ragnarok.ui = {
                     html.attr('hover', hover);
                     html.append(icon).append(quantity);
 
-                    $(selector).append(html);
-
+                    ragnarok.panes[pane].getContentPane().append(html);
                     html.drag({from: 'inventory'});
 
                     // Icon position
@@ -79,7 +80,7 @@ ragnarok.ui = {
             {
                 for(var i = 0; i < filler; i++)
                 {
-                    $(selector).append("<div class='ro-item'></div>");
+                    ragnarok.panes[pane].getContentPane().append("<div class='ro-item'></div>");
                 }
             }
         },
@@ -293,7 +294,19 @@ $(document).ready(function()
         }
     });
 
-    $('.ragnarok-scroll-pane, .ro-scroll-pane').jScrollPane({showArrows: true, hideFocus: true});
+
+    ragnarok.panes = [];
+
+    $('.ragnarok-scroll-pane, .ro-scroll-pane').each(function()
+    {
+        var length = ragnarok.panes.length;
+        $(this).jScrollPane({showArrows: true, hideFocus: true});
+        $(this).attr('ro-pane-id', length);
+
+        var api = $(this).data('jsp');
+        ragnarok.panes.push(api);
+    });
+    
     $('.jspDrag').height($('.jspDrag').height() - 8);
     $('.jspTrack, .jspArrow').addClass('ro-btn');
     $('.ragnarok-checkbox, .ro-check').addClass('ro-btn');
