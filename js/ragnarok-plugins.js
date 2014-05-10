@@ -267,7 +267,7 @@
                 var pane = parent.find('.ragnarok-scroll-pane').attr('ro-pane-id');
                 ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - 44});
                 ragnarok.panes[pane].reinitialise();
-                
+
                 return false;
             }
         });
@@ -280,6 +280,14 @@
                 windows.remove(index);
                 windows.push(parseInt(parent.attr('window')));
 
+                var pane = parent.find('.ragnarok-scroll-pane').attr('ro-pane-id');
+
+                // Panefix
+                var scrollbar = ragnarok.panes[pane].getContentPane().parents('.ragnarok-window, .ro-win').find('.jspDrag');
+                scrollbar.height(scrollbar.height() - 8);
+                
+                $('.jspTrack, .jspArrow').addClass('ro-btn');
+                
                 layer_windows();
             }
 

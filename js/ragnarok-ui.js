@@ -88,6 +88,8 @@ ragnarok.ui = {
 
             ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - 44});
             ragnarok.panes[pane].reinitialise();
+
+            ragnarok.ui.panefix(pane);
         },
 
         storage: function(selector, type) {
@@ -160,6 +162,14 @@ ragnarok.ui = {
                 }
             }
         }
+    },
+
+    panefix: function(pane)
+    {
+        var scrollbar = ragnarok.panes[pane].getContentPane().parents('.ragnarok-window, .ro-win').find('.jspDrag');    
+        scrollbar.height(scrollbar.height() - 8);
+        
+        $('.jspTrack, .jspArrow').addClass('ro-btn');
     }
 };
 
@@ -315,10 +325,9 @@ $(document).ready(function()
         api.reinitialise();
 
         ragnarok.panes.push(api);
+        ragnarok.ui.panefix(pane);
     });
     
-    $('.jspDrag').height($('.jspDrag').height() - 8);
-    $('.jspTrack, .jspArrow').addClass('ro-btn');
     $('.ragnarok-checkbox, .ro-check').addClass('ro-btn');
 
     $('.ragnarok-window, .ro-win').each(function()
