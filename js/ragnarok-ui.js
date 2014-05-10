@@ -33,9 +33,7 @@ ragnarok.ui = {
                 {
                     var position = html.find("span").position(),
                         width = html.find("span").width(),
-                        container = html.find('.ro-item').width();
-
-console.log(container);
+                        container = (html.find('.ro-item').length) ? html.find('.ro-item').width() : html.width();
 
                     var difference = container - (position.left + width);
 
