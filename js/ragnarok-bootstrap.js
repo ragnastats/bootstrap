@@ -8,31 +8,21 @@
 var ragnarok = (function()
 {
     var api = {
-        populate: {
-            inventory: function(url, callback) {
+        populate: function(reference, url, callback) {
+            if(typeof reference == "object" && reference.length)
+            {
                 $.getJSON(url, function(response)
                 {
-                    ragnarok.inventory.items = response;
+                    // There has to be a better way to do this...
+                    if(reference.length == 1)
+                    {
+                        ragnarok[reference[0]] = response;
+                    }
 
-                    if(typeof callback == "function")
-                        callback();
-                });
-            },
-            
-            items: function(url, callback) {
-                $.getJSON(url, function(response)
-                {
-                    ragnarok.items = response;
-
-                    if(typeof callback == "function")
-                        callback();
-                });
-            },
-
-            storage: function(url, callback) {
-                $.getJSON(url, function(response)
-                {
-                    ragnarok.storage.items = response;
+                    else if(reference.length == 2)
+                    {
+                        ragnarok[reference[0]][reference[1]] = response;
+                    }
 
                     if(typeof callback == "function")
                         callback();

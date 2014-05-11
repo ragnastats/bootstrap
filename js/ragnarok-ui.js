@@ -156,6 +156,11 @@ ragnarok.ui = {
             ragnarok.panes[pane].reinitialise();
 
             ragnarok.ui.panefix(pane);
+        },
+
+        character: function(selector)
+        {
+            console.log('populate that character~', ragnarok.character);
         }
     },
 
@@ -170,20 +175,26 @@ ragnarok.ui = {
 
 $(document).ready(function()
 {
-    ragnarok.api.populate.items('http://api.ragnastats.com/items.json', function()
+    ragnarok.api.populate(['items'], 'http://api.ragnastats.com/items.json', function()
     {
-        ragnarok.api.populate.inventory('../demo/inventory-api-example.json', function()
+        ragnarok.api.populate(['inventory','items'], '../demo/inventory-api-example.json', function()
         {
             // Populate inventory window after API request completes
             //ragnarok.ui.populate.inventory('.inventory .ro-items', 'usable');
             $('.ragnarok-tab-inventory, .ro-tab-inv').eq(0).trigger('click');
         });
 
-        ragnarok.api.populate.storage('../demo/storage-api-example.json', function()
+        ragnarok.api.populate(['storage','items'], '../demo/storage-api-example.json', function()
         {
             // Populate storage window after API request completes
             //ragnarok.ui.populate.storage('.storage .ro-items', 'usable');
             $('.ragnarok-tab-storage, .ro-tab-stor').eq(0).trigger('click');
+        });
+
+        ragnarok.api.populate(['character'], '../demo/character-api-example.json', function()
+        {
+            // Callbacks are fun!!
+            console.log("Callbacks are fun!");
         });
     });
 
