@@ -193,6 +193,21 @@ ragnarok.ui = {
         }
     },
 
+    load: function(url)
+    {
+        // Load all character information from a single file
+        $.getJSON(url, function(response)
+        {
+            ragnarok.inventory.items = response.inventory;
+            ragnarok.storage.items = response.storage;
+            ragnarok.character = response.character;
+
+            $('.ragnarok-tab-inventory, .ro-tab-inv').eq(0).trigger('click');
+            $('.ragnarok-tab-storage, .ro-tab-stor').eq(0).trigger('click');
+            ragnarok.ui.populate.character('.basic-info');
+        });
+    },
+
     panefix: function(pane)
     {
         var scrollbar = ragnarok.panes[pane].getContentPane().parents('.ragnarok-window, .ro-win').find('.jspDrag');    
@@ -224,6 +239,11 @@ $(document).ready(function()
         {
             ragnarok.ui.populate.character('.basic-info');
         });
+    });
+
+    $('body').on('click', '.ragnarok-load, .ro-load', function()
+    {
+        ragnarok.ui.load($(this).attr('href'));
     });
 
     $('body').on('click', '.ragnarok-tab-inventory, .ro-tab-inv', function()

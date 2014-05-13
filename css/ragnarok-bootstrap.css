@@ -484,3 +484,10 @@
     opacity: 0;
 }
 
+.ragnarok-load, .ro-load {
+    text-decoration: underline;
+}
+
+.ragnarok-load:hover, .ro-load:hover {
+    text-decoration: none;
+}
