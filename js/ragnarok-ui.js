@@ -296,11 +296,14 @@ $(document).ready(function()
                 // Show item popup
                 var wrap = $('<div class="ragnarok-window ragnarok-item-popup">');
                 var popup = $('<div class="ragnarok-window-inner">');
-                popup.text(ragnarok.items[item].name + " - 1 obtained");
+                var image = $('<img src="'+ragnarok.items[item].icon+'">');
+
+                popup.html(ragnarok.items[item].name + " - 1 obtained");
+                popup.prepend(image);
 
                 wrap.append(popup);
                 $('body').append(wrap);
-                
+
                 wrap.css({
                     position: 'absolute',
                     top: 50,

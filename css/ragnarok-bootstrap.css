@@ -343,6 +343,17 @@
     text-shadow:1px 1px #ccc;
 }
 
+
+.ragnarok-item-popup div, .ro-item-pop div {
+    padding-left: 32px;
+}
+
+.ragnarok-item-popup img, .ro-item-pop img {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+
 .ragnarok-items, .ro-items {
     font-size: 2px;
 }
