@@ -290,6 +290,8 @@ $(document).ready(function()
             {
                 
                 console.log(item);
+                // Remove previous popups
+                $('.ragnarok-item-popup').remove();
                 
                 // Show item popup
                 var wrap = $('<div class="ragnarok-window ragnarok-item-popup">');
@@ -305,6 +307,10 @@ $(document).ready(function()
                     left: $(window).width() / 2  - popup.width() / 2 // PEMDAS YO
                 });
 
+                setTimeout(function()
+                {
+                    wrap.remove();
+                }, 5000);
                 
                 ragnarok.inventory.add(item, 1);
 
