@@ -5,7 +5,7 @@
  */
 
 // Add UI functions to main ragnarok object
-ragnarok.ui = {
+ragnarok.ui = {    
     clear: {
         inventory: function(selector) {
             $(selector).find('.ro-item').remove();
@@ -13,6 +13,13 @@ ragnarok.ui = {
 
         storage: function(selector) {
             $(selector).find('.ro-item-wrap').remove();
+        }
+    },
+
+    create: {
+        window: function()
+        {
+            
         }
     },
 
@@ -281,6 +288,24 @@ $(document).ready(function()
             // Ensure the item exists before adding it to the inventory
             if(ragnarok.storage.remove(item, 1))
             {
+                
+                console.log(item);
+                
+                // Show item popup
+                var wrap = $('<div class="ragnarok-window ragnarok-item-popup">');
+                var popup = $('<div class="ragnarok-window-inner">');
+                popup.text(ragnarok.items[item].name + " - 1 obtained");
+
+                wrap.append(popup);
+                $('body').append(wrap);
+                
+                wrap.css({
+                    position: 'absolute',
+                    top: 50,
+                    left: $(window).width() / 2  - popup.width() / 2 // PEMDAS YO
+                });
+
+                
                 ragnarok.inventory.add(item, 1);
 
                 ragnarok.ui.clear.storage('.storage .ro-items');
@@ -305,7 +330,7 @@ $(document).ready(function()
 
             // Ensure the item exists before adding it to storage
             if(ragnarok.inventory.remove(item, 1))
-            {
+            {                
                 ragnarok.storage.add(item, 1);
 
                 ragnarok.ui.clear.storage('.storage .ro-items');
