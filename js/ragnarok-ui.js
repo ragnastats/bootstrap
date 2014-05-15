@@ -226,6 +226,19 @@ ragnarok.ui = {
 
 $(document).ready(function()
 {
+    if(Modernizr.localstorage)
+    {
+        // Show the disclaimer unless the terms have already been accepted/denied
+        if(typeof localStorage['terms-accepted'] === "undefined")
+        {
+            $('.disclaimer').show();
+        }
+    }
+    else
+    {
+        $('.disclaimer').show();
+    }
+    
     ragnarok.api.populate(['items'], 'http://api.ragnastats.com/items.json', function()
     {
         ragnarok.api.populate(['inventory','items'], '../demo/inventory-api-example.json', function()
@@ -298,7 +311,7 @@ $(document).ready(function()
                 var popup = $('<div class="ragnarok-window-inner">');
                 var image = $('<img src="'+ragnarok.items[item].icon+'">');
 
-                popup.html(ragnarok.items[item].name + " - 1 obtained");
+                popup.html(ragnarok.items[item].name + " - 1 obtained.");
                 popup.prepend(image);
 
                 wrap.append(popup);
@@ -483,10 +496,16 @@ $(document).ready(function()
         $(this).toggleClass('checked');
     });
 
-    $('.ro-text-btn').on('click', function()
+    $('.disclaimer .ro-text-btn').on('click', function()
     {
+        if(Modernizr.localstorage)
+        {
+            // Save the value of the button so we know the terms have been accepted/denied
+            localStorage['terms-accepted'] = $(this).attr('value');
+        }        
+        
         // Temporary behavior to close terms
-        $(this).parents('.ragnarok-window, .ro-win').remove();
+        $('.disclaimer').hide();
     });
 
     $('.ragnarok-window-button-close, .ro-win-btn-close').on('click', function()

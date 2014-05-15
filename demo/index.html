@@ -4,6 +4,7 @@
         
         <link rel="stylesheet" type="text/css" href="../css/jquery.jscrollpane.css" />
         <link rel="stylesheet" type="text/css" href="../css/ragnarok-bootstrap.css" />
+        <script src="../js/3rdparty/modernizr.js"></script>
 
         <style>
             body {
@@ -55,6 +56,7 @@
             .disclaimer {
                 max-width: 400px;
                 max-height: 400px;
+                display: none;
             }
 
             .disclaimer .ragnarok-scroll-pane {
@@ -151,8 +153,8 @@
                     </div>
 
                     <div class="ragnarok-right ragnarok-handle ro-btns">
-                        <div class="ro-btn ro-text-btn"><div>Agree</div></div>
-                        <div class="ro-btn ro-text-btn"><div>Exit</div></div>
+                        <div class="ro-btn ro-text-btn" value="agree"><div>Agree</div></div>
+                        <div class="ro-btn ro-text-btn" value="exit"><div>Exit</div></div>
                     </div>
 
                     <div class="ragnarok-clear ragnarok-handle"></div>

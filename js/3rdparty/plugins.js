@@ -255,3 +255,5 @@ function number_format(num) {
   }
   return array.join('') + decimalPart;
 };
+
+
