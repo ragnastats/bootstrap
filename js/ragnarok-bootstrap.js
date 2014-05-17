@@ -56,6 +56,9 @@ var ragnarok = (function()
         {
             var index = inventory.index(item);
 
+            // Make sure quantity is a number!
+            quantity = parseInt(quantity);
+
             if(index < 0)
             {
                 // If the item wasn't found, add it to the inventory!
@@ -64,7 +67,7 @@ var ragnarok = (function()
             else
             {
                 // If the item was found, increase the quantity!
-                inventory.items[index].quantity += quantity;
+                inventory.items[index].quantity = parseInt(inventory.items[index].quantity) + quantity;
             }
 
             return true;
@@ -76,7 +79,7 @@ var ragnarok = (function()
 
             if(index >= 0)
             {
-                return inventory.items[index].quantity;
+                return parseInt(inventory.items[index].quantity);
             }
 
             return false;
@@ -86,10 +89,13 @@ var ragnarok = (function()
         {
             var index = inventory.index(item);
 
+            // Make sure quantity is a number!
+            quantity = parseInt(quantity);
+
             if(index >= 0)
             {
                 // You can only remove an item that exists!
-                inventory.items[index].quantity -= quantity;
+                inventory.items[index].quantity = parseInt(inventory.items[index].quantity) - quantity;
 
                 // Get rid of empty items
                 if(inventory.items[index].quantity <= 0)
@@ -133,13 +139,16 @@ var ragnarok = (function()
         {
             var index = storage.index(item);
 
+            // Make sure quantity is a number!
+            quantity = parseInt(quantity);
+
             if(index < 0)
             {
                 storage.items.push({item: item, quantity: quantity});
             }
             else
             {
-                storage.items[index].quantity += quantity;
+                storage.items[index].quantity = parseInt(storage.items[index].quantity) + quantity;
             }
 
             return true;
@@ -161,9 +170,12 @@ var ragnarok = (function()
         {
             var index = storage.index(item);
 
+            // Make sure quantity is a number!
+            quantity = parseInt(quantity);
+
             if(index >= 0)
             {
-                storage.items[index].quantity -= quantity;
+                storage.items[index].quantity = parseInt(storage.items[index].quantity) - quantity;
 
                 // Get rid of empty items
                 if(storage.items[index].quantity <= 0)

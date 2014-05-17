@@ -45,11 +45,11 @@ ragnarok.ui = {
             }, 5000);
         },
 
-        select_quantity: function(item, quantity)
+        select_quantity: function(item, quantity, from, to)
         {
             if(quantity == 1)
             {
-                ragnarok.ui.event.update_quantity(item, quantity);
+                ragnarok.ui.event.update_quantity(item, quantity, from, to);
                 return;
             }
             
@@ -76,26 +76,35 @@ ragnarok.ui = {
             $('body').find(input).trigger('focus').select();
             $('body').find(input).on('keydown', function(event)
             {
-                var value = $('body').find(input).val();
+                var value = parseInt($('body').find(input).val());
 
+                if(isNaN(value))
+                    value = 0;
+                    
                 // Ensure you don't spawn extra items~
                 if(quantity < value)
                     value = quantity;
                 
                 if(event.which == 13)
                 {
-                    ragnarok.ui.event.update_quantity(item, value);
+                    if(value) {
+                        ragnarok.ui.event.update_quantity(item, value, from, to);
+                    }
+                    
                     $('.ragnarok-quantity-popup').remove();
                 }
             });
         },
 
-        update_quantity: function(item, quantity)
+        update_quantity: function(item, quantity, from, to)
         {
             ragnarok.ui.event.item_obtained(item, quantity);
-            
-            ragnarok.storage.remove(item, quantity);
-            ragnarok.inventory.add(item, quantity);
+
+            if(typeof from != "undefined")
+                ragnarok[from].remove(item, quantity);
+
+            if(typeof to  != "undefined")
+                ragnarok[to].add(item, quantity);
 
             ragnarok.ui.clear.storage('.storage .ro-items');
             ragnarok.ui.populate.storage('.storage .ro-items', $('.ragnarok-tab-storage.active, .ro-tab-stor.active').attr('tab'));
@@ -386,15 +395,13 @@ $(document).ready(function()
 
         if(from == "storage")
         {
-            console.log("Remove from storage, add to inventory!");
-
             var quantity = ragnarok.storage.quantity(item);
             
             // Ensure the item exists before adding it to the inventory
             if(quantity)
             {
                 // Display quantity popup when necessary
-                ragnarok.ui.event.select_quantity(item, quantity);
+                ragnarok.ui.event.select_quantity(item, quantity, 'storage', 'inventory');
             }
         }
 
@@ -408,18 +415,13 @@ $(document).ready(function()
 
         if(from == "inventory")
         {
-            console.log("Remove from inventory, add to storage!");
-
-            // Ensure the item exists before adding it to storage
-            if(ragnarok.inventory.remove(item, 1))
-            {                
-                ragnarok.storage.add(item, 1);
-
-                ragnarok.ui.clear.storage('.storage .ro-items');
-                ragnarok.ui.populate.storage('.storage .ro-items', $('.ragnarok-tab-storage.active, .ro-tab-stor.active').attr('tab'));
-
-                ragnarok.ui.clear.inventory('.inventory .ro-items');
-                ragnarok.ui.populate.inventory('.inventory .ro-items', $('.ragnarok-tab-inventory.active, .ro-tab-inv.active').attr('tab'));
+            var quantity = ragnarok.inventory.quantity(item);
+            
+            // Ensure the item exists before adding it to the inventory
+            if(quantity)
+            {
+                // Display quantity popup when necessary
+                ragnarok.ui.event.select_quantity(item, quantity, 'inventory', 'storage');
             }
         }
 
@@ -433,13 +435,13 @@ $(document).ready(function()
 
         if(from == "inventory")
         {
-            console.log("Remove item from inventory!");
-
-            // Only update the inventory if an item is actually removed
-            if(ragnarok.inventory.remove(item, 1))
+            var quantity = ragnarok.inventory.quantity(item);
+            
+            // Ensure the item exists before adding it to the inventory
+            if(quantity)
             {
-                ragnarok.ui.clear.inventory('.inventory .ro-items');
-                ragnarok.ui.populate.inventory('.inventory .ro-items', $('.ragnarok-tab-inventory.active, .ro-tab-inv.active').attr('tab'));
+                // Display quantity popup when necessary
+                ragnarok.ui.event.select_quantity(item, quantity, 'inventory');
             }
         }
 
