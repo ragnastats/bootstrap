@@ -56,12 +56,12 @@ ragnarok.ui = {
             var wrap = $('<div class="ragnarok-window ragnarok-quantity-popup">'),
                 popup = $('<div class="ragnarok-window-inner">'),
                 button = $('<div class="ro-btn ro-text-btn">OK</div>'),
-                input = $('<input class="quantity">');
+                input = $('<div class="quantity" contenteditable="true">');
                 
             popup.html(ragnarok.items[item].name);
             popup.append(button);
 
-            input.val(quantity);
+            input.text(quantity);
             popup.append(input);
             
             wrap.append(popup);
@@ -73,7 +73,8 @@ ragnarok.ui = {
                 left: $(window).width() / 2  - popup.width() / 2
             });
 
-            $('body').find(input).trigger('focus').select();
+            ragnarok.ui.highlight($('body').find(input)[0]);
+            $('body').find(input).trigger('focus');
             $('body').find(input).on('keydown', function(event)
             {
                 if(event.which == 13)
@@ -84,7 +85,7 @@ ragnarok.ui = {
 
             $('body').find(button).on('click', function(event)
             {
-                var value = parseInt($('body').find(input).val());
+                var value = parseInt($('body').find(input).text());
 
                 if(isNaN(value))
                     value = 0;
@@ -118,6 +119,15 @@ ragnarok.ui = {
             ragnarok.ui.clear.inventory('.inventory .ro-items');
             ragnarok.ui.populate.inventory('.inventory .ro-items', $('.ragnarok-tab-inventory.active, .ro-tab-inv.active').attr('tab'));
         }
+    },
+
+    highlight: function(element)
+    {
+        var range = document.createRange();
+        range.selectNodeContents(element);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
     },
 
     position: {

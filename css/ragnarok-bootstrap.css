@@ -355,22 +355,30 @@
 }
 
 .ragnarok-quantity-popup, .ro-quant-pop {
-    min-width: 200px;
+    min-width: 175px;
 }
 
 .ragnarok-quantity-popup .ragnarok-window-inner, .ro-quant-pop .ro-win-in {
     padding: 4px 10px;
 }
 
-.ragnarok-quantity-popup input, .ro-quant-pop input {
+.ragnarok-quantity-popup .quantity, .ro-quant-pop .quantity {
+    background-color: #E7E7E7; 
+    border: none;
     display: block;
     width: 50%;
+    line-height: 16px;
+    padding-left: 3px;
+}
+
+.ragnarok-quantity-popup .quantity:focus, .ro-quant-pop .quantity:focus {
+    outline: 0;
 }
 
 .ragnarok-quantity-popup .ro-btn, .ro-quant-pop .ro-btn {
     float: right;
     font-size: 100%;
-    margin-top: 10px;
+    margin-top: 7px;
 }
 
 .ragnarok-items, .ro-items {
@@ -522,3 +530,6 @@
     text-decoration: none;
 }
 
+::selection {
+    background-color: rgb(115, 156, 239);
+}
