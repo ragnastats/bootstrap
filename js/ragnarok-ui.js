@@ -16,10 +16,49 @@ ragnarok.ui = {
         }
     },
 
-    create: {
-        window: function()
+    event: {
+        item_obtained: function(item, quantity)
         {
+            // Remove previous popups
+            $('.ragnarok-item-popup').remove();
             
+            // Show item popup
+            var wrap = $('<div class="ragnarok-window ragnarok-item-popup">');
+            var popup = $('<div class="ragnarok-window-inner">');
+            var image = $('<img src="'+ragnarok.items[item].icon+'">');
+
+            popup.html(ragnarok.items[item].name + " - "+quantity+" obtained.");
+            popup.prepend(image);
+
+            wrap.append(popup);
+            $('body').append(wrap);
+
+            wrap.css({
+                position: 'absolute',
+                top: 50,
+                left: $(window).width() / 2  - popup.width() / 2 // PEMDAS YO
+            });
+
+            setTimeout(function()
+            {
+                wrap.remove();
+            }, 5000);
+        },
+
+        select_quantity: function(item)
+        {
+            var wrap = $('<div class="ragnarok-window ragnarok-quantity-popup">');
+            var popup = $('<div class="ragnarok-window-inner">');
+            popup.html(ragnarok.items[item].name);
+            wrap.append(popup);
+            $('body').append(wrap);
+
+            wrap.css({
+                position: 'absolute',
+                top: $(window).height() / 2 - popup.height() / 2,
+                left: $(window).width() / 2  - popup.width() / 2
+            });
+
         }
     },
 
@@ -298,36 +337,27 @@ $(document).ready(function()
         {
             console.log("Remove from storage, add to inventory!");
 
+            var quantity = ragnarok.storage.quantity(item);
+            
             // Ensure the item exists before adding it to the inventory
-            if(ragnarok.storage.remove(item, 1))
+            if(quantity)
             {
+                if(quantity == 1)
+                {
+                    // Auto trigger
+                }
+                else
+                {
+                    // Display quantity
+                    ragnarok.ui.event.select_quantity(item);
+                }
+                
+                console.log("it exists!");
                 
                 console.log(item);
-                // Remove previous popups
-                $('.ragnarok-item-popup').remove();
+                ragnarok.ui.event.item_obtained(item, 1);
                 
-                // Show item popup
-                var wrap = $('<div class="ragnarok-window ragnarok-item-popup">');
-                var popup = $('<div class="ragnarok-window-inner">');
-                var image = $('<img src="'+ragnarok.items[item].icon+'">');
-
-                popup.html(ragnarok.items[item].name + " - 1 obtained.");
-                popup.prepend(image);
-
-                wrap.append(popup);
-                $('body').append(wrap);
-
-                wrap.css({
-                    position: 'absolute',
-                    top: 50,
-                    left: $(window).width() / 2  - popup.width() / 2 // PEMDAS YO
-                });
-
-                setTimeout(function()
-                {
-                    wrap.remove();
-                }, 5000);
-                
+                ragnarok.storage.remove(item, 1);
                 ragnarok.inventory.add(item, 1);
 
                 ragnarok.ui.clear.storage('.storage .ro-items');
@@ -618,5 +648,12 @@ $(document).ready(function()
     {
         // Pass click event to the actual element being clicked on
         $('.ro-hovering').trigger('mousedown');
+    });
+
+    // General behaviors when clicking on windows
+    $('body').on('click', '.ragnarok-window, .ro-win', function(event)
+    {
+        // Remove quantity popups
+        $('.ragnarok-quantity-popup').remove()
     });
 });

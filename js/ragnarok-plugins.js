@@ -129,7 +129,7 @@
         }
     });
 
-    function item_drag(element, opt)
+    function item_drag(element, opt, callback)
     {        
         element.on('mousedown', function(event)
         {
@@ -146,13 +146,16 @@
                 item.attr('from', opt.from);
             
             $('body').append(item);
+
+            if(typeof callback == "function")
+                callback();
         });
     }
     
-    $.fn.drag = function(opt)
+    $.fn.drag = function(opt, callback)
     {
         if($(this).is('.ragnarok-item, .ro-item'))
-            item_drag(this, opt);
+            item_drag(this, opt, callback);
 
         else if($(this).is('.ragnarok-window, .ro-win'))
             window_drag(this, opt);

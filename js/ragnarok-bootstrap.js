@@ -70,6 +70,18 @@ var ragnarok = (function()
             return true;
         },
 
+        quantity: function(item)
+        {
+            var index = inventory.index(item);
+
+            if(index >= 0)
+            {
+                return inventory.items[index].quantity;
+            }
+
+            return false;
+        },
+
         remove: function(item, quantity)
         {
             var index = inventory.index(item);
@@ -131,6 +143,18 @@ var ragnarok = (function()
             }
 
             return true;
+        },
+
+        quantity: function(item)
+        {
+            var index = storage.index(item);
+
+            if(index >= 0)
+            {
+                return storage.items[index].quantity;
+            }
+
+            return false;
         },
 
         remove: function(item, quantity)
