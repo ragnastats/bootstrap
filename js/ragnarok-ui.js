@@ -98,13 +98,14 @@ ragnarok.ui = {
 
         update_quantity: function(item, quantity, from, to)
         {
-            ragnarok.ui.event.item_obtained(item, quantity);
-
             if(typeof from != "undefined")
                 ragnarok[from].remove(item, quantity);
 
             if(typeof to  != "undefined")
                 ragnarok[to].add(item, quantity);
+
+            if(to == "inventory")
+                ragnarok.ui.event.item_obtained(item, quantity);
 
             ragnarok.ui.clear.storage('.storage .ro-items');
             ragnarok.ui.populate.storage('.storage .ro-items', $('.ragnarok-tab-storage.active, .ro-tab-stor.active').attr('tab'));
