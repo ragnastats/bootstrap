@@ -354,6 +354,25 @@
     left: 8px;
 }
 
+.ragnarok-quantity-popup, .ro-quant-pop {
+    min-width: 200px;
+}
+
+.ragnarok-quantity-popup .ragnarok-window-inner, .ro-quant-pop .ro-win-in {
+    padding: 4px 10px;
+}
+
+.ragnarok-quantity-popup input, .ro-quant-pop input {
+    display: block;
+    width: 50%;
+}
+
+.ragnarok-quantity-popup .ro-btn, .ro-quant-pop .ro-btn {
+    float: right;
+    font-size: 100%;
+    margin-top: 10px;
+}
+
 .ragnarok-items, .ro-items {
     font-size: 2px;
 }
@@ -502,3 +521,4 @@
 .ragnarok-load:hover, .ro-load:hover {
     text-decoration: none;
 }
+

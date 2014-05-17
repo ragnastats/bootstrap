@@ -76,6 +76,14 @@ ragnarok.ui = {
             $('body').find(input).trigger('focus').select();
             $('body').find(input).on('keydown', function(event)
             {
+                if(event.which == 13)
+                {
+                    $('body').find(button).trigger('click');
+                }
+            });
+
+            $('body').find(button).on('click', function(event)
+            {
                 var value = parseInt($('body').find(input).val());
 
                 if(isNaN(value))
@@ -84,15 +92,12 @@ ragnarok.ui = {
                 // Ensure you don't spawn extra items~
                 if(quantity < value)
                     value = quantity;
-                
-                if(event.which == 13)
-                {
-                    if(value) {
-                        ragnarok.ui.event.update_quantity(item, value, from, to);
-                    }
-                    
-                    $('.ragnarok-quantity-popup').remove();
+
+                if(value) {
+                    ragnarok.ui.event.update_quantity(item, value, from, to);
                 }
+                
+                $('.ragnarok-quantity-popup').remove();
             });
         },
 
@@ -544,17 +549,17 @@ $(document).ready(function()
         'max': { 'height': 800, 'width': 400 }
     });
 
-    $('.ragnarok-button, .ro-btn').on('mousedown', function()
+    $('body').on('mousedown', '.ragnarok-button, .ro-btn', function()
     {
         $(this).addClass('click');
     });
 
-    $('.ragnarok-button, .ro-btn').on('mouseup', function()
+    $('body').on('mouseup', '.ragnarok-button, .ro-btn', function()
     {
         $(this).removeClass('click');
     });
 
-    $('.ragnarok-checkbox, .ro-check').on('mousedown', function()
+    $('body').on('mousedown', '.ragnarok-checkbox, .ro-check', function()
     {
         $(this).toggleClass('checked');
     });
