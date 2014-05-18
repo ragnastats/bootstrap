@@ -711,13 +711,31 @@ $(document).ready(function()
         event.preventDefault();
     });
 
-    $('body').on('mousedown', '.ro-item, .ragnarok-hover-handle, .ro-hover-handle', function(event, context)
+    $('body').on('mousedown', '.ro-item', function(event, context)
     {
         $.extend(event, context);
         
         // Capture right clicks
         if(event.which == 3)
         {
+            // Remove previous item windows
+            $('.ragnarok-item-popup').remove();
+            
+            var item = $(this).find('img').attr('item');
+
+            var wrap = $('<div class="ragnarok-window ragnarok-item-popup">'),
+                popup = $('<div class="ragnarok-window-inner">');
+                
+            popup.html(ragnarok.items[item].name + "<hr />" + ragnarok.items[item].desc);            
+            wrap.append(popup);
+            $('body').append(wrap);
+
+            wrap.css({
+                position: 'absolute',
+                top: $(window).height() / 2 - popup.height() / 2,
+                left: $(window).width() / 2  - popup.width() / 2
+            });
+            
         }
     });
 });
