@@ -37,61 +37,65 @@
 
         return $el.on("mousedown", function(e)
         {
-            if(opt.target && opt.target.length)
+            // Only drag when left clicking
+            if(e.which == 1)
             {
-                var match = false;
-                
-                $.each(opt.target, function(index, target)
+                if(opt.target && opt.target.length)
                 {
-                    if($(e.target).hasClass(target))
-                        match = true;
-                })
+                    var match = false;
+                    
+                    $.each(opt.target, function(index, target)
+                    {
+                        if($(e.target).hasClass(target))
+                            match = true;
+                    })
 
-                if(!match)
-                    return;
+                    if(!match)
+                        return;
+                }
+                
+                if(opt.handle === "") {
+                    var $drag = $(this).addClass('drag');
+                } else {
+                    var $drag = $(this).addClass('drag-active').parent().addClass('drag');
+                }
+                var drg_h = $drag.outerHeight(true),
+                    drg_w = $drag.outerWidth(true),
+                    pos_y = $drag.offset().top + drg_h - e.pageY,
+                    pos_x = $drag.offset().left + drg_w - e.pageX;
+                    
+                $drag.css('z-index', 1000).parents().on("mousemove", function(e) {
+                    var top = e.pageY + pos_y - drg_h;
+                    var left = e.pageX + pos_x - drg_w;
+
+                    if(e.pageY + pos_y > $(document).height())
+                    {
+                        top -= e.pageY + pos_y - $(document).height();
+                    }
+                    else if(e.pageY + pos_y < drg_h)
+                    {
+                        top = 0;
+                    }
+
+                    if(e.pageX + pos_x > $(document).width())
+                    {
+                        left -= e.pageX + pos_x - $(document).width();
+                    }
+                    else if(e.pageX + pos_x < drg_w)
+                    {
+                        left = 0;
+                    }
+                    
+                    $('.drag').css({
+                        position: 'absolute',
+                        right: 'auto',
+                        bottom: 'auto',
+                        top:top,
+                        left:left
+                    });
+                });
             }
             
-            if(opt.handle === "") {
-                var $drag = $(this).addClass('drag');
-            } else {
-                var $drag = $(this).addClass('drag-active').parent().addClass('drag');
-            }
-            var drg_h = $drag.outerHeight(true),
-                drg_w = $drag.outerWidth(true),
-                pos_y = $drag.offset().top + drg_h - e.pageY,
-                pos_x = $drag.offset().left + drg_w - e.pageX;
-                
-            $drag.css('z-index', 1000).parents().on("mousemove", function(e) {
-                var top = e.pageY + pos_y - drg_h;
-                var left = e.pageX + pos_x - drg_w;
-
-                if(e.pageY + pos_y > $(document).height())
-                {
-                    top -= e.pageY + pos_y - $(document).height();
-                }
-                else if(e.pageY + pos_y < drg_h)
-                {
-                    top = 0;
-                }
-
-                if(e.pageX + pos_x > $(document).width())
-                {
-                    left -= e.pageX + pos_x - $(document).width();
-                }
-                else if(e.pageX + pos_x < drg_w)
-                {
-                    left = 0;
-                }
-                
-                $('.drag').css({
-                    position: 'absolute',
-                    right: 'auto',
-                    bottom: 'auto',
-                    top:top,
-                    left:left
-                });
-            });
-
             e.preventDefault(); // disable selection
         }).on("mouseup", function() {
             if(opt.handle === "") {
@@ -131,24 +135,28 @@
 
     function item_drag(element, opt, callback)
     {        
-        element.on('mousedown', function(event)
-        {
-            dragging = true;
+        element.on('mousedown', function(event, context)
+        {            
+            // Only drag on left clicks
+            if(context.which == 1)
+            {
+                dragging = true;
 
-            // Remove previous items once we click on a new one
-            $('.ro-item-drag').remove();
+                // Remove previous items once we click on a new one
+                $('.ro-item-drag').remove();
 
-            var item = $(this).find('img').clone();
-            item.addClass('ro-item-drag');
-            item.css({opacity: 0, position: 'fixed', 'z-index': 9001, 'pointer-events': 'none'});
+                var item = $(this).find('img').clone();
+                item.addClass('ro-item-drag');
+                item.css({opacity: 0, position: 'fixed', 'z-index': 9001, 'pointer-events': 'none'});
 
-            if(typeof opt.from != "undefined")
-                item.attr('from', opt.from);
-            
-            $('body').append(item);
+                if(typeof opt.from != "undefined")
+                    item.attr('from', opt.from);
+                
+                $('body').append(item);
 
-            if(typeof callback == "function")
-                callback();
+                if(typeof callback == "function")
+                    callback();
+            }
         });
     }
     

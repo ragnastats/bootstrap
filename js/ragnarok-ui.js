@@ -692,10 +692,10 @@ $(document).ready(function()
         $('.ro-hover-handle').remove();
     });
 
-    $('body').on('mousedown', '.ro-hover-handle', function()
+    $('body').on('mousedown', '.ro-hover-handle', function(event)
     {
         // Pass click event to the actual element being clicked on
-        $('.ro-hovering').trigger('mousedown');
+        $('.ro-hovering').trigger('mousedown', event);
     });
 
     // General behaviors when clicking on windows
@@ -703,5 +703,21 @@ $(document).ready(function()
     {
         // Remove quantity popups
         $('.ragnarok-quantity-popup').remove();
+    });
+
+    // Stop right click menu on items
+    $('body').on('contextmenu', '.ro-item, .ragnarok-hover-handle, .ro-hover-handle', function(event)
+    {
+        event.preventDefault();
+    });
+
+    $('body').on('mousedown', '.ro-item, .ragnarok-hover-handle, .ro-hover-handle', function(event, context)
+    {
+        $.extend(event, context);
+        
+        // Capture right clicks
+        if(event.which == 3)
+        {
+        }
     });
 });
