@@ -1,0 +1,23 @@
+
+General
+=========
+
+ - Window creation functions
+    - Instead of making HTML templates for windows, windows should be generated with a JSON structure that compiles into HTML
+
+
+UI
+====
+
+ - ragnarok.inventory.exists()
+    - A function to check if an item exists, which returns the quantiity
+
+ - display quantity on drop
+    - Create a popup when dropping items if the quantity is greater than 1
+
+ - item management functions
+    - Functions to increase/decrease the quantity of items without clearing and refreshing the entire inventory
+
+ - Filler functions
+    - Extra slots in the inventory should be filled intelligently, based on available space, instead of a for loop
+
