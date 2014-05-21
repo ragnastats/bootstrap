@@ -6,13 +6,15 @@ General
     - Instead of making HTML templates for windows, windows should be generated with a JSON structure that compiles into HTML
 
 
+
 UI
 ====
 
- - ragnarok.inventory.exists()
+
+  ✅ ragnarok.inventory.exists()
     - A function to check if an item exists, which returns the quantiity
 
- - display quantity on drop
+ ✅ display quantity on drop
     - Create a popup when dropping items if the quantity is greater than 1
 
  - item management functions
