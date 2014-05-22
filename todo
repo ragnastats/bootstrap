@@ -5,6 +5,8 @@ General
  - Window creation functions
     - Instead of making HTML templates for windows, windows should be generated with a JSON structure that compiles into HTML
 
+ - Use observers
+    - Rewrite everything to use observers or something
 
 
 UI
