@@ -67,6 +67,8 @@ ragnarok.ui = {
             wrap.append(popup);
             $('body').append(wrap);
 
+            wrap.drag({target: ['ragnarok-window', 'ro-win', 'ragnarok-window-inner', 'ro-win-in', 'ragnarok-handle', 'ro-handle']});
+
             wrap.css({
                 position: 'absolute',
                 top: $(window).height() / 2 - popup.height() / 2,
@@ -733,6 +735,8 @@ $(document).ready(function()
                 wrap.attr('item', item);
                 wrap.append(popup);
                 $('body').append(wrap);
+
+                wrap.drag({target: ['ragnarok-window', 'ro-win', 'ragnarok-window-inner', 'ro-win-in', 'ragnarok-handle', 'ro-handle']});
 
                 wrap.css({
                     position: 'absolute',
