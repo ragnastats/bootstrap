@@ -132,32 +132,30 @@ ragnarok.ui = {
         selection.addRange(range);
     },
 
-    position: {
-        item: {
+    position:
+    {
+        item:
+        {
             icon: function(html)
             {
-                (function(html)
+                var width = html.find("img").width(),
+                    height = html.find("img").height();
+
+                html.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2}).removeClass('ro-loading');
+            },
+
+            quantity: function(html)
+            {
+                var position = html.find("span").position(),
+                    width = html.find("span").width(),
+                    container = (html.find('.ro-item').length) ? html.find('.ro-item').width() : html.width();
+
+                var difference = container - (position.left + width);
+
+                if(difference < 0)
                 {
-                    var width = html.find("img").width(),
-                        height = html.find("img").height();
-
-                    html.find("img").css({left: (24 - width) / 2, top: (24 - height) / 2}).removeClass('ro-loading');
-                })(html);
-
-                // Quantity position
-                (function(html)
-                {
-                    var position = html.find("span").position(),
-                        width = html.find("span").width(),
-                        container = (html.find('.ro-item').length) ? html.find('.ro-item').width() : html.width();
-
-                    var difference = container - (position.left + width);
-
-                    if(difference < 0)
-                    {
-                        html.find("span").css({left: position.left + difference});
-                    }
-                })(html);
+                    html.find("span").css({left: position.left + difference});
+                }
             }
         }
     },
@@ -180,7 +178,7 @@ ragnarok.ui = {
                     
                     var html = $("<div class='ro-item ro-hover'>"), 
                         hover = [item.name, ': ', inventory.quantity, ' ea.'].join(""),
-                        icon = $("<div><img src='"+ item.icon +"' class='ro-loading'></div>"),
+                        icon = $("<div><img src='"+ item.icon +"'></div>"),
                         quantity = $("<span>"+ inventory.quantity +"</span>");
 
 
@@ -195,11 +193,8 @@ ragnarok.ui = {
                         $('.ragnarok-quantity-popup').remove();
                     });
 
-                    // Icon position
-                    html.imagesLoaded().always(function()
-                    {
-                        ragnarok.ui.position.item.icon(html);
-                    });
+                    // Text position
+                    ragnarok.ui.position.item.quantity(html);
                 }
             });
 
@@ -240,7 +235,7 @@ ragnarok.ui = {
                         html = $("<div class='ro-item ro-hover'>"), 
                         hover = item.name,
                         name = $("<p>"+item.name+"</p>"),
-                        icon = $("<div><img src='"+ item.icon +"' class='ro-loading'></div>"),
+                        icon = $("<div><img src='"+ item.icon +"'></div>"),
                         quantity = $("<span>"+ storage.quantity +"</span>");
 
                     icon.find('img').attr('item', storage.item);
@@ -256,12 +251,9 @@ ragnarok.ui = {
                         // Remove quantity popups
                         $('.ragnarok-quantity-popup').remove();
                     });
-                    
-                    // Icon position
-                    wrap.imagesLoaded().always(function()
-                    {
-                        ragnarok.ui.position.item.icon(wrap);
-                    });
+
+                    // Text position
+                    ragnarok.ui.position.item.quantity(html);
                 }
             });
 
