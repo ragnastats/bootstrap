@@ -175,9 +175,11 @@ ragnarok.ui = {
                     // Fallback to ragnastats CDN if item image is unspecified
                     if(typeof item.icon == "undefined")
                         item.icon = 'http://cdn.ragnastats.com/item/'+inventory.item+'.png';
-                    
+
+                    var slots = (item.slots) ? ' ['+item.slots+'] ' : '';
+   
                     var html = $("<div class='ro-item ro-hover'>"), 
-                        hover = [item.name, ': ', inventory.quantity, ' ea.'].join(""),
+                        hover = [item.name, slots, ': ', inventory.quantity, ' ea.'].join(""),
                         icon = $("<div><img src='"+ item.icon +"'></div>"),
                         quantity = $("<span>"+ inventory.quantity +"</span>");
 
@@ -230,11 +232,13 @@ ragnarok.ui = {
                     // Fallback to ragnastats CDN if item image is unspecified
                     if(typeof item.icon == "undefined")
                         item.icon = 'http://cdn.ragnastats.com/item/'+storage.item+'.png';
+
+                    var slots = (item.slots) ? ' ['+item.slots+'] ' : '';
                     
                     var wrap = $("<div class='ro-item-wrap'>"),
                         html = $("<div class='ro-item ro-hover'>"), 
-                        hover = item.name,
-                        name = $("<p>"+item.name+"</p>"),
+                        hover = item.name + slots,
+                        name = $("<p>"+item.name+slots+"</p>"),
                         icon = $("<div><img src='"+ item.icon +"'></div>"),
                         quantity = $("<span>"+ storage.quantity +"</span>");
 
