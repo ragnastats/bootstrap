@@ -533,3 +533,41 @@
 ::selection {
     background-color: rgb(115, 156, 239);
 }
+
+.ragnarok-equip, .ro-equip {
+    height: 24px;
+    border-bottom: #C6C6C6 1px solid;
+    position: relative;
+    padding: 8px;
+}
+
+.ragnarok-equip div, .ro-equip div,
+.ragnarok-equip p, .ro-equip p {
+    position: absolute;
+}
+
+.ragnarok-equip p, .ro-equip p {
+    left: 45px;
+    color: #E7E7E7;
+}
+
+.ro-equip-lft {
+    height: 130px;
+    width: 100px;
+    border-right: #C6C6C6 1px solid;
+    display: inline-block;
+}
+
+.ro-equip-ctr {
+    height: 130px;
+    width: 50px;
+    display: inline-block;
+    background-image:url(../assets/skin/ro-win-stripe-bg.png);
+}
+
+.ro-equip-rt {
+    height: 130px;
+    width: 100px;
+    border-left: #C6C6C6 1px solid;
+    display: inline-block;
+}
