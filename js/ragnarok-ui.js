@@ -516,7 +516,7 @@ $(document).ready(function()
             $(this).find('.ragnarok-window-content, .ro-win-content').css({
                 'position': 'absolute',
                 'top': $(this).find('.ragnarok-window-title-blue, .ro-win-title-b').outerHeight(true),
-                'bottom': '1px',
+                'bottom': '0px',
                 'left': '0px',
                 'right': '0px'
             });
