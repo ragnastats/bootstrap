@@ -540,6 +540,10 @@
     position: relative;
 }
 
+.ragnarok-equip:last-child, .ro-equip:last-child {
+    border-bottom: none;
+}
+
 .ragnarok-equip div, .ro-equip div,
 .ragnarok-equip p, .ro-equip p {
     position: absolute;
@@ -557,6 +561,7 @@
     border-right: #C6C6C6 1px solid;
     padding-right: 8px;
     float: left;
+    border-bottom: #C6C6C6 1px solid;
 }
 
 .ro-equip-ctr {
@@ -564,6 +569,7 @@
     width: 50px;
     float: left;
     background-image:url(../assets/skin/ro-win-stripe-bg.png);
+    border-bottom: #C6C6C6 1px solid;
 }
 
 .ro-equip-rt {
@@ -573,6 +579,7 @@
     padding-left: 8px;
     float: left;
     text-align: right;
+    border-bottom: #C6C6C6 1px solid;
 }
 
 .ro-equip-lft .ro-equip p {
