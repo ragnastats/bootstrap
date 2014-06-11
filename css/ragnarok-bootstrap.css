@@ -561,15 +561,13 @@
     border-right: #C6C6C6 1px solid;
     padding-right: 8px;
     float: left;
-    border-bottom: #C6C6C6 1px solid;
 }
 
 .ro-equip-ctr {
     height: 130px;
-    width: 50px;
+    width: 55px;
     float: left;
     background-image:url(../assets/skin/ro-win-stripe-bg.png);
-    border-bottom: #C6C6C6 1px solid;
 }
 
 .ro-equip-rt {
@@ -579,7 +577,6 @@
     padding-left: 8px;
     float: left;
     text-align: right;
-    border-bottom: #C6C6C6 1px solid;
 }
 
 .ro-equip-lft .ro-equip p {
@@ -594,4 +591,8 @@
 
 .ro-equip-rt .ro-item {
     right: 0;
+}
+
+.ro-win.equip .ro-win-foot {
+    margin-top:-3px;
 }
