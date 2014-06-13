@@ -8,6 +8,10 @@ function check_weight(obj) {
             {
                 hasWeight++;
             }
+            else
+            {
+                console.log(obj[prop]);
+            }
             
             ++count;
         }
