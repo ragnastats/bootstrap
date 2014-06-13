@@ -184,6 +184,10 @@ ragnarok.ui = {
                         quantity = $("<span>"+ inventory.quantity +"</span>");
 
 
+                    // Display error when an item's weight is unknown
+                    if(typeof item.weight == "undefined")
+                        html.addClass('ro-error');
+
                     icon.find('img').attr('item', inventory.item);
                     html.attr('hover', hover);
                     html.append(icon).append(quantity);
@@ -241,6 +245,10 @@ ragnarok.ui = {
                         name = $("<p>"+item.name+slots+"</p>"),
                         icon = $("<div><img src='"+ item.icon +"'></div>"),
                         quantity = $("<span>"+ storage.quantity +"</span>");
+
+                    // Display error when an item's weight is unknown
+                    if(typeof item.weight == "undefined")
+                        wrap.addClass('ro-error');
 
                     icon.find('img').attr('item', storage.item);
                     html.attr('hover', hover);

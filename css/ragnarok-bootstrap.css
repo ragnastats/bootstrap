@@ -596,3 +596,7 @@
 .ro-win.equip .ro-win-foot {
     margin-top:-3px;
 }
+
+.ro-error {
+    background-color: #fa6f6b;
+}
