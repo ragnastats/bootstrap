@@ -164,6 +164,7 @@ ragnarok.ui = {
         inventory: function(selector, type) {
             var pane = $(selector).attr('ro-pane-id');
             var height = $(selector).parents('.ragnarok-window, .ro-win').height();
+            var weight = 0;
             
             // Function to build inventory HTML from ragnarok.inventory.items
             $.each(ragnarok.inventory.items, function(index, inventory)
@@ -215,6 +216,9 @@ ragnarok.ui = {
                 }
             }
 
+            // Set character weight
+            ragnarok.ui.set_weight();
+            
             ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - 44});
             ragnarok.panes[pane].reinitialise();
 
@@ -342,6 +346,33 @@ ragnarok.ui = {
         scrollbar.height(scrollbar.height() - 8);
         
         $('.jspTrack, .jspArrow').addClass('ro-btn');
+    },
+
+    set_weight: function()
+    {
+        var weight = 0;
+        
+        // Terrible!
+        $.each(ragnarok.inventory.items, function(index, inventory)
+        {
+            var item = ragnarok.items[inventory.item];
+
+            if(typeof item.type != "undefined" && typeof item.weight != "undefined")
+            {
+                // Increase total weight
+                weight += parseFloat(item.weight) * parseFloat(inventory.quantity);
+            }
+        });
+                
+        var weight_percent = Math.round((weight / ragnarok.character.weight.total) * 100);
+
+        if(weight_percent >= 50)
+            $('.basic-info').find('.ro-weight').addClass('overweight');
+        else
+            $('.basic-info').find('.ro-weight').removeClass('overweight');
+        
+        $('.basic-info').find('.ro-weight').attr('hover', "Weight " + weight_percent+"%");
+        $('.basic-info').find('.ro-weight').text('Weight : ' + weight + " / " + ragnarok.character.weight.total);
     }
 };
 
@@ -362,23 +393,23 @@ $(document).ready(function()
     
     ragnarok.api.populate(['items'], 'http://api.ragnastats.com/items.json', function()
     {
-        ragnarok.api.populate(['inventory','items'], '../demo/inventory-api-example.json', function()
-        {
-            // Populate inventory window after API request completes
-            //ragnarok.ui.populate.inventory('.inventory .ro-items', 'usable');
-            $('.ragnarok-tab-inventory, .ro-tab-inv').eq(0).trigger('click');
-        });
-
-        ragnarok.api.populate(['storage','items'], '../demo/storage-api-example.json', function()
-        {
-            // Populate storage window after API request completes
-            //ragnarok.ui.populate.storage('.storage .ro-items', 'usable');
-            $('.ragnarok-tab-storage, .ro-tab-stor').eq(0).trigger('click');
-        });
-
         ragnarok.api.populate(['character'], '../demo/character-api-example.json', function()
         {
             ragnarok.ui.populate.character('.basic-info');
+
+            ragnarok.api.populate(['inventory','items'], '../demo/inventory-api-example.json', function()
+            {
+                // Populate inventory window after API request completes
+                //ragnarok.ui.populate.inventory('.inventory .ro-items', 'usable');
+                $('.ragnarok-tab-inventory, .ro-tab-inv').eq(0).trigger('click');
+            });
+
+            ragnarok.api.populate(['storage','items'], '../demo/storage-api-example.json', function()
+            {
+                // Populate storage window after API request completes
+                //ragnarok.ui.populate.storage('.storage .ro-items', 'usable');
+                $('.ragnarok-tab-storage, .ro-tab-stor').eq(0).trigger('click');
+            });
         });
     });
 

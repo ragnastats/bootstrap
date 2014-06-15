@@ -600,3 +600,7 @@
 .ro-error {
     background-color: #fa6f6b;
 }
+
+.ro-weight.overweight {
+    color: #f00;
+}
