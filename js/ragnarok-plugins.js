@@ -273,10 +273,16 @@
                 if(height > opt.max.height)
                     height = opt.max.height;
 
+
                 parent.css({'width': width, 'height': height});
 
+                var offset = 24;
+
+                if(parent.find('.ragnarok-window-footer, .ro-win-foot'))
+                    offset += parent.find('.ragnarok-window-footer, .ro-win-foot').outerHeight(true);
+                
                 var pane = parent.find('.ragnarok-scroll-pane').attr('ro-pane-id');
-                ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - 44});
+                ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - offset});
                 ragnarok.panes[pane].reinitialise();
 
                 return false;

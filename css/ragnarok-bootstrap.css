@@ -604,3 +604,7 @@
 .ro-weight.overweight {
     color: #f00;
 }
+
+.storage .ro-text-btn {
+    margin: 8px;
+}
