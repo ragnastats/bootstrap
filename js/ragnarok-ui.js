@@ -623,6 +623,19 @@ $(document).ready(function()
         $('.disclaimer').hide();
     });
 
+    $('.storage .ro-text-btn').on('click', function()
+    {
+        var action = $(this).attr('action');
+
+        switch(action)
+        {
+            case "close":
+                $('.storage').hide();
+                
+                break;
+        }
+    });
+
     $('.ragnarok-window-button-close, .ro-win-btn-close').on('click', function()
     {
         $(this).parents('.ragnarok-window, .ro-win').remove();
