@@ -606,5 +606,9 @@
 }
 
 .storage .ro-text-btn {
-    margin: 8px;
+    margin: 4px 12px 0px 0px;
+}
+
+.storage .ro-win-foot p {
+    margin: 6px 12px;
 }

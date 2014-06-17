@@ -224,7 +224,8 @@ ragnarok.ui = {
         storage: function(selector, type)
         {
             var pane = $(selector).attr('ro-pane-id');
-            var height = $(selector).parents('.ragnarok-window, .ro-win').height();
+            var parent = $(selector).parents('.ragnarok-window, .ro-win');
+            var height = parent.height();
 
             // Function to build storage HTML from ragnarok.storage.items
             $.each(ragnarok.storage.items, function(index, storage)
@@ -280,6 +281,7 @@ ragnarok.ui = {
                 }
             }
 
+            parent.find('.ro-win-foot p').text(ragnarok.storage.items.length + "/600");
             ragnarok.ui.panefix(pane);
         },
 
