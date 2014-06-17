@@ -218,10 +218,6 @@ ragnarok.ui = {
 
             // Set character weight
             ragnarok.ui.set_weight();
-            
-            ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - 44});
-            ragnarok.panes[pane].reinitialise();
-
             ragnarok.ui.panefix(pane);
         },
 
@@ -284,9 +280,6 @@ ragnarok.ui = {
                 }
             }
 
-            ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - 44});
-            ragnarok.panes[pane].reinitialise();
-
             ragnarok.ui.panefix(pane);
         },
 
@@ -342,6 +335,19 @@ ragnarok.ui = {
 
     panefix: function(pane)
     {
+        // Determine footer height and resize scroll pane accordingly
+        var parent = ragnarok.panes[pane].getContentPane().parents('.ragnarok-window, .ro-win');
+        var height = parent.height();
+
+        var offset = 24;
+
+        if(parent.find('.ragnarok-window-footer, .ro-win-foot'))
+            offset += parent.find('.ragnarok-window-footer, .ro-win-foot').outerHeight(true);
+
+        ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - offset});
+        ragnarok.panes[pane].reinitialise();
+
+        // Subtract 8 pixels from the scrollbar to account for the arrows
         var scrollbar = ragnarok.panes[pane].getContentPane().parents('.ragnarok-window, .ro-win').find('.jspDrag');    
         scrollbar.height(scrollbar.height() - 8);
         
@@ -528,6 +534,7 @@ $(document).ready(function()
 
     ragnarok.panes = [];
 
+    // Initialize scroll panes
     $('.ragnarok-scroll-pane, .ro-scroll-pane').each(function()
     {
         var pane = ragnarok.panes.length;
@@ -535,11 +542,6 @@ $(document).ready(function()
         $(this).attr('ro-pane-id', pane);                
 
         var api = $(this).data('jsp');
-        var height = $(this).parents('.ragnarok-window, .ro-win').height();
-
-        api.getContentPane().parents('.jspContainer').css({'height': height - 44});
-        api.reinitialise();
-
         ragnarok.panes.push(api);
         ragnarok.ui.panefix(pane);
     });
