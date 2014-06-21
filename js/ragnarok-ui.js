@@ -782,8 +782,10 @@ $(document).ready(function()
             {
                 var wrap = $('<div class="ragnarok-window ragnarok-item-popup">'),
                     popup = $('<div class="ragnarok-window-inner">');
+                    image = $('<img src="http://cdn.ragnastats.com/collection/'+item+'.png">');
                     
                 popup.html(ragnarok.items[item].name + "<hr />" + ragnarok.items[item].desc);
+                popup.append(image);
                 wrap.attr('item', item);
                 wrap.append(popup);
                 $('body').append(wrap);
