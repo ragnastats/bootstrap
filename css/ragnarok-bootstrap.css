@@ -345,7 +345,7 @@
 
 
 .ragnarok-item-collection div, .ro-item-collect div {
-    padding-left: 32px;
+    line-height: 12pt;
 }
 
 .ragnarok-item-collection img, .ro-item-collect img {
@@ -369,12 +369,37 @@
     line-height:25px;
 }
 
+.ragnarok-item-collection .ragnarok-title .ro-win-btn-close, .ro-item-collect .ro-title .ro-win-btn-close {
+    position: absolute;
+    z-index: 1;
+    top: -1px;
+    left: auto;
+    right: 0px;
+    padding: 0;
+    margin: 0;
+}
+
+.ragnarok-item-collection .ragnarok-title span, .ro-item-collect .ro-title span {
+    position: absolute;
+    z-index: 1;
+}
+
+.ro-collection-txt {
+    position: absolute;
+    z-index: 0;
+    top: 7px;
+    left: auto;
+    right: 0px;
+    font-size: 14pt;
+    font-style: italic;
+    font-weight: bold;
+    color: rgba(220, 220, 220, 0.7);
+}
+
 .ragnarok-item-collection .ragnarok-content, .ro-item-collect .ro-content {
-    padding-left: 55px;
-    padding-top: 15px;
-    height: 90px;
+    margin: 22px -6px 0px 80px;
+    height: 77px;
     width: 200px;
-    overflow: hidden;
 }
 
 .ragnarok-quantity-popup, .ro-quant-pop {

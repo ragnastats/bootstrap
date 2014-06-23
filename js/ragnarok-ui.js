@@ -783,12 +783,15 @@ $(document).ready(function()
                 var wrap = $('<div class="ragnarok-window ragnarok-item-collection">'),
                     popup = $('<div class="ragnarok-window-inner">'),
                     image = $('<img src="http://cdn.ragnastats.com/collection/'+item+'.png">'),
-                    title = $('<div class="ragnarok-title ro-handle">'+ragnarok.items[item].name+'</div>'),
-                    content = $('<div class="ro-scroll-pane ragnarok-content">');
+                    title = $('<div class="ragnarok-title ro-handle"><span class="ro-handle">'+ragnarok.items[item].name+'</span></div>'),
+                    collection = $('<div class="ro-collection-txt ro-handle">Collections</div>');
+                    close = $('<div class="ro-btn ro-win-btn-close">'),
+                    content = $('<div class="ragnarok-scroll-pane ragnarok-content">');
 
+                title.append(close);
+                title.append(collection);
                 popup.append(title);
                 popup.append(image);
-                content.html(ragnarok.items[item].desc);
                 popup.append(content);
                 
                 wrap.attr('item', item);
@@ -802,7 +805,24 @@ $(document).ready(function()
                     top: $(window).height() / 2 - popup.height() / 2,
                     left: $(window).width() / 2  - popup.width() / 2
                 });
+
+                $('.ragnarok-item-collection .ragnarok-scroll-pane').each(function()
+                {
+                    var pane = ragnarok.panes.length;
+                    $(this).jScrollPane({showArrows: true, hideFocus: true});
+                    $(this).attr('ro-pane-id', pane);                
+
+                    var api = $(this).data('jsp');
+                    api.getContentPane().append(ragnarok.items[item].desc);
+                    ragnarok.panes.push(api);
+                    ragnarok.ui.panefix(pane);
+                });
             }
         }
+    });
+
+    $('body').on('click', '.ragnarok-item-collection .ro-win-btn-close', function()
+    {
+        $(this).parents('.ragnarok-item-collection').remove();
     });
 });
