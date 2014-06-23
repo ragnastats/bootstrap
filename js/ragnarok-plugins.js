@@ -275,6 +275,8 @@
 
 
                 parent.css({'width': width, 'height': height});
+//                parent.find('.ragnarok-scroll-pane').css({'height': '100%'});
+
 
                 var offset = 24;
 

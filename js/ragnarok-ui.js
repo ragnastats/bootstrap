@@ -786,6 +786,7 @@ $(document).ready(function()
                     title = $('<div class="ragnarok-title ro-handle"><span class="ro-handle">'+ragnarok.items[item].name+'</span></div>'),
                     collection = $('<div class="ro-collection-txt ro-handle">Collections</div>');
                     close = $('<div class="ro-btn ro-win-btn-close">'),
+                    resize = $('<div class="ro-btn ro-win-resize"></div>'),
                     content = $('<div class="ragnarok-scroll-pane ragnarok-content">');
 
                 title.append(close);
@@ -816,6 +817,15 @@ $(document).ready(function()
                     api.getContentPane().append(ragnarok.items[item].desc);
                     ragnarok.panes.push(api);
                     ragnarok.ui.panefix(pane);
+                });
+
+                $('.ragnarok-item-collection .ragnarok-content').append(resize);
+
+                $('.ragnarok-item-collection .ragnarok-window-inner').resize({
+                    'handle': '.ragnarok-window-resize, .ro-win-resize',
+                    'grid': 1,
+                    'min': { 'height': 95, 'width': 274 },
+                    'max': { 'height': 500, 'width': 274 }
                 });
             }
         }
