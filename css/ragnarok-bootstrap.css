@@ -372,6 +372,9 @@
 .ragnarok-item-collection .ragnarok-content, .ro-item-collect .ro-content {
     padding-left: 55px;
     padding-top: 15px;
+    height: 90px;
+    width: 200px;
+    overflow: hidden;
 }
 
 .ragnarok-quantity-popup, .ro-quant-pop {

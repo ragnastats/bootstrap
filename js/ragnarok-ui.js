@@ -772,18 +772,18 @@ $(document).ready(function()
         // Capture right clicks
         if(event.which == 3)
         {
-            var previous = $('.ragnarok-item-popup').attr('item');
+            var previous = $('.ragnarok-item-collection').attr('item');
             var item = $(this).find('img').attr('item');
 
             // Remove previous item windows
-            $('.ragnarok-item-popup').remove();
+            $('.ragnarok-item-collection').remove();
             
             if(item != previous)
             {
                 var wrap = $('<div class="ragnarok-window ragnarok-item-collection">'),
                     popup = $('<div class="ragnarok-window-inner">'),
                     image = $('<img src="http://cdn.ragnastats.com/collection/'+item+'.png">'),
-                    title = $('<div class="ragnarok-title">'+ragnarok.items[item].name+'</div>'),
+                    title = $('<div class="ragnarok-title ro-handle">'+ragnarok.items[item].name+'</div>'),
                     content = $('<div class="ro-scroll-pane ragnarok-content">');
 
                 popup.append(title);
