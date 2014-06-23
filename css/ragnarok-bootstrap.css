@@ -344,14 +344,34 @@
 }
 
 
-.ragnarok-item-popup div, .ro-item-pop div {
+.ragnarok-item-collection div, .ro-item-collect div {
     padding-left: 32px;
 }
 
-.ragnarok-item-popup img, .ro-item-pop img {
+.ragnarok-item-collection img, .ro-item-collect img {
     position: absolute;
     top: 8px;
     left: 8px;
+    box-shadow: 2px 2px 0px 0px #ccc;
+}
+
+.ragnarok-item-collection .ragnarok-title, .ro-item-collect .ro-title {
+    background-image:url(../assets/skin/ro-win-collection-bg.png);
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    right: 4px;
+    height:21px;
+    border-bottom: 1px solid #ccc;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding-left: 84px;
+    line-height:25px;
+}
+
+.ragnarok-item-collection .ragnarok-content, .ro-item-collect .ro-content {
+    padding-left: 55px;
+    padding-top: 15px;
 }
 
 .ragnarok-quantity-popup, .ro-quant-pop {

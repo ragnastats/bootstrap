@@ -780,12 +780,17 @@ $(document).ready(function()
             
             if(item != previous)
             {
-                var wrap = $('<div class="ragnarok-window ragnarok-item-popup">'),
-                    popup = $('<div class="ragnarok-window-inner">');
-                    image = $('<img src="http://cdn.ragnastats.com/collection/'+item+'.png">');
-                    
-                popup.html(ragnarok.items[item].name + "<hr />" + ragnarok.items[item].desc);
+                var wrap = $('<div class="ragnarok-window ragnarok-item-collection">'),
+                    popup = $('<div class="ragnarok-window-inner">'),
+                    image = $('<img src="http://cdn.ragnastats.com/collection/'+item+'.png">'),
+                    title = $('<div class="ragnarok-title">'+ragnarok.items[item].name+'</div>'),
+                    content = $('<div class="ro-scroll-pane ragnarok-content">');
+
+                popup.append(title);
                 popup.append(image);
+                content.html(ragnarok.items[item].desc);
+                popup.append(content);
+                
                 wrap.attr('item', item);
                 wrap.append(popup);
                 $('body').append(wrap);
