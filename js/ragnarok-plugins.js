@@ -138,7 +138,7 @@
         element.on('mousedown', function(event, context)
         {            
             // Only drag on left clicks
-            if(context.which == 1)
+            if(typeof context != "undefined" && context.which == 1)
             {
                 dragging = true;
 
@@ -233,9 +233,10 @@
 
         var resizing = false;
         var resize = {'grid': opt.grid};
-        var parent = $(this);
+        var parent = (opt.parent) ? $(opt.parent) : $(this);
+        var selector = $(this);
         
-        $(this).find(opt.handle).on('mousedown', function()
+        parent.find(opt.handle).on('mousedown', function()
         {            
             resizing = true;
             $(this).addClass('resize');
@@ -274,13 +275,18 @@
                     height = opt.max.height;
 
 
-                parent.css({'width': width, 'height': height});
-//                parent.find('.ragnarok-scroll-pane').css({'height': '100%'});
+                selector.css({'width': width, 'height': height});
+
+                if(parent.parents('.ragnarok-window, .ro-win').length)
+                    parent.parents('.ragnarok-window, .ro-win').css({height: 'auto', width: 'auto'});
+
+                var offset = -6;
+
+                if(parent.find('.ragnarok-title, .ragnarok-window-title, .ro-win-title').length)
+                    offset += parent.find('.ragnarok-title, .ragnarok-window-title, .ro-win-title').outerHeight(true);
 
 
-                var offset = 24;
-
-                if(parent.find('.ragnarok-window-footer, .ro-win-foot'))
+                if(parent.find('.ragnarok-window-footer, .ro-win-foot').length)
                     offset += parent.find('.ragnarok-window-footer, .ro-win-foot').outerHeight(true);
                 
                 var pane = parent.find('.ragnarok-scroll-pane').attr('ro-pane-id');

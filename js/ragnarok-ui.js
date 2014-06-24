@@ -341,12 +341,19 @@ ragnarok.ui = {
         var parent = ragnarok.panes[pane].getContentPane().parents('.ragnarok-window, .ro-win');
         var height = parent.height();
 
-        var offset = 24;
+        var offset = 8;
 
-        if(parent.find('.ragnarok-window-footer, .ro-win-foot'))
+        if(parent.find('.ragnarok-title, .ragnarok-window-title, .ro-win-title').length)
+            offset += parent.find('.ragnarok-title, .ragnarok-window-title, .ro-win-title').outerHeight(true);
+
+
+        if(parent.find('.ragnarok-window-footer, .ro-win-foot').length)
             offset += parent.find('.ragnarok-window-footer, .ro-win-foot').outerHeight(true);
 
-        ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - offset});
+        // Only set container height when none is set
+        if(ragnarok.panes[pane].getContentPane().parents('.jspContainer').height() == 0)
+            ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - offset});
+
         ragnarok.panes[pane].reinitialise();
 
         // Subtract 8 pixels from the scrollbar to account for the arrows
@@ -552,19 +559,19 @@ $(document).ready(function()
 
     $('.ragnarok-window, .ro-win').each(function()
     {
-        if($(this).find('.ragnarok-window-title-blue, .ro-win-title-b').length)
+        if($(this).find('.ragnarok-window-title, .ro-win-title').length)
         {
             $(this).css({'height': $(this).height(), 'width': $(this).width()});
             
             $(this).find('.ragnarok-window-content, .ro-win-content').css({
                 'position': 'absolute',
-                'top': $(this).find('.ragnarok-window-title-blue, .ro-win-title-b').outerHeight(true),
+                'top': $(this).find('.ragnarok-window-title, .ro-win-title').outerHeight(true),
                 'bottom': '0px',
                 'left': '0px',
                 'right': '0px'
             });
             
-            $(this).drag({target: ['ragnarok-window-title-blue', 'ro-win-title-b', 'ragnarok-handle', 'ro-handle']});
+            $(this).drag({target: ['ragnarok-window-title', 'ro-win-title', 'ragnarok-handle', 'ro-handle']});
         }
         else
         {
@@ -642,7 +649,7 @@ $(document).ready(function()
 
     $('.ragnarok-window-button-close, .ro-win-btn-close').on('click', function()
     {
-        $(this).parents('.ragnarok-window, .ro-win').remove();
+        $(this).parents('.ragnarok-window, .ro-win').hide();
     });
 
     $('.ragnarok-window-button-minimize, .ro-win-btn-min').on('click', function()
@@ -772,67 +779,45 @@ $(document).ready(function()
         // Capture right clicks
         if(event.which == 3)
         {
-            var previous = $('.ragnarok-item-collection').attr('item');
+            var parent = $('.ragnarok-item-collection');
+            var previous = parent.attr('item');
             var item = $(this).find('img').attr('item');
-
-            // Remove previous item windows
-            $('.ragnarok-item-collection').remove();
             
-            if(item != previous)
+            if(item == previous)
             {
-                var wrap = $('<div class="ragnarok-window ragnarok-item-collection">'),
-                    popup = $('<div class="ragnarok-window-inner">'),
-                    image = $('<img src="http://cdn.ragnastats.com/collection/'+item+'.png">'),
-                    title = $('<div class="ragnarok-title ro-handle"><span class="ro-handle">'+ragnarok.items[item].name+'</span></div>'),
-                    collection = $('<div class="ro-collection-txt ro-handle">Collections</div>');
-                    close = $('<div class="ro-btn ro-win-btn-close">'),
-                    resize = $('<div class="ro-btn ro-win-resize"></div>'),
-                    content = $('<div class="ragnarok-scroll-pane ragnarok-content">');
+                $('.ragnarok-item-collection').hide();
+                parent.attr('item', '');
+            }
+            else
+            {
+                $('.ragnarok-item-collection').show();
 
-                title.append(close);
-                title.append(collection);
-                popup.append(title);
-                popup.append(image);
-                popup.append(content);
+                var title = parent.find('.ragnarok-title span'),
+                    image = parent.find('img'),
+                    content = parent.find('.ragnarok-content');
+
+                var pane = content.attr('ro-pane-id');
+                var pane_height = parseInt(ragnarok.panes[pane].getContentPane().parents('.jspContainer').css('height'));
+
+                title.text(ragnarok.items[item].name);
+                image.attr('src', 'http://cdn.ragnastats.com/collection/'+item+'.png');
+                parent.attr('item', item);
+
+                ragnarok.panes[pane].getContentPane().html(ragnarok.items[item].desc);
+                ragnarok.ui.panefix(pane);
                 
-                wrap.attr('item', item);
-                wrap.append(popup);
-                $('body').append(wrap);
-
-                wrap.drag({target: ['ragnarok-window', 'ro-win', 'ragnarok-window-inner', 'ro-win-in', 'ragnarok-handle', 'ro-handle']});
-
-                wrap.css({
-                    position: 'absolute',
-                    top: $(window).height() / 2 - popup.height() / 2,
-                    left: $(window).width() / 2  - popup.width() / 2
-                });
-
-                $('.ragnarok-item-collection .ragnarok-scroll-pane').each(function()
-                {
-                    var pane = ragnarok.panes.length;
-                    $(this).jScrollPane({showArrows: true, hideFocus: true});
-                    $(this).attr('ro-pane-id', pane);                
-
-                    var api = $(this).data('jsp');
-                    api.getContentPane().append(ragnarok.items[item].desc);
-                    ragnarok.panes.push(api);
-                    ragnarok.ui.panefix(pane);
-                });
-
-                $('.ragnarok-item-collection .ragnarok-content').append(resize);
-
-                $('.ragnarok-item-collection .ragnarok-window-inner').resize({
-                    'handle': '.ragnarok-window-resize, .ro-win-resize',
-                    'grid': 1,
-                    'min': { 'height': 95, 'width': 274 },
-                    'max': { 'height': 500, 'width': 274 }
-                });
             }
         }
     });
 
-    $('body').on('click', '.ragnarok-item-collection .ro-win-btn-close', function()
-    {
-        $(this).parents('.ragnarok-item-collection').remove();
+
+    $('.ragnarok-item-collection').drag({target: ['ragnarok-window', 'ro-win', 'ragnarok-window-inner', 'ro-win-in', 'ragnarok-handle', 'ro-handle']});
+
+    $('.ragnarok-item-collection .ragnarok-window-inner').resize({
+        'parent': '.ragnarok-item-collection',
+        'handle': '.ragnarok-window-resize, .ro-win-resize',
+        'grid': 1,
+        'min': { 'height': 95, 'width': 250 },
+        'max': { 'height': 500, 'width': 250 }
     });
 });
