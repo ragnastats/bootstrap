@@ -792,17 +792,19 @@ $(document).ready(function()
             {
                 $('.ragnarok-item-collection').show();
 
-                var title = parent.find('.ragnarok-title span'),
+                var inner = parent.find('.ragnarok-window-inner'),
+                    title = parent.find('.ragnarok-title span'),
                     image = parent.find('img'),
                     content = parent.find('.ragnarok-content');
 
                 var pane = content.attr('ro-pane-id');
-                var pane_height = parseInt(ragnarok.panes[pane].getContentPane().parents('.jspContainer').css('height'));
 
+                inner.css({height: 94});
                 title.text(ragnarok.items[item].name);
                 image.attr('src', 'http://cdn.ragnastats.com/collection/'+item+'.png');
                 parent.attr('item', item);
 
+                ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({height: 78});
                 ragnarok.panes[pane].getContentPane().html(ragnarok.items[item].desc);
                 ragnarok.ui.panefix(pane);
                 

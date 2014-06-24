@@ -280,11 +280,13 @@
                 if(parent.parents('.ragnarok-window, .ro-win').length)
                     parent.parents('.ragnarok-window, .ro-win').css({height: 'auto', width: 'auto'});
 
-                var offset = -6;
+                var offset = 8;
 
-                if(parent.find('.ragnarok-title, .ragnarok-window-title, .ro-win-title').length)
-                    offset += parent.find('.ragnarok-title, .ragnarok-window-title, .ro-win-title').outerHeight(true);
+                if(parent.find('.ragnarok-title').length)
+                    offset += 8;
 
+                if(parent.find('.ragnarok-window-title, .ro-win-title').length)
+                    offset += parent.find('.ragnarok-window-title, .ro-win-title').outerHeight(true);
 
                 if(parent.find('.ragnarok-window-footer, .ro-win-foot').length)
                     offset += parent.find('.ragnarok-window-footer, .ro-win-foot').outerHeight(true);
