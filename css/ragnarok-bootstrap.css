@@ -397,8 +397,8 @@
 }
 
 .ragnarok-item-collection .ragnarok-content, .ro-item-collect .ro-content {
-    margin: 22px -6px 0px 80px;
-    min-height: 77px;
+    margin: 16px -6px 0px 80px;
+    min-height: 64px;
     width: 200px;
 }
 
