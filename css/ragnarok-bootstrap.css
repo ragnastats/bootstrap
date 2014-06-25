@@ -461,8 +461,9 @@
 }
 
 .ragnarok-item img, .ro-item img {
-    
     position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 .ragnarok-item span, .ro-item span {
@@ -680,4 +681,8 @@
 .ragnarok-item-popup img {
     position: absolute;
     left: 16px;
+}
+
+.equip .ragnarok-item img, .equip .ro-item img {
+    top: 4px;
 }

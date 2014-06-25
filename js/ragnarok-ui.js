@@ -479,15 +479,27 @@ $(document).ready(function()
     $('.equip .ro-equip').drop(function(event)
     {
         var from = $('.ro-item-drag').attr('from'),
-            item = $('.ro-item-drag').attr('item'),
+            item_id = $('.ro-item-drag').attr('item'),
             parent = ($(event.target).is('.ro-equip')) ? $(event.target) : $(event.target).parents('.ro-equip');
 
-        var icon = parent.find('.ro-item');
- 
-        
+        var item = ragnarok.items[item_id],
+            icon = parent.find('.ro-item');
+         
         if(from == "inventory")
         {
-            icon.css({'background-color': 'red'});
+            if(typeof item.icon == "undefined")
+                item.icon = 'http://cdn.ragnastats.com/item/'+item_id+'.png';
+
+            var slots = (item.slots) ? ' ['+item.slots+'] ' : '';
+
+            icon.addClass('ro-hover');
+
+            var hover = [item.name, slots].join(""),
+                img = $("<div><img src='"+ item.icon +"'></div>");
+
+            img.find('img').attr('item', item_id);
+            icon.attr('hover', hover);
+            icon.html(img);
         }
     });
 
