@@ -671,3 +671,13 @@
 .storage .ro-win-foot p {
     margin: 6px 12px;
 }
+
+.ragnarok-item-popup .ragnarok-window-inner {
+    padding: 0px 16px 0px 40px;
+    line-height: 23px;
+}
+
+.ragnarok-item-popup img {
+    position: absolute;
+    left: 16px;
+}
