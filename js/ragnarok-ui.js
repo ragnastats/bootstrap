@@ -476,6 +476,21 @@ $(document).ready(function()
         $('.ro-item-drag').remove();
     });
 
+    $('.equip .ro-equip').drop(function(event)
+    {
+        var from = $('.ro-item-drag').attr('from'),
+            item = $('.ro-item-drag').attr('item'),
+            parent = ($(event.target).is('.ro-equip')) ? $(event.target) : $(event.target).parents('.ro-equip');
+
+        var icon = parent.find('.ro-item');
+ 
+        
+        if(from == "inventory")
+        {
+            icon.css({'background-color': 'red'});
+        }
+    });
+
     $('.storage').drop(function(event)
     {
         var from = $('.ro-item-drag').attr('from'),
