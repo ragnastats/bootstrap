@@ -476,7 +476,11 @@ $(document).ready(function()
         if(from == "equip")
         {
             var slot = $('.ro-item-drag').attr('slot');
-            $('.equip .ro-item[slot="'+slot+'"]').html('');
+            var icon = $('.equip .ro-item[slot="'+slot+'"]');
+
+            icon.html('');
+            icon.removeAttr('hover');
+            icon.removeClass('ro-hover');
         }
 
         $('.ro-item-drag').remove();
