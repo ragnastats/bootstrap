@@ -788,6 +788,17 @@ $(document).ready(function()
         }
     });
 
+    $('body').on('mousemove', function(event)
+    {
+        if($('.ro-hover-box').length)
+        {
+            if(!$(event.target).is('.ro-hovering, .ro-hover-handle') && !$(event.target).parents('.ro-hovering').length)
+            {
+                $('.ro-hover-box, .ro-hover-handle').remove();
+            }
+        }
+    });
+
     $('body').on('mouseleave', '.ro-hover-handle', function(event)
     {
         $('.ro-hover-box').remove();
