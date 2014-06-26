@@ -388,6 +388,15 @@ ragnarok.ui = {
         
         $('.basic-info').find('.ro-weight').attr('hover', "Weight " + weight_percent+"%");
         $('.basic-info').find('.ro-weight').text('Weight : ' + weight + " / " + ragnarok.character.weight.total);
+    },
+
+    unequip: function(slot)
+    {
+        var icon = $('.equip .ro-item[slot="'+slot+'"]');
+
+        icon.html('');
+        icon.removeAttr('hover');
+        icon.removeClass('ro-hover');
     }
 };
 
@@ -476,11 +485,7 @@ $(document).ready(function()
         if(from == "equip")
         {
             var slot = $('.ro-item-drag').attr('slot');
-            var icon = $('.equip .ro-item[slot="'+slot+'"]');
-
-            icon.html('');
-            icon.removeAttr('hover');
-            icon.removeClass('ro-hover');
+            ragnarok.ui.unequip(slot);
         }
 
         $('.ro-item-drag').remove();
@@ -805,10 +810,10 @@ $(document).ready(function()
         $('.ro-hover-handle').remove();
     });
 
-    $('body').on('mousedown', '.ro-hover-handle', function(event)
+    $('body').on('mousedown dblclick', '.ro-hover-handle', function(event)
     {
         // Pass click event to the actual element being clicked on
-        $('.ro-hovering').trigger('mousedown', event);
+        $('.ro-hovering').trigger(event.type, event);
     });
 
     // General behaviors when clicking on windows
@@ -864,6 +869,11 @@ $(document).ready(function()
         }
     });
 
+    $('body').on('dblclick', '.equip .ro-item', function(event)
+    {
+        var slot = $(this).attr('slot');
+        ragnarok.ui.unequip(slot);
+    });
 
     $('.ragnarok-item-collection').drag({target: ['ragnarok-window', 'ro-win', 'ragnarok-window-inner', 'ro-win-in', 'ragnarok-handle', 'ro-handle']});
 
