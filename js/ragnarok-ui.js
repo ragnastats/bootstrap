@@ -498,9 +498,12 @@ $(document).ready(function()
                 img = $("<div><img src='"+ item.icon +"'></div>");
 
             img.find('img').attr('item', item_id);
+            icon.drag({from: 'equip'});
             icon.attr('hover', hover);
             icon.html(img);
         }
+
+        $('.ro-item-drag').remove();
     });
 
     $('.storage').drop(function(event)
