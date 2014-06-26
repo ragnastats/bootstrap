@@ -394,6 +394,12 @@ ragnarok.ui = {
     {
         var icon = $('.equip .ro-item[slot="'+slot+'"]');
 
+        // Remove tooltip
+        $('.ro-hover-box').remove();
+        $('.ro-hover-handle').remove();
+        $('.ro-hovering').removeClass('ro-hovering');
+
+        // Remove image
         icon.html('');
         icon.removeAttr('hover');
         icon.removeClass('ro-hover');
