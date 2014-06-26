@@ -473,6 +473,12 @@ $(document).ready(function()
             }
         }
 
+        if(from == "equip")
+        {
+            var slot = $('.ro-item-drag').attr('slot');
+            $('.equip .ro-item[slot="'+slot+'"]').html('');
+        }
+
         $('.ro-item-drag').remove();
     });
 
@@ -498,6 +504,7 @@ $(document).ready(function()
                 img = $("<div><img src='"+ item.icon +"'></div>");
 
             img.find('img').attr('item', item_id);
+            img.find('img').attr('slot', icon.attr('slot'));
             icon.drag({from: 'equip'});
             icon.attr('hover', hover);
             icon.html(img);
