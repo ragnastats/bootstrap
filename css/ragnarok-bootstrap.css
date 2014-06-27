@@ -686,3 +686,26 @@
 .equip .ragnarok-item img, .equip .ro-item img {
     top: 4px;
 }
+
+.ragnarok-stripes, .ro-stripe {
+    background-image:url(../assets/skin/ro-win-stripe-bg.png);
+}
+
+.ro-hotkey-bar {
+    height: 32px;
+    width: 280px;
+    border-radius: 4px;
+    border: 1px solid #c2c2c2;
+}
+
+.ro-hotkeys {
+    padding: 3px 0px 0px 3px;
+}
+
+.ro-hotkey {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    background-color: #fff;
+    border: 1px solid #c2c2c2;
+}
