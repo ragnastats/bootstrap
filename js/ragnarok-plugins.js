@@ -162,7 +162,7 @@
     
     $.fn.drag = function(opt, callback)
     {
-        if($(this).is('.ragnarok-item, .ro-item'))
+        if($(this).is('.ragnarok-item, .ro-item, .ro-hotkey'))
             item_drag(this, opt, callback);
 
         else if($(this).is('.ragnarok-window, .ro-win'))
@@ -217,6 +217,9 @@
         {
             if(drop)
             {
+                console.log(event.target);
+                $(event.target).trigger('mouseover');
+                
                 if(typeof callback == "function")
                     callback(event);
             }

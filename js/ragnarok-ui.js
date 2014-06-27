@@ -528,6 +528,34 @@ $(document).ready(function()
         $('.ro-item-drag').remove();
     });
 
+    $('.ro-hotkey').drop(function(event)
+    {
+        var from = $('.ro-item-drag').attr('from'),
+            item_id = $('.ro-item-drag').attr('item'),
+            parent = $(event.target);
+
+        var item = ragnarok.items[item_id];
+
+        if(typeof item.icon == "undefined")
+            item.icon = 'http://cdn.ragnastats.com/item/'+item_id+'.png';
+
+        var slots = (item.slots) ? ' ['+item.slots+'] ' : '';
+
+        parent.addClass('ro-hover');
+
+        var hover = [item.name, slots].join(""),
+            img = $("<img src='"+ item.icon +"'>");
+
+        img.attr('item', item_id);
+        parent.drag({from: 'hotkey'});
+        parent.attr('hover', hover);
+        parent.html(img);
+
+        parent.css({height: 'auto'});
+
+        $('.ro-item-drag').remove();        
+    });
+
     $('.storage').drop(function(event)
     {
         var from = $('.ro-item-drag').attr('from'),
@@ -797,6 +825,9 @@ $(document).ready(function()
             var overflow = offset.left + hover.outerWidth(true) - $(window).width() 
             hover.css({'left': offset.left - overflow});
         }
+
+        if(hover.offset().top < 0)
+            hover.css({'top': 0});
     });
 
     $('body').on('mousemove', function(event)

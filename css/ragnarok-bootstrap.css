@@ -703,11 +703,13 @@
 }
 
 .ro-hotkey {
-    display: inline-block;
+    float:left;
     height: 24px;
     width: 24px;
     background-color: #fff;
     border: 1px solid #c2c2c2;
+    position: relative;
+    margin-right: 3px;
 }
 
 .ro-hotkey:hover {
@@ -717,8 +719,8 @@
 .ro-hotkey::after {
     content:"";
     position: absolute;
-    bottom: 0;
-    margin-left: -1px;
+    bottom: -4px;
+    left: -1px;
     background-image:url(../assets/skin/ro-hotkey-arrow.png);
     height:3px;
     width:24px;
