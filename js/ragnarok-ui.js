@@ -523,6 +523,7 @@ $(document).ready(function()
             icon.drag({from: 'equip'});
             icon.attr('hover', hover);
             icon.html(img);
+            parent.append("<span>"+item.name+"</span>");
         }
 
         $('.ro-item-drag').remove();
