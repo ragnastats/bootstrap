@@ -1,14 +1,20 @@
-June 26
-========
+Todo
+======
 
- - Hotkey bar
- - Item names in the equip window
+ - Tooltips are still overflowing out of the window!
+ - Tooltips should appear above other windows (Yay z-index)
+ - Allow things to be clicked through tooltips
+ - Retain cursor style through tooltips
+
+ - item management functions
+    - Functions to increase/decrease the quantity of items without clearing and refreshing the entire inventory
+
+ - Filler functions
+    - Extra slots in the inventory should be filled intelligently, based on available space, instead of a for loop
+
  - Double click to equip
- 
-
-Eventually
-===========
-
+    - When you click equipment in your inventory, it should equip!
+    
  - Replace load links with dropdown menu
  - Buttons to show / hide windows
  - MINIMAPPPPPPPPPPPP!
@@ -17,8 +23,8 @@ Eventually
 
 
 
-General
-=========
+Serious Changes
+================
 
  - Window creation functions
     - Instead of making HTML templates for windows, windows should be generated with a JSON structure that compiles into HTML
@@ -26,20 +32,6 @@ General
  - Use observers
     - Rewrite everything to use observers or something
 
-
-UI
-====
-
-
-  ✅ ragnarok.inventory.exists()
-    - A function to check if an item exists, which returns the quantiity
-
- ✅ display quantity on drop
-    - Create a popup when dropping items if the quantity is greater than 1
-
- - item management functions
-    - Functions to increase/decrease the quantity of items without clearing and refreshing the entire inventory
-
- - Filler functions
-    - Extra slots in the inventory should be filled intelligently, based on available space, instead of a for loop
+ - Use SASS
+	- Rewrite the current CSS mess into something a little nicer
 
