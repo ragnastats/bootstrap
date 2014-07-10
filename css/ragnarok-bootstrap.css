@@ -745,3 +745,17 @@
     border-left: 1px solid #c2c2c2;
     border-right: 1px solid #c2c2c2;
 }
+
+.ro-minimap {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	left: auto;
+	height: 150px;
+	width: 150px;
+}
+
+.ro-minimap img { 
+	height: 100%;
+	width: 100%;
+}
