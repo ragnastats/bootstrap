@@ -171,7 +171,7 @@ ragnarok.ui = {
             {
                 var item = ragnarok.items[inventory.item];
 
-                if(typeof item.type != "undefined" && item.type.indexOf(type) != -1)
+                if(item !== undefined && typeof item.type != "undefined" && item.type.indexOf(type) != -1)
                 {
                     // Fallback to ragnastats CDN if item image is unspecified
                     if(typeof item.icon == "undefined")
@@ -232,7 +232,7 @@ ragnarok.ui = {
             {
                 var item = ragnarok.items[storage.item];
 
-                if(typeof item.type != "undefined" && item.type.indexOf(type) != -1)
+                if(item !== undefined && typeof item.type != "undefined" && item.type.indexOf(type) != -1)
                 {
                     // Fallback to ragnastats CDN if item image is unspecified
                     if(typeof item.icon == "undefined")
@@ -317,7 +317,14 @@ ragnarok.ui = {
             var weight_percent = Math.round((ragnarok.character.weight.current / ragnarok.character.weight.total) * 100) +"%";
             $(selector).find('.ro-weight').attr('hover', "Weight " + weight_percent);
             $(selector).find('.ro-weight').text('Weight : ' + ragnarok.character.weight.current + " / " + ragnarok.character.weight.total);
-        }
+            
+            console.log(ragnarok.character.map);
+            if(ragnarok.character.map !== undefined)
+            {
+				var map = "http://cdn.ragnastats.com/map/"+ragnarok.character.map.name+".png";
+				$('.ro-minimap img').attr('src', map);
+			}
+		}
     },
 
     load: function(url)
