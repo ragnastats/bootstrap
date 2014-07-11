@@ -748,11 +748,11 @@
 
 .ro-minimap {
 	position: absolute;
-	top: 16px;
-	right: 16px;
+	top: 37px;
+	right: 37px;
 	left: auto;
-	height: 150px;
-	width: 150px;
+	height: 126px;
+	width: 126px;
 }
 
 .ro-minimap img { 
