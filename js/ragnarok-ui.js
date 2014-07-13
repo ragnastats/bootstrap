@@ -318,11 +318,14 @@ ragnarok.ui = {
             $(selector).find('.ro-weight').attr('hover', "Weight " + weight_percent);
             $(selector).find('.ro-weight').text('Weight : ' + ragnarok.character.weight.current + " / " + ragnarok.character.weight.total);
             
-            console.log(ragnarok.character.map);
             if(ragnarok.character.map !== undefined)
             {
-				var map = "http://cdn.ragnastats.com/map/"+ragnarok.character.map.name+".png";
-				$('.ro-minimap img').attr('src', map);
+				ragnarok.minimap.init(ragnarok.character.map);
+				
+				if(ragnarok.character.pos !== undefined)
+				{
+					ragnarok.minimap.add(ragnarok.character.pos);
+				}
 			}
 		}
     },

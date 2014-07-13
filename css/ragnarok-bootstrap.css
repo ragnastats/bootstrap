@@ -759,3 +759,13 @@
 	height: 100%;
 	width: 100%;
 }
+
+.ro-minimap .square {
+	position: absolute;
+	border: 1px solid #fff;
+	width: 4px;
+	height: 4px;
+	top: auto;
+	right: auto;
+	background-color: #000;
+}
