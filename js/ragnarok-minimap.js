@@ -35,7 +35,7 @@ if(typeof ragnarok !== "undefined")
 				y: (current_size.height / native_size.height) * pos.y
 			}
 			
-			square.css({bottom: icon_pos.y, left: icon_pos.x});
+			square.css({bottom: icon_pos.y - 2, left: icon_pos.x - 2});
 			$('.ro-minimap').append(square);
 			console.log(pos, icon_pos);
 		},
