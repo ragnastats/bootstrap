@@ -4,8 +4,10 @@ if(typeof ragnarok !== "undefined")
     {
         compiled: {},
         
-        create: function(template, data)
+        load: function(template, data)
         {
+            var template = '../templates/'+template+'.html';
+            
             $.get(template, function(response)
             {
                 var compiled = Hogan.compile(response);
@@ -31,7 +33,5 @@ if(typeof ragnarok !== "undefined")
         {
             // Style the window invisible
         }
-    }
-    
-    ragnarok.window.create('../windows/test.html', {'test-title': "Hello World!", 'test-content': "Templating systems sure are fun ^_~"});
+    }    
 }
