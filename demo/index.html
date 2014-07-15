@@ -109,6 +109,11 @@
                 ragnarok.window.load('minimap');
                 ragnarok.window.load('storage');
                 ragnarok.window.load('todo');
+                
+                ragnarok.window.ready(function()
+                {
+                    $(document).trigger('initialize');
+                });
             });
         </script>
     </body>

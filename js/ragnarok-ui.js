@@ -287,7 +287,6 @@ ragnarok.ui = {
 
         character: function(selector)
         {
-            console.log('populate that character~', ragnarok.character);
             $(selector).find('.ro-handle').attr('ro-min-text', "<span>"+ragnarok.character.name+"</span>");
             $(selector).find('.ro-name').text(ragnarok.character.name);
             $(selector).find('.ro-class').text(ragnarok.character.class);
@@ -320,14 +319,14 @@ ragnarok.ui = {
             
             if(ragnarok.character.map !== undefined)
             {
-				ragnarok.minimap.init(ragnarok.character.map);
-				
-				if(ragnarok.character.pos !== undefined)
-				{
-					ragnarok.minimap.add(ragnarok.character.pos);
-				}
-			}
-		}
+                ragnarok.minimap.init(ragnarok.character.map);
+                
+                if(ragnarok.character.pos !== undefined)
+                {
+                    ragnarok.minimap.add(ragnarok.character.pos);
+                }
+            }
+        }
     },
 
     load: function(url)
@@ -416,8 +415,8 @@ ragnarok.ui = {
     }
 };
 
-$(document).ready(function()
-{
+$(document).on('initialize', function()
+{    
     if(Modernizr.localstorage)
     {
         // Show the disclaimer unless the terms have already been accepted/denied
