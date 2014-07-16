@@ -194,6 +194,7 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 5px;
+    padding-bottom: 23px;
     display: block;
     overflow: hidden;
 }

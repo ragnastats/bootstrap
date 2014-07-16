@@ -631,11 +631,21 @@ $(document).on('initialize', function()
            $(this).find('.ragnarok-window-content, .ro-win-content').css({'padding-left': sidebar.width + 4, 'min-height': sidebar.height - footer.height});
         }
 
+/*
         if($(this).find('.ragnarok-window-footer, .ro-win-foot').length)
         {
-           var footerHeight = $(this).find('.ragnarok-window-footer, .ro-win-foot').outerHeight(true);
-           $(this).find('.ragnarok-window-content, .ro-win-content').css({'padding-bottom': footerHeight + 4});
+            var content = {
+                height: $(this).find('.ragnarok-window-content, .ro-win-content').outerHeight(true)
+            };
+            
+            var footer = {
+              height: $(this).find('.ragnarok-window-footer, .ro-win-foot').outerHeight(true)
+            };
+            
+//            console.log($(this).find('.ragnarok-window-content, .ro-win-content'));
+//           $(this).find('.ragnarok-window-content, .ro-win-content').css({'min-height': content.height});
         }
+        */
     });
 
 
