@@ -287,6 +287,13 @@ ragnarok.ui = {
 
         character: function(selector)
         {
+            ragnarok.window.update('basic-info', ragnarok.character);
+            
+            /*
+             * 
+             *  Hahaha oh wow...
+             *
+            
             $(selector).find('.ro-handle').attr('ro-min-text', "<span>"+ragnarok.character.name+"</span>");
             $(selector).find('.ro-name').text(ragnarok.character.name);
             $(selector).find('.ro-class').text(ragnarok.character.class);
@@ -316,6 +323,7 @@ ragnarok.ui = {
             var weight_percent = Math.round((ragnarok.character.weight.current / ragnarok.character.weight.total) * 100) +"%";
             $(selector).find('.ro-weight').attr('hover', "Weight " + weight_percent);
             $(selector).find('.ro-weight').text('Weight : ' + ragnarok.character.weight.current + " / " + ragnarok.character.weight.total);
+            */
             
             if(ragnarok.character.map !== undefined)
             {

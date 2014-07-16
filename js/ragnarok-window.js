@@ -11,15 +11,17 @@ if(typeof ragnarok !== "undefined")
         {
             ragnarok.window.count++;
             
-            var template = '../templates/'+template+'.html';
+            var template_url = '../templates/'+template+'.html';
             
-            $.get(template, function(response)
+            $.get(template_url, function(response)
             {
                 var compiled = Hogan.compile(response);
                 var rendered = compiled.render(data);
+                var $rendered = $(rendered);
+                $rendered.eq(0).attr('id', template);
                 
                 ragnarok.window.compiled[template] = compiled;
-                $('body').append(rendered);
+                $('body').append($rendered);
                 
                 ragnarok.window.loaded++;
                 
@@ -43,7 +45,11 @@ if(typeof ragnarok !== "undefined")
 
         update: function(template, data)
         {
+            var existing = document.getElementById(template);
+            var rendered = ragnarok.window.compiled[template].render(data);
+            var $rendered = $(rendered);
             
+            existing.innerHTML = $rendered.html();            
         },
         
         minimize: function()
