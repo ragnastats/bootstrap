@@ -287,43 +287,17 @@ ragnarok.ui = {
 
         character: function(selector)
         {
-            ragnarok.window.update('basic-info', ragnarok.character);
+            var character_data = $.extend({
+                hp_percent: Math.round((ragnarok.character.hp.current / ragnarok.character.hp.total) * 100) +"%",
+                sp_percent: Math.round((ragnarok.character.sp.current / ragnarok.character.sp.total) * 100) +"%",
+                exp_percent: ((ragnarok.character.exp.base.current / ragnarok.character.exp.base.total) * 100).toFixed(1) +"%",
+                job_exp_percent: ((ragnarok.character.exp.job.current / ragnarok.character.exp.job.total) * 100).toFixed(1) +"%",
+                weight_percent: Math.round((ragnarok.character.weight.current / ragnarok.character.weight.total) * 100) +"%",
+                zeny_text: "Zeny : "+number_format(ragnarok.character.zeny)
+            }, ragnarok.character);
             
-            /*
-             * 
-             *  Hahaha oh wow...
-             *
+            ragnarok.window.update('basic-info', character_data);
             
-            $(selector).find('.ro-handle').attr('ro-min-text', "<span>"+ragnarok.character.name+"</span>");
-            $(selector).find('.ro-name').text(ragnarok.character.name);
-            $(selector).find('.ro-class').text(ragnarok.character.class);
-            $(selector).find('.ro-zeny').text("Zeny : "+number_format(ragnarok.character.zeny));
-
-            var hp_percent = Math.round((ragnarok.character.hp.current / ragnarok.character.hp.total) * 100) +"%";
-            $(selector).find('.ro-hp').find('.ragnarok-progress-bar-total').text(hp_percent);
-            $(selector).find('.ro-hp').find('.ragnarok-progress-bar, .ragnarok-progress-bar-red').find('div').css({'width': hp_percent});
-            $(selector).find('.ro-hp').find('.ragnarok-progress-bar, .ragnarok-progress-bar-red').find('span').text(ragnarok.character.hp.current + " / " + ragnarok.character.hp.total);
-            
-            var sp_percent = Math.round((ragnarok.character.sp.current / ragnarok.character.sp.total) * 100) +"%";
-            $(selector).find('.ro-sp').find('.ragnarok-progress-bar-total').text(sp_percent);
-            $(selector).find('.ro-sp').find('.ragnarok-progress-bar, .ragnarok-progress-bar-red').find('div').css({'width': sp_percent});;
-            $(selector).find('.ro-sp').find('.ragnarok-progress-bar, .ragnarok-progress-bar-red').find('span').text(ragnarok.character.sp.current + " / " + ragnarok.character.sp.total);
-
-            $(selector).find('.ro-lvl').text("Base Lv. "+ragnarok.character.level.base);
-            $(selector).find('.ro-job-lvl').text("Job Lv. "+ragnarok.character.level.job);
-
-            var exp_percent = ((ragnarok.character.exp.base.current / ragnarok.character.exp.base.total) * 100).toFixed(1) +"%";
-            $(selector).find('.ro-exp').attr('hover', exp_percent);
-            $(selector).find('.ro-exp').find('div').css({'width': exp_percent});
-            
-            var job_exp_percent = ((ragnarok.character.exp.job.current / ragnarok.character.exp.job.total) * 100).toFixed(1) +"%";
-            $(selector).find('.ro-job-exp').attr('hover', job_exp_percent);
-            $(selector).find('.ro-job-exp').find('div').css({'width': job_exp_percent});
-
-            var weight_percent = Math.round((ragnarok.character.weight.current / ragnarok.character.weight.total) * 100) +"%";
-            $(selector).find('.ro-weight').attr('hover', "Weight " + weight_percent);
-            $(selector).find('.ro-weight').text('Weight : ' + ragnarok.character.weight.current + " / " + ragnarok.character.weight.total);
-            */
             
             if(ragnarok.character.map !== undefined)
             {

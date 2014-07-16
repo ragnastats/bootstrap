@@ -1,13 +1,26 @@
 <div class="ragnarok-window basic-info" style="top: 5px; left:5px;">
+
+<!--
+
+
+
+            var weight_percent = Math.round((ragnarok.character.weight.current / ragnarok.character.weight.total) * 100) +"%";
+            $(selector).find('.ro-weight').attr('hover', "Weight " + weight_percent);
+            $(selector).find('.ro-weight').text('Weight : ' + ragnarok.character.weight.current + " / " + ragnarok.character.weight.total);
+
+
+
+-->
+
     <div class="ragnarok-window-title">
         <div class="ragnarok-button ragnarok-window-button"></div>
 
-        <p class="ro-handle" ro-min-text="<span>Fiolina</span>">
+        <p class="ro-handle" ro-min-text="<span>{{name}}</span>">
             Basic Info
         </p>
 
         <div class="ragnarok-right">
-            <div class="ragnarok-button ragnarok-window-button-minimize ro-hover" hover="Alt + V"></div>
+            <div class="ragnarok-button ragnarok-window-button-minimize" hover="Alt + V"></div>
         </div>
     </div>
 
@@ -18,21 +31,21 @@
             <div class="ro-class">{{class}} &nbsp;</div>
 
             <div class="energy">
-                <div class="ro-hp"><label>HP</label> <div class="ragnarok-progress-bar"><div></div><span class="ragnarok-progress-value">&nbsp;</span></div> <span class="ragnarok-progress-bar-total">&nbsp;</span></div>
-                <div class="ro-sp"><label>SP</label> <div class="ragnarok-progress-bar"><div></div><span class="ragnarok-progress-value">&nbsp;</span></div> <span class="ragnarok-progress-bar-total">&nbsp;</span></div>
+                <div class="ro-hp"><label>HP</label> <div class="ragnarok-progress-bar"><div style="width: {{hp_percent}}"></div><span class="ragnarok-progress-value">{{hp.current}} / {{hp.total}}</span></div> <span class="ragnarok-progress-bar-total">{{hp_percent}}</span></div>
+                <div class="ro-sp"><label>SP</label> <div class="ragnarok-progress-bar"><div style="width: {{sp_percent}}"></div><span class="ragnarok-progress-value">{{sp.current}} / {{sp.total}}</span></div> <span class="ragnarok-progress-bar-total">{{sp_percent}}</span></div>
             </div>
             
             <div class="ragnarok-gray exp">
-                <label class="ro-lvl">&nbsp;</label> <div class="ragnarok-progress-bar-small ro-hover ro-exp"><div style="width: 0%;"></div></div><br />
-                <label class="ro-job-lvl">&nbsp;</label> <div class="ragnarok-progress-bar-small ro-hover ro-job-exp"><div style="width: 0%;"></div></div>
+                <label class="ro-lvl">Base Lv. {{level.base}}</label> <div class="ragnarok-progress-bar-small ro-hover ro-exp" hover="{{exp_percent}}"><div style="width: {{exp_percent}};"></div></div><br />
+                <label class="ro-job-lvl">Job Lv. {{level.job}}</label> <div class="ragnarok-progress-bar-small ro-hover ro-job-exp" hover="{{job_exp_percent}}"><div style="width: {{job_exp_percent}};"></div></div>
             </div>
         </div>
     </div>
 
     <div class="ragnarok-window-footer ragnarok-tiny">
-        <span class="ro-hover ro-weight">&nbsp;</span>
+        <span class="ro-hover ro-weight" hover="{{weight_percent}}">Weight : {{weight.current}} / {{weight.total}}</span>
         &ensp;
-        <span class="ro-zeny"></span>
+        <span class="ro-zeny">{{zeny_text}}</span>
     </div>
 
     <div class="ragnarok-window-minimized-content">
