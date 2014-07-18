@@ -2,6 +2,7 @@ if(typeof ragnarok !== "undefined")
 {
     ragnarok.window =
     {
+        template_path: '../templates/',
         compiled: {},
         callback: false,
         loaded: 0,
@@ -11,7 +12,9 @@ if(typeof ragnarok !== "undefined")
         {
             ragnarok.window.count++;
             
-            var template_url = '../templates/'+template+'.html';
+            window.location
+            
+            var template_url = ragnarok.window.template_path+template+'.html';
             
             $.get(template_url, function(response)
             {

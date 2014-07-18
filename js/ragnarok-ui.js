@@ -412,28 +412,6 @@ $(document).on('initialize', function()
         $('.disclaimer').show();
     }
     
-    ragnarok.api.populate(['items'], 'http://api.ragnastats.com/items.json', function()
-    {
-        ragnarok.api.populate(['character'], '../demo/character-api-example.json', function()
-        {
-            ragnarok.ui.populate.character('.basic-info');
-
-            ragnarok.api.populate(['inventory','items'], '../demo/inventory-api-example.json', function()
-            {
-                // Populate inventory window after API request completes
-                //ragnarok.ui.populate.inventory('.inventory .ro-items', 'usable');
-                $('.ragnarok-tab-inventory, .ro-tab-inv').eq(0).trigger('click');
-            });
-
-            ragnarok.api.populate(['storage','items'], '../demo/storage-api-example.json', function()
-            {
-                // Populate storage window after API request completes
-                //ragnarok.ui.populate.storage('.storage .ro-items', 'usable');
-                $('.ragnarok-tab-storage, .ro-tab-stor').eq(0).trigger('click');
-            });
-        });
-    });
-
     $('body').on('click', '.ragnarok-load, .ro-load', function()
     {
         ragnarok.ui.load($(this).attr('href'));
