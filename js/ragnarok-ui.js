@@ -5,7 +5,9 @@
  */
 
 // Add UI functions to main ragnarok object
-ragnarok.ui = {    
+ragnarok.ui = {
+    root_path: '../',
+    
     clear: {
         inventory: function(selector) {
             $(selector).find('.ro-item').remove();
@@ -285,7 +287,7 @@ ragnarok.ui = {
             ragnarok.ui.panefix(pane);
         },
 
-        character: function(selector)
+        character: function()
         {
             var character_data = $.extend({
                 hp_percent: Math.round((ragnarok.character.hp.current / ragnarok.character.hp.total) * 100) +"%",
@@ -320,8 +322,8 @@ ragnarok.ui = {
             ragnarok.storage.items = response.storage;
             ragnarok.character = response.character;
 
-            $('.ragnarok-tab-inventory, .ro-tab-inv').eq(0).trigger('click');
-            $('.ragnarok-tab-storage, .ro-tab-stor').eq(0).trigger('click');
+         //   $('.ragnarok-tab-inventory, .ro-tab-inv').eq(0).trigger('click');
+         //   $('.ragnarok-tab-storage, .ro-tab-stor').eq(0).trigger('click');
             ragnarok.ui.populate.character('.basic-info');
         });
     },
@@ -422,7 +424,7 @@ $(document).on('initialize', function()
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
 
-        $('.ragnarok-tab-inventory-background, .ro-tab-inv-bg').css({"background-image": "url("+$(this).attr('img')+")"});
+        $('.ragnarok-tab-inventory-background, .ro-tab-inv-bg').css({"background-image": "url("+ragnarok.ui.root_path+"assets/skin/item-tab-"+$(this).attr('tab')+".png)"});
 
         ragnarok.ui.clear.inventory('.inventory .ro-items');
         ragnarok.ui.populate.inventory('.inventory .ro-items', $(this).attr('tab'));
