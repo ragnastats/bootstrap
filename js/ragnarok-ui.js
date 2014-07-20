@@ -291,7 +291,9 @@ ragnarok.ui = {
         {
             var character_data = $.extend({
                 hp_percent: Math.round((ragnarok.character.hp.current / ragnarok.character.hp.total) * 100) +"%",
+                hp_class: (Math.round((ragnarok.character.hp.current / ragnarok.character.hp.total) * 100) < 25) ? 'ragnarok-progress-bar-red' : 'ragnarok-progress-bar',
                 sp_percent: Math.round((ragnarok.character.sp.current / ragnarok.character.sp.total) * 100) +"%",
+                sp_class: (Math.round((ragnarok.character.sp.current / ragnarok.character.sp.total) * 100) < 25) ? 'ragnarok-progress-bar-red' : 'ragnarok-progress-bar',
                 exp_percent: ((ragnarok.character.exp.base.current / ragnarok.character.exp.base.total) * 100).toFixed(1) +"%",
                 job_exp_percent: ((ragnarok.character.exp.job.current / ragnarok.character.exp.job.total) * 100).toFixed(1) +"%",
                 weight_percent: Math.round((ragnarok.character.weight.current / ragnarok.character.weight.total) * 100) +"%",
