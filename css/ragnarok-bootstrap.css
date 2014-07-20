@@ -748,25 +748,22 @@
 }
 
 .ro-minimap {
-	position: absolute;
-	top: 37px;
-	right: 37px;
-	left: auto;
-	height: 126px;
-	width: 126px;
+    position: absolute;
+    top: 37px;
+    right: 37px;
+    left: auto;
 }
 
 .ro-minimap img { 
-	height: 100%;
-	width: 100%;
+    opacity: 0;
 }
 
 .ro-minimap .square {
-	position: absolute;
-	border: 1px solid #fff;
-	width: 4px;
-	height: 4px;
-	top: auto;
-	right: auto;
-	background-color: #000;
+    position: absolute;
+    border: 1px solid #fff;
+    width: 4px;
+    height: 4px;
+    top: auto;
+    right: auto;
+    background-color: #000;
 }
