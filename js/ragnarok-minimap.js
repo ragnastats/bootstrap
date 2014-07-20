@@ -37,7 +37,6 @@ if(typeof ragnarok !== "undefined")
 			
 			square.css({bottom: icon_pos.y - 2, left: icon_pos.x - 2});
 			$('.ro-minimap').append(square);
-			console.log(pos, icon_pos);
 		},
 		
 		clear: function()

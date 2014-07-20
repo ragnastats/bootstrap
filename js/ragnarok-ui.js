@@ -424,7 +424,11 @@ $(document).on('initialize', function()
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
 
-        $('.ragnarok-tab-inventory-background, .ro-tab-inv-bg').css({"background-image": "url("+ragnarok.ui.root_path+"assets/skin/item-tab-"+$(this).attr('tab')+".png)"});
+        var new_background = "url(" + window.location.protocol + "//" + window.location.host + ragnarok.ui.root_path + "assets/skin/item-tab-" + $(this).attr('tab') + ".png)";
+        var current_background = $('.ragnarok-tab-inventory-background, .ro-tab-inv-bg').css('background-image');
+
+        if(new_background != current_background)
+            $('.ragnarok-tab-inventory-background, .ro-tab-inv-bg').css({"background-image": new_background});
 
         ragnarok.ui.clear.inventory('.inventory .ro-items');
         ragnarok.ui.populate.inventory('.inventory .ro-items', $(this).attr('tab'));
