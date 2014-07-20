@@ -18,9 +18,9 @@
             <div class="ro-class">{{class}} &nbsp;</div>
 
             <div class="energy">
-                <div class="ro-hp"><label>HP</label> <div class="{{hp_class}}"><div style="width: {{hp_percent}}"></div><span class="ragnarok-progress-value">{{hp.current}} / {{hp.total}}</span></div> <span class="ragnarok-progress-bar-total">{{hp_percent}}</span></div>
-                <div class="ro-sp"><label>SP</label> <div class="{{sp_class}}"><div style="width: {{sp_percent}}"></div><span class="ragnarok-progress-value">{{sp.current}} / {{sp.total}}</span></div> <span class="ragnarok-progress-bar-total">{{sp_percent}}</span></div>
-            </div>
+                <div class="ro-hp"><label>HP</label> <div class="{{hp_class}} {{^hp_class}}ragnarok-progress-bar{{/hp_class}}"><div style="width: {{hp_percent}}"></div><span class="ragnarok-progress-value">{{hp.current}} / {{hp.total}}</span></div> <span class="ragnarok-progress-bar-total">{{hp_percent}}</span></div>
+                <div class="ro-sp"><label>SP</label> <div class="{{sp_class}} {{^sp_class}}ragnarok-progress-bar{{/sp_class}}"><div style="width: {{sp_percent}}"></div><span class="ragnarok-progress-value">{{sp.current}} / {{sp.total}}</span></div> <span class="ragnarok-progress-bar-total">{{sp_percent}}</span></div>
+             </div>
             
             <div class="ragnarok-gray exp">
                 <label class="ro-lvl">Base Lv. {{level.base}}</label> <div class="ragnarok-progress-bar-small ro-hover ro-exp" hover="{{exp_percent}}"><div style="width: {{exp_percent}};"></div></div><br />
