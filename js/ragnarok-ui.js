@@ -195,7 +195,8 @@ ragnarok.ui = {
                     html.attr('hover', hover);
                     html.append(icon).append(quantity);
 
-                    ragnarok.panes[pane].getContentPane().append(html);
+                    var content = ragnarok.panes[pane].getContentPane();
+                    content.append(html);
                     html.drag({from: 'inventory'}, function()
                     {
                         // Remove quantity popups
@@ -208,14 +209,9 @@ ragnarok.ui = {
             });
 
             // Filler function!
-            var filler = 100 - ragnarok.inventory.items.length;
-
-            if(filler > 0)
+            for(var i = 0; i < 10; i++)
             {
-                for(var i = 0; i < filler; i++)
-                {
-                    ragnarok.panes[pane].getContentPane().append("<div class='ro-item'></div>");
-                }
+                ragnarok.panes[pane].getContentPane().append("<div class='ro-item'></div>");
             }
 
             // Set character weight
@@ -273,14 +269,9 @@ ragnarok.ui = {
             });
 
             // Filler function!
-            var filler = 100 - ragnarok.storage.items.length;
-
-            if(filler > 0)
+            for(var i = 0; i < 10; i++)
             {
-                for(var i = 0; i < filler; i++)
-                {
-                    $(selector).append("<div class='ro-item-wrap'><div class='ro-item'></div></div>");
-                }
+                $(selector).append("<div class='ro-item-wrap'><div class='ro-item'></div></div>");
             }
 
             parent.find('.ro-win-foot p').text(ragnarok.storage.items.length + "/600");
@@ -320,9 +311,9 @@ ragnarok.ui = {
         // Load all character information from a single file
         $.getJSON(url, function(response)
         {
-            ragnarok.inventory.items = response.inventory;
-            ragnarok.storage.items = response.storage;
             ragnarok.character = response.character;
+            ragnarok.storage.items = response.storage;
+            ragnarok.inventory.items = response.inventory;
 
          //   $('.ragnarok-tab-inventory, .ro-tab-inv').eq(0).trigger('click');
          //   $('.ragnarok-tab-storage, .ro-tab-stor').eq(0).trigger('click');
@@ -333,7 +324,8 @@ ragnarok.ui = {
     panefix: function(pane)
     {
         // Determine footer height and resize scroll pane accordingly
-        var parent = ragnarok.panes[pane].getContentPane().parents('.ragnarok-window, .ro-win, .ro-chat-bar');
+        var content = ragnarok.panes[pane].getContentPane();
+        var parent = content.parents('.ragnarok-window, .ro-win, .ro-chat-bar');
         var height = parent.height();
 
         var offset = 8;
@@ -346,14 +338,24 @@ ragnarok.ui = {
             offset += parent.find('.ragnarok-window-footer, .ro-win-foot').outerHeight(true);
 
         // Only set container height when none is set
-        if(ragnarok.panes[pane].getContentPane().parents('.jspContainer').height() == 0)
-            ragnarok.panes[pane].getContentPane().parents('.jspContainer').css({'height': height - offset});
-
+        if(content.parents('.jspContainer').height() == 0)
+            content.parents('.jspContainer').css({'height': height - offset});
+ 
         ragnarok.panes[pane].reinitialise();
 
-        // Subtract 8 pixels from the scrollbar to account for the arrows
-        var scrollbar = parent.find('.jspDrag');    
-        scrollbar.height(scrollbar.height() - 8);
+        // Check if the scrollbar has been fixed
+        var scrollbar = parent.find('.jspDrag');
+        
+        console.log(scrollbar.height(), scrollbar.attr('data-height'));
+        
+        if(scrollbar.height() != scrollbar.attr('data-height'))
+        {
+            console.log('hi');
+            // Subtract 8 pixels from the scrollbar to account for the arrows
+            var fixed_height = scrollbar.height() - 8;
+            scrollbar.height(fixed_height);
+            scrollbar.attr('data-height', fixed_height);
+        }
         
         $('.jspTrack, .jspArrow').addClass('ro-btn');
         
