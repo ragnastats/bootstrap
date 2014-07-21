@@ -6,7 +6,7 @@
 
 // Add UI functions to main ragnarok object
 ragnarok.ui = {
-    root_path: '../',
+    root_path: '/bootstrap/',
     
     clear: {
         inventory: function(selector) {
@@ -333,11 +333,11 @@ ragnarok.ui = {
     panefix: function(pane)
     {
         // Determine footer height and resize scroll pane accordingly
-        var parent = ragnarok.panes[pane].getContentPane().parents('.ragnarok-window, .ro-win');
+        var parent = ragnarok.panes[pane].getContentPane().parents('.ragnarok-window, .ro-win, .ro-chat-bar');
         var height = parent.height();
 
         var offset = 8;
-
+        
         if(parent.find('.ragnarok-title, .ragnarok-window-title, .ro-win-title').length)
             offset += parent.find('.ragnarok-title, .ragnarok-window-title, .ro-win-title').outerHeight(true);
 
@@ -352,10 +352,15 @@ ragnarok.ui = {
         ragnarok.panes[pane].reinitialise();
 
         // Subtract 8 pixels from the scrollbar to account for the arrows
-        var scrollbar = ragnarok.panes[pane].getContentPane().parents('.ragnarok-window, .ro-win').find('.jspDrag');    
+        var scrollbar = parent.find('.jspDrag');    
         scrollbar.height(scrollbar.height() - 8);
         
         $('.jspTrack, .jspArrow').addClass('ro-btn');
+        
+        if(parent.hasClass('ro-chat-bar'))
+        {
+            ragnarok.panes[pane].scrollToBottom();
+        }
     },
 
     set_weight: function()
