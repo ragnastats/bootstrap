@@ -1,25 +1,20 @@
 <div class='ro-chat-bar'>
     <div class='chat-messages ragnarok-scroll-pane' class='highlight'>
-        <div class='yellow'>[Fiolina] has To [blueberryFrog] use [Blessing] skill.</div>
-        <div class='lightgreen'>Maybee : Hey friends~</div>
-        <div class='lightgreen'>Maybee : Welcome to the RagnaStats!</div>
-        <div class='white'>Fiolina : hehe &lt;3</div>
-        <div class='lime'>Maybee : Public chat!! :D</div>
-        <div class='yellow'>[Fiolina] has To [blueberryFrog] use [Blessing] skill.</div>
-        <div class='lightgreen'>Maybee : Hey friends~</div>
-        <div class='lightgreen'>Maybee : Welcome to the RagnaStats!</div>
-        <div class='white'>Fiolina : hehe &lt;3</div>
-        <div class='lime'>Maybee : Public chat!! :D</div>
+        {{#chat}}
+            <div class='{{color}}'>{{message}}</div>
+        {{/chat}}
     </div>
     <div class='handle'>
         <div id='ragnarok-chat-container'>
-            <div style="display:none">
+            <!--
+            <div>
                 <input id='ragnarok-chat-user-input'>
                 <img id='ragnarok-chat-user-button' src='/assets/chat/user-button.png'>
                 <input id='ragnarok-chat-text-input' value="Let's just pretend this is some text~">
                 <img id='ragnarok-chat-send-to' src='/assets/chat/chat-button.png'>
                 <img id='ragnarok-chat-resize' src='/assets/chat/chat-button.png'>
             </div>
+            -->
         </div>
     </div>
 </div>

@@ -303,7 +303,13 @@ ragnarok.ui = {
                     ragnarok.minimap.add(ragnarok.character.pos);
                 }
             }
-        }
+        },
+        
+        chat: function()
+        {
+            ragnarok.window.update('chat-bar', ragnarok.data);
+            
+        },
     },
 
     load: function(url)
@@ -346,11 +352,8 @@ ragnarok.ui = {
         // Check if the scrollbar has been fixed
         var scrollbar = parent.find('.jspDrag');
         
-        console.log(scrollbar.height(), scrollbar.attr('data-height'));
-        
         if(scrollbar.height() != scrollbar.attr('data-height'))
         {
-            console.log('hi');
             // Subtract 8 pixels from the scrollbar to account for the arrows
             var fixed_height = scrollbar.height() - 8;
             scrollbar.height(fixed_height);
@@ -597,22 +600,6 @@ $(document).on('initialize', function()
 
            $(this).find('.ragnarok-window-content, .ro-win-content').css({'padding-left': sidebar.width + 4, 'min-height': sidebar.height - footer.height});
         }
-
-/*
-        if($(this).find('.ragnarok-window-footer, .ro-win-foot').length)
-        {
-            var content = {
-                height: $(this).find('.ragnarok-window-content, .ro-win-content').outerHeight(true)
-            };
-            
-            var footer = {
-              height: $(this).find('.ragnarok-window-footer, .ro-win-foot').outerHeight(true)
-            };
-            
-//            console.log($(this).find('.ragnarok-window-content, .ro-win-content'));
-//           $(this).find('.ragnarok-window-content, .ro-win-content').css({'min-height': content.height});
-        }
-        */
     });
 
 

@@ -217,7 +217,6 @@
         {
             if(drop)
             {
-                console.log(event.target);
                 $(event.target).trigger('mouseover');
                 
                 if(typeof callback == "function")
