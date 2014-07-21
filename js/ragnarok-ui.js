@@ -602,7 +602,6 @@ $(document).on('initialize', function()
         }
     });
 
-
     ragnarok.panes = [];
 
     // Initialize scroll panes

@@ -52,7 +52,19 @@ if(typeof ragnarok !== "undefined")
             var rendered = ragnarok.window.compiled[template].render(data);
             var $rendered = $(rendered);
             
-            existing.innerHTML = $rendered.html();            
+            // Replace the scrollpane and update it
+            if($rendered.find('.ragnarok-scroll-pane, .ro-scroll-pane').length)
+            {
+                $existing = $(existing);
+                var rendered_pane = $rendered.find('.ragnarok-scroll-pane, .ro-scroll-pane').html();                
+                var pane = $existing.find('.ragnarok-scroll-pane, .ro-scroll-pane').attr('ro-pane-id');
+                
+                ragnarok.panes[pane].getContentPane().html(rendered_pane);
+                ragnarok.ui.panefix(pane);
+            }
+            // Simple replacement
+            else
+                existing.innerHTML = $rendered.html();            
         },
         
         minimize: function()
