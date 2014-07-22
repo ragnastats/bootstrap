@@ -865,6 +865,8 @@
 
 .ro-chat-bar .yellow { color:yellow; }
 .ro-chat-bar .green { color:green; }
-.ro-chat-bar .white { color:white; }
+.ro-chat-bar .white { color: #fff; }
 .ro-chat-bar .lightgreen { color:lightgreen; }
 .ro-chat-bar .lime { color:lime; }
+.ro-chat-bar .pink { color: #ffcccc; }
+.ro-chat-bar .orange { color: #ffcc00; }
