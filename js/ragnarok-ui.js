@@ -292,8 +292,16 @@ ragnarok.ui = {
             }, ragnarok.character);
             
             ragnarok.window.update('basic-info', character_data);
-            
-            
+            ragnarok.ui.populate.map();
+        },
+        
+        chat: function()
+        {
+            ragnarok.window.update('chat-bar', ragnarok.data);
+        },
+        
+        map: function()
+        {
             if(ragnarok.character.map !== undefined)
             {
                 ragnarok.minimap.init(ragnarok.character.map);
@@ -303,13 +311,7 @@ ragnarok.ui = {
                     ragnarok.minimap.add(ragnarok.character.pos);
                 }
             }
-        },
-        
-        chat: function()
-        {
-            ragnarok.window.update('chat-bar', ragnarok.data);
-            
-        },
+        }
     },
 
     load: function(url)
