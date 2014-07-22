@@ -321,8 +321,13 @@ ragnarok.ui = {
             ragnarok.storage.items = response.storage;
             ragnarok.inventory.items = response.inventory;
 
-         //   $('.ragnarok-tab-inventory, .ro-tab-inv').eq(0).trigger('click');
-         //   $('.ragnarok-tab-storage, .ro-tab-stor').eq(0).trigger('click');
+            // Stay in the current tab when loading data
+            if($('.ragnarok-tab-inventory.active, .ro-tab-inv.active').length)
+                $('.ragnarok-tab-inventory.active, .ro-tab-inv.active').trigger('click');
+            // If no tab is active, click on the first one!
+            else
+                $('.ragnarok-tab-inventory, .ro-tab-inv').eq(0).trigger('click');
+
             ragnarok.ui.populate.character('.basic-info');
         });
     },
