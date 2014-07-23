@@ -24,6 +24,10 @@ ragnarok.ui = {
             // Remove previous popups
             $('.ragnarok-item-popup').remove();
             
+            // Fallback to ragnastats CDN if item image is unspecified
+            if(typeof ragnarok.items[item].icon == "undefined")
+                ragnarok.items[item].icon = 'http://cdn.ragnastats.com/item/'+item+'.png';
+            
             // Show item popup
             var wrap = $('<div class="ragnarok-window ragnarok-item-popup">');
             var popup = $('<div class="ragnarok-window-inner">');
