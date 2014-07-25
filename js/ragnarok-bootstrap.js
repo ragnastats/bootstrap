@@ -201,19 +201,26 @@ var ragnarok = (function()
             {type: 'sp', process: function(value) { ragnarok.character.sp.current = value; }},
             {type: 'max_sp', process: function(value) { ragnarok.character.sp.total = value; }},
             {type: 'stat_points'},
+            {type: 'hair_color'},
             {type: 'base_level', process: function(value) { ragnarok.character.level.base = value; }},
             {type: 'skill_points'},
-            {type: 'zeny', process: function(value) { ragnarok.character.zeny = value; }},
-            {type: 'max_base_exp', process: function(value) { ragnarok.character.exp.base.total = value; }},
-            {type: 'max_job_exp', process: function(value) { ragnarok.character.exp.job.total = value; }},
-            {type: 'weight', process: function(value) { ragnarok.character.weight.current = value; }},
-            {type: 'max_weight', process: function(value) { ragnarok.character.weight.total = value; }},
             {type: 'str'},
             {type: 'agi'},
             {type: 'vit'},
             {type: 'int'},
             {type: 'dex'},
             {type: 'luk'},
+            {type: 'job_level', process: function(value) { ragnarok.character.level.job = value; }},
+            {type: 'zeny', process: function(value) { ragnarok.character.zeny = value; }},
+            {type: 'gender'},
+            {type: 'max_base_exp', process: function(value) { ragnarok.character.exp.base.total = value; }},
+            {type: 'max_job_exp', process: function(value) { ragnarok.character.exp.job.total = value; }},
+            {type: 'weight', process: function(value) { ragnarok.character.weight.current = value / 10; }},
+            {type: 'max_weight', process: function(value) { ragnarok.character.weight.total = value / 10; }}
+
+            /*
+             * Commented out for now, may want to restructure this anyway.
+             * 
             {type: 'atk'},
             {type: 'atk_bonus'},
             {type: 'max_matk'},
@@ -227,9 +234,9 @@ var ragnarok = (function()
             {type: 'flee_bonus'},
             {type: 'crit'},
             {type: 'aspd'},
-            {type: 'job_level', process: function(value) { ragnarok.character.level.job = value; }},
             {type: 'mercenary_kills'},
             {type: 'mercenary_faith'}
+            */
         ]
     };
     

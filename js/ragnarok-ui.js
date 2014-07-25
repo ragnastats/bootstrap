@@ -170,7 +170,6 @@ ragnarok.ui = {
         inventory: function(selector, type) {
             var pane = $(selector).attr('ro-pane-id');
             var height = $(selector).parents('.ragnarok-window, .ro-win').height();
-            var weight = 0;
             
             // Function to build inventory HTML from ragnarok.inventory.items
             $.each(ragnarok.inventory.items, function(index, inventory)
@@ -297,6 +296,7 @@ ragnarok.ui = {
             
             ragnarok.window.update('basic-info', character_data);
             ragnarok.ui.populate.map();
+            ragnarok.ui.set_weight();
         },
         
         chat: function()
@@ -381,21 +381,7 @@ ragnarok.ui = {
 
     set_weight: function()
     {
-        var weight = 0;
-        
-        // Terrible!
-        $.each(ragnarok.inventory.items, function(index, inventory)
-        {
-            var item = ragnarok.items[inventory.item];
-
-            if(typeof item.type != "undefined" && typeof item.weight != "undefined")
-            {
-                // Increase total weight
-                weight += parseFloat(item.weight) * parseFloat(inventory.quantity);
-            }
-        });
-                
-        var weight_percent = Math.round((weight / ragnarok.character.weight.total) * 100);
+        var weight_percent = Math.round((ragnarok.character.weight.current / ragnarok.character.weight.total) * 100);
 
         if(weight_percent >= 50)
             $('.basic-info').find('.ro-weight').addClass('overweight');
@@ -403,7 +389,7 @@ ragnarok.ui = {
             $('.basic-info').find('.ro-weight').removeClass('overweight');
         
         $('.basic-info').find('.ro-weight').attr('hover', "Weight " + weight_percent+"%");
-        $('.basic-info').find('.ro-weight').text('Weight : ' + weight + " / " + ragnarok.character.weight.total);
+        $('.basic-info').find('.ro-weight').text('Weight : ' + ragnarok.character.weight.current + " / " + ragnarok.character.weight.total);
     },
 
     unequip: function(slot)
