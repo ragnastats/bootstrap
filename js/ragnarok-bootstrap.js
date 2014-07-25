@@ -188,9 +188,55 @@ var ragnarok = (function()
         }
     };
     
+    var data = {
+        // Types without actions will be handled eventually ^_~
+        info_types:
+        [
+            {type: 'speed'},
+            {type: 'base_exp'}, // process: function(value) { ragnarok.character.exp.base.current = value; }},
+            {type: 'job_exp'}, // process: function(value) { ragnarok.character.exp.job.current = value; }},
+            {type: 'mute'},
+            {type: 'hp', process: function(value) { ragnarok.character.hp.current = value; }},
+            {type: 'max_hp', process: function(value) { ragnarok.character.hp.total = value; }},
+            {type: 'sp', process: function(value) { ragnarok.character.sp.current = value; }},
+            {type: 'max_sp', process: function(value) { ragnarok.character.sp.total = value; }},
+            {type: 'stat_points'},
+            {type: 'base_level', process: function(value) { ragnarok.character.level.base = value; }},
+            {type: 'skill_points'},
+            {type: 'zeny', process: function(value) { ragnarok.character.zeny = value; }},
+            {type: 'max_base_exp', process: function(value) { ragnarok.character.exp.base.total = value; }},
+            {type: 'max_job_exp', process: function(value) { ragnarok.character.exp.job.total = value; }},
+            {type: 'weight', process: function(value) { ragnarok.character.weight.current = value; }},
+            {type: 'max_weight', process: function(value) { ragnarok.character.weight.total = value; }},
+            {type: 'str'},
+            {type: 'agi'},
+            {type: 'vit'},
+            {type: 'int'},
+            {type: 'dex'},
+            {type: 'luk'},
+            {type: 'atk'},
+            {type: 'atk_bonus'},
+            {type: 'max_matk'},
+            {type: 'min_matk'},
+            {type: 'def'},
+            {type: 'def_bonus'},
+            {type: 'mdef'},
+            {type: 'mdef_bonus'},
+            {type: 'hit'},
+            {type: 'flee'},
+            {type: 'flee_bonus'},
+            {type: 'crit'},
+            {type: 'aspd'},
+            {type: 'job_level', process: function(value) { ragnarok.character.level.job = value; }},
+            {type: 'mercenary_kills'},
+            {type: 'mercenary_faith'}
+        ]
+    };
+    
     return {
         api: api,
         character: character,
+        data: data,
         inventory: inventory,
         storage: storage
     };
