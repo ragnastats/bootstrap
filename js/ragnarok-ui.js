@@ -794,6 +794,19 @@ $(document).on('initialize', function()
             $('body').append(handle);
         }
         
+        if($(this).parents('.ragnarok-scroll-pane, .ro-scroll-pane').length)
+        {
+            var pane = $(this).parents('.ragnarok-scroll-pane, .ro-scroll-pane').attr('ro-pane-id');
+            
+            // We have to bind scroll here since the event doesn't bubble
+            handle.on('mousewheel', function(event)
+            {
+                hover.remove();
+                handle.remove();
+                ragnarok.panes[pane].scrollByY((event.deltaFactor * event.deltaY) * -1);
+            });
+        }
+        
         hover.css({'left': offset.left, 'top': offset.top - (hover.outerHeight(true) - $(this).outerHeight(true) * 0.2) });
         handle.css({'left': offset.left, 'top': offset.top, 'width': $(this).outerWidth(true), 'height': $(this).outerHeight(true)});
 
