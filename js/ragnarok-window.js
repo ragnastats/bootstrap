@@ -5,16 +5,24 @@
 if(typeof ragnarok !== "undefined")
 {
     ragnarok.window =
-    {        
-        minimize: function()
+    {
+        open: function(template)
+        {
+            $template = $('#'+template);
+            $template.show();
+        },
+        
+        minimize: function(template)
         {
             // Hide window content
             // Swap content if necessary
         },
         
-        close: function()
+        close: function(template)
         {
+            $template = $('#'+template);
             // Style the window invisible
+            $template.hide();
         }
     }    
 }

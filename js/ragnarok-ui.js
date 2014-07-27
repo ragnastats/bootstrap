@@ -334,6 +334,13 @@ ragnarok.ui = {
             else
                 $('.ragnarok-tab-inventory, .ro-tab-inv').eq(0).trigger('click');
 
+            // Same for storage
+            if($('.ragnarok-tab-storage.active, .ro-tab-stor.active').length)
+                $('.ragnarok-tab-storage.active, .ro-tab-stor.active').trigger('click');
+            // If no tab is active, click on the first one!
+            else
+                $('.ragnarok-tab-storage, .ro-tab-stor').eq(0).trigger('click');
+
             ragnarok.ui.populate.character('.basic-info');
         });
     },
