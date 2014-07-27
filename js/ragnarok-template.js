@@ -31,6 +31,15 @@ if(typeof ragnarok !== "undefined")
                 $('body').append($rendered);
                 
                 ragnarok.template.loaded++;
+
+                if(Modernizr.localstorage)
+                {
+                    if(typeof localStorage['template_'+template] != "undefined")
+                    {
+                        var metadata = JSON.parse(localStorage['template_'+template])
+                        $rendered.css({height: metadata.height, width: metadata.width, top: metadata.position.top, left: metadata.position.left});
+                    }                    
+                }
                 
                 if(ragnarok.template.count == ragnarok.template.loaded && typeof ragnarok.template.callback == "function")
                     ragnarok.template.callback();
@@ -47,6 +56,22 @@ if(typeof ragnarok !== "undefined")
                 {
                     ragnarok.template.callback();
                 }
+            }
+        },
+
+        // Save metadata (like size and position) for this template to localstorage
+        save: function(template)
+        {
+            if(Modernizr.localstorage)
+            {
+                var $template = $('#'+template);
+                var metadata = {
+                    height: $template.height(),
+                    width: $template.width(),
+                    position: $template.position()
+                };
+                
+                localStorage['template_'+template] = JSON.stringify(metadata);
             }
         },
 

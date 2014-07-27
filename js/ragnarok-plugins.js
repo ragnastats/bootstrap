@@ -109,6 +109,7 @@
             windows.push(parseInt($(this).attr('window')));
 
             layer_windows();
+            ragnarok.template.save($(this).attr('id'));
         });
     }
 
@@ -252,6 +253,7 @@
             windows.push(parseInt(parent.attr('window')));
 
             layer_windows();
+            ragnarok.template.save(parent.attr('id'));
         });
 
         $(document).on('mousemove', function(event)
@@ -318,6 +320,7 @@
                 $('.jspTrack, .jspArrow').addClass('ro-btn');
                 
                 layer_windows();
+                ragnarok.template.save(parent.attr('id'));
             }
 
             resizing = false;
@@ -332,6 +335,7 @@
                 windows.push(parseInt(parent.attr('window')));
 
                 layer_windows();
+                ragnarok.template.save(parent.attr('id'));
             }
 
             resizing = false;
