@@ -31,25 +31,26 @@
         <script src='../js/ragnarok-bootstrap.js'></script>
         <script src='../js/ragnarok-minimap.js'></script>
         <script src='../js/ragnarok-window.js'></script>
+        <script src='../js/ragnarok-template.js'></script>
         <script src='../js/ragnarok-ui.js'></script>
         <script src='../js/ragnarok-fun.js'></script>
         
         <script>
             $(document).ready(function()
             {                
-                ragnarok.window.load('basic-info');
-                ragnarok.window.load('chat-bar');
-                ragnarok.window.load('demo');
-                ragnarok.window.load('disclaimer');
-                ragnarok.window.load('equip');
-                ragnarok.window.load('hotkey');
-                ragnarok.window.load('inventory');
-                ragnarok.window.load('item-info');
-                ragnarok.window.load('minimap');
-                ragnarok.window.load('storage');
-                ragnarok.window.load('todo');
+                ragnarok.template.load('basic-info');
+                ragnarok.template.load('chat-bar');
+                ragnarok.template.load('demo');
+                ragnarok.template.load('disclaimer');
+                ragnarok.template.load('equip');
+                ragnarok.template.load('hotkey');
+                ragnarok.template.load('inventory');
+                ragnarok.template.load('item-info');
+                ragnarok.template.load('minimap');
+                ragnarok.template.load('storage');
+                ragnarok.template.load('todo');
                 
-                ragnarok.window.ready(function()
+                ragnarok.template.ready(function()
                 {
                     $(document).trigger('initialize');
                     

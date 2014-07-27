@@ -294,14 +294,14 @@ ragnarok.ui = {
                 zeny_text: "Zeny : "+number_format(ragnarok.character.zeny)
             }, ragnarok.character);
             
-            ragnarok.window.update('basic-info', character_data);
+            ragnarok.template.update('basic-info', character_data);
             ragnarok.ui.populate.map();
             ragnarok.ui.set_weight();
         },
         
         chat: function()
         {
-            ragnarok.window.update('chat-bar', ragnarok.data);
+            ragnarok.template.update('chat-bar', ragnarok.data);
         },
         
         map: function()
