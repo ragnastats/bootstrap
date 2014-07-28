@@ -479,6 +479,7 @@
 }
 
 .ragnarok-scroll-pane, .ro-scroll {
+    height: 100%;
     margin: 0px 0px 16px 0px;
     overflow: hidden;
 }
@@ -870,3 +871,4 @@
 .ro-chat-bar .lime { color:lime; }
 .ro-chat-bar .pink { color: #ffcccc; }
 .ro-chat-bar .orange { color: #ffcc00; }
+

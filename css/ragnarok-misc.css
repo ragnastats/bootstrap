@@ -33,6 +33,10 @@
     height: 300px;
 }
 
+.storage .ro-win-content {
+    margin-bottom: 5px;
+}
+
 .disclaimer {
     max-width: 400px;
     max-height: 400px;
