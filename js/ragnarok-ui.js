@@ -455,7 +455,11 @@ $(document).on('initialize', function()
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
 
-        $('.ragnarok-tab-storage-background, .ro-tab-stor-bg').css({"background-image": "url("+$(this).attr('img')+")"});
+        var new_background = "url(" + window.location.protocol + "//" + window.location.host + ragnarok.ui.root_path + "assets/skin/stor-tab-" + $(this).attr('tab') + ".png)";
+        var current_background = $('.ragnarok-tab-storage-background, .ro-tab-stor-bg').css('background-image');
+
+        if(new_background != current_background)
+            $('.ragnarok-tab-storage-background, .ro-tab-stor-bg').css({"background-image": new_background});
 
         ragnarok.ui.clear.storage('.storage .ro-items');
         ragnarok.ui.populate.storage('.storage .ro-items', $(this).attr('tab'));
