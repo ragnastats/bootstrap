@@ -595,8 +595,16 @@ $(document).on('initialize', function()
     // Auto-correct the content's margin based on sidebar and footer
     $('.ragnarok-window, .ro-win').each(function()
     {
+        var hidden = false;
+        
         if($(this).find('.ragnarok-sidebar, .ro-side').length)
         {
+            // Check if this window is currently visible
+            if(!$(this).is(':visible'))
+                hidden = true;
+                
+            $(this).show();
+        
             var sidebar = {
                 width: $(this).find('.ragnarok-sidebar, .ro-side').outerWidth(true),
                 height: $(this).find('.ragnarok-sidebar, .ro-side div').outerHeight(true),
@@ -607,6 +615,10 @@ $(document).on('initialize', function()
             };
 
            $(this).find('.ragnarok-window-content, .ro-win-content').css({'padding-left': sidebar.width + 4, 'min-height': sidebar.height - footer.height});
+           
+           // Re-hide windows after calculating heights
+           if(hidden)
+            $(this).hide();
         }
     });
 
