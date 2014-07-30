@@ -176,7 +176,10 @@ ragnarok.ui = {
             {
                 var item = ragnarok.items[inventory.item];
 
-                if(item !== undefined && typeof item.type != "undefined" && item.type.indexOf(type) != -1)
+                if(item !== undefined && 
+                    typeof item.type != "undefined" && 
+                    item.type.indexOf(type) != -1 && 
+                    !inventory.equipped)
                 {
                     // Fallback to ragnastats CDN if item image is unspecified
                     if(typeof item.icon == "undefined")
