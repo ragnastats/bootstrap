@@ -77,7 +77,7 @@ var ragnarok = (function()
         {
             var index = inventory.index(item);
 
-            if(index >= 0)
+            if(index > -1)
             {
                 return parseInt(inventory.items[index].quantity);
             }
@@ -92,7 +92,7 @@ var ragnarok = (function()
             // Make sure quantity is a number!
             quantity = parseInt(quantity);
 
-            if(index >= 0)
+            if(index > -1)
             {
                 // You can only remove an item that exists!
                 inventory.items[index].quantity = parseInt(inventory.items[index].quantity) - quantity;
@@ -105,6 +105,15 @@ var ragnarok = (function()
             }
 
             return false;
+        },
+        
+        // When an item's equip status changes!
+        equip: function(item, status)
+        {
+            var index = inventory.index(item);
+
+            if(index > -1)
+                inventory.items[index].equipped = status;
         },
 
         // Use a consumable item, or equip some equipment
@@ -158,7 +167,7 @@ var ragnarok = (function()
         {
             var index = storage.index(item);
 
-            if(index >= 0)
+            if(index > -1)
             {
                 return storage.items[index].quantity;
             }
@@ -173,7 +182,7 @@ var ragnarok = (function()
             // Make sure quantity is a number!
             quantity = parseInt(quantity);
 
-            if(index >= 0)
+            if(index > -1)
             {
                 storage.items[index].quantity = parseInt(storage.items[index].quantity) - quantity;
 
