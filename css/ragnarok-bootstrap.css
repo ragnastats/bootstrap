@@ -615,6 +615,21 @@
 .ragnarok-equip p, .ro-equip p {
     color: #E7E7E7;
     font-weight: bold;
+    z-index: -1;
+}
+
+.ragnarok-equip span, .ro-equip span {
+    width: 80px;
+    display: inline-block;
+}
+
+.ro-equip-lft .ro-equip span {
+    padding-left: 32px;
+}
+
+.ro-equip-rt .ro-equip span {
+    padding-right: 32px;
+    text-align:left;
 }
 
 .ro-equip-lft {
