@@ -318,6 +318,36 @@ ragnarok.ui = {
                     ragnarok.minimap.add(ragnarok.character.pos);
                 }
             }
+        },
+        
+        equip: function()
+        {
+            var accessory = 0;
+
+            $.each(ragnarok.inventory.items, function(index, inventory)
+            {
+                var item = ragnarok.items[inventory.item];
+
+                if(item !== undefined &&
+                    inventory.type !== undefined &&
+                    inventory.equipped > 0)
+                {
+                    var slot = ragnarok.lookup.equipment_slots[inventory.type.equip];
+                    
+                    // TODO: This should be its own function?
+                    if(slot == "accessory")
+                    {
+                        if(accessory == 0)
+                            slot = "right-accessory";
+                        else
+                            slot = "left-accessory";
+                            
+                        accessory++;
+                    }
+                    
+                    ragnarok.ui.equip(inventory.item, slot);
+                }
+            });
         }
     },
 
@@ -345,6 +375,7 @@ ragnarok.ui = {
                 $('.ragnarok-tab-storage, .ro-tab-stor').eq(0).trigger('click');
 
             ragnarok.ui.populate.character('.basic-info');
+            ragnarok.ui.populate.equip();
         });
     },
 
@@ -402,9 +433,34 @@ ragnarok.ui = {
         $('.basic-info').find('.ro-weight').text('Weight : ' + ragnarok.character.weight.current + " / " + ragnarok.character.weight.total);
     },
 
+    equip: function(item_id, slot)
+    {
+        var item = ragnarok.items[item_id],
+            icon = $('.equip .ro-item[slot="'+slot+'"]');
+        
+        var parent = icon.parents('.ro-equip');
+     
+        if(typeof item.icon == "undefined")
+            item.icon = 'http://cdn.ragnastats.com/item/'+item_id+'.png';
+
+        var slots = (item.slots) ? ' ['+item.slots+'] ' : '';
+
+        icon.addClass('ro-hover');
+
+        var hover = [item.name, slots].join(""),
+            img = $("<div><img src='"+ item.icon +"'></div>");
+
+        img.find('img').attr('item', item_id);
+        img.find('img').attr('slot', icon.attr('slot'));
+        icon.attr('hover', hover);
+        icon.html(img);
+        parent.append("<span>"+item.name+"</span>");
+    },
+
     unequip: function(slot)
     {
         var icon = $('.equip .ro-item[slot="'+slot+'"]');
+        var parent = icon.parents('.ro-equip');
 
         // Remove tooltip
         $('.ro-hover-box').remove();
@@ -415,6 +471,9 @@ ragnarok.ui = {
         icon.html('');
         icon.removeAttr('hover');
         icon.removeClass('ro-hover');
+        
+        // Remove text
+        parent.find('span').remove();
     }
 };
 
@@ -506,6 +565,7 @@ $(document).on('initialize', function()
          
         if(from == "inventory")
         {
+            // TODO: Update this to use ragnarok.ui.equip
             if(typeof item.icon == "undefined")
                 item.icon = 'http://cdn.ragnastats.com/item/'+item_id+'.png';
 

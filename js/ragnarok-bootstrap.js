@@ -197,7 +197,7 @@ var ragnarok = (function()
         }
     };
     
-    var data = {
+    var lookup = {
         // Types without actions will be handled eventually ^_~
         info_types:
         [
@@ -246,13 +246,26 @@ var ragnarok = (function()
             {type: 'mercenary_kills'},
             {type: 'mercenary_faith'}
             */
-        ]
+        ],
+        
+        equipment_slots:
+        {
+            1: 'lower-headgear',
+            2: 'right-hand',
+            4: 'garment',
+            16: 'armor',
+            32: 'left-hand',
+            64: 'shoes',
+            136: 'accessory',
+            256: 'upper-headgear',
+            512: 'mid-headgear',             
+        }
     };
     
     return {
         api: api,
         character: character,
-        data: data,
+        lookup: lookup,
         inventory: inventory,
         storage: storage
     };
