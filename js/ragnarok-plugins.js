@@ -117,7 +117,8 @@
 
     $('body').on('mousedown', function(event)
     {
-        event.preventDefault();
+        // Don't prevent default inside inputs
+        if(!$(event.target).is('input')) event.preventDefault();
     });
 
     $('body').on('mouseup', function(event)

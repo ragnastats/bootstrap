@@ -1,3 +1,78 @@
-.ragnarok {
-    color: red;
+.ro-chat-bar {
+    width:600px;
+    height:103px;
+    border:1px solid #8c8c8c;
+    border-top:1px solid #fff;
+    border-left:1px solid #fff;
+    border-bottom: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color:rgba(0, 0, 0, 0.4);
+    position:absolute;
+    z-index:1;
+    top:auto;
+    bottom:0px;
+    left:4px;
+    text-shadow:1px 1px #000;
+    font-family: Arial, Verdana, sans-serif;
+    font-size:10pt;        
+
+    .chat-messages {
+        height: 78px;
+        margin-left: 2px;
+    }
+    
+    .chat-handle {
+        width:100%;
+        height:24px;
+        border-top:1px solid #8c8c8c;
+        position:absolute;
+        bottom:0;
+        top:auto;
+    }
+    
+    .chat-input-wrap {
+        display: none;
+        height:24px;
+        margin:-1px -5px;
+        border:1px solid #C6C6C6;
+        border-radius:4px;
+    }
+    
+    .chat-input-wrap.active {
+        display: block;
+    }
+    
+    input {
+        height:17px;
+        border:none;
+        line-height: 24px;
+        border-top:1px solid #ADADAD;
+        border-left:1px solid #ADADAD;
+        border-radius:2px;
+        outline:none;
+    }
+    
+    .ro-chat-dropdown {
+        background-image:url(/bootstrap/assets/skin/ro-chat-dropdown.png);
+        background-repeat: no-repeat;
+        background-position: 0px 2px;
+        height: 20px;
+        width: 8px;
+        display: inline-block;
+    }
+    
+    .chat-user-input { 
+        width:100px;
+    }
+    
+    .chat-message-input {
+        width:462px;
+    }
+    
+    .ro-win-btn {
+        margin: 0px;
+        margin-bottom: 4px;
+        padding: 0px;
+    }
 }

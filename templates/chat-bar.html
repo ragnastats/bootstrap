@@ -1,20 +1,16 @@
 <div class='ro-chat-bar'>
     <div class='chat-messages ragnarok-scroll-pane' class='highlight'>
-        {{#chat}}
+        {{#messages}}
             <div class='ro-{{color}}'><span title='{{timestamp}}'>{{user}}</span> : {{message}}</div>
-        {{/chat}}
+        {{/messages}}
     </div>
-    <div class='handle'>
-        <div id='ragnarok-chat-container'>
-            <!--
-            <div>
-                <input id='ragnarok-chat-user-input'>
-                <img id='ragnarok-chat-user-button' src='/assets/chat/user-button.png'>
-                <input id='ragnarok-chat-text-input' value="Let's just pretend this is some text~">
-                <img id='ragnarok-chat-send-to' src='/assets/chat/chat-button.png'>
-                <img id='ragnarok-chat-resize' src='/assets/chat/chat-button.png'>
-            </div>
-            -->
+    <div class='chat-handle'>
+        <div class='chat-input-wrap ro-stripe'>
+            <input class='chat-user-input'>
+            <div class='ro-chat-dropdown ro-btn'></div>
+            <input class='chat-message-input'>
+            <div class='ro-btn ro-win-btn'></div>
+            <div class='ro-btn ro-win-btn'></div>
         </div>
     </div>
 </div>

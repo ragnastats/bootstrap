@@ -304,7 +304,7 @@ ragnarok.ui = {
         
         chat: function()
         {
-            ragnarok.template.update('chat-bar', ragnarok.data);
+            ragnarok.template.update('chat-bar', ragnarok.data.chat);
         },
         
         map: function()

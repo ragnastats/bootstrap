@@ -262,10 +262,21 @@ var ragnarok = (function()
         }
     };
     
+    var data = 
+    {
+        chat:
+        {
+            active: '',
+            messages: [],
+            status: 0
+        }
+    }
+    
     return {
         api: api,
         character: character,
         lookup: lookup,
+        data: data,
         inventory: inventory,
         storage: storage
     };
