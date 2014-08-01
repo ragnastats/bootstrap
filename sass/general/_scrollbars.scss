@@ -1,0 +1,48 @@
+.jspVerticalBar {
+    width: 14px;
+}
+
+.jspTrack {
+    background-image: url(../assets/skin/ro-bar-gry-vert.png);
+    width: 9px;
+    margin-left: 2px;
+}
+
+.jspArrowUp {
+    background-image: url(../assets/skin/ro-scroll-up.png);
+    background-repeat: no-repeat;
+    width: 14px;
+}
+
+.jspArrowDown {
+    background-image: url(../assets/skin/ro-scroll-down.png);
+    background-repeat: no-repeat;
+    width: 14px;
+    margin-top:-1px;
+}
+
+.jspDrag {
+    background-image:url(../assets/skin/ro-bar-blue-vert.png);
+    background-clip:content-box;
+    padding:4px 0px;
+}
+
+.jspDragTop {
+    position: absolute;
+    top: 0px;
+    background-image:url(../assets/skin/ro-bar-top.png);
+    background-repeat: no-repeat;
+    background-position:top; 
+    height:50%;
+    width: 9px;
+}
+
+.jspDragBottom {
+    position: absolute;
+    bottom: 0px;
+    background-image:url(../assets/skin/ro-bar-bottom.png);
+    background-repeat: no-repeat;
+    background-position:bottom;
+    height:50%;
+    width: 9px;
+}

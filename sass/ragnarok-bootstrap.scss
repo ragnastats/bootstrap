@@ -1,2 +1,8 @@
-@import 'templates/chat-bar';
-@import 'templates/test';
+.ragnarok {
+    @import 'general/cursors';
+    @import 'general/colors';
+    @import 'general/scrollbars';
+    @import 'general/misc';
+
+    @import 'templates/chat-bar';
+}

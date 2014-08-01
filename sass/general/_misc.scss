@@ -1,0 +1,23 @@
+.ro-right {
+    position: absolute;
+    left: auto;
+    right: 0;
+    top: auto;
+    bottom: 0;
+}
+
+.ro-left {
+    position: absolute;
+    left: 0;
+    right: auto;
+    top: auto;
+    bottom: 0;
+}
+
+.ro-small {
+    font-size:9pt;
+}
+
+.ro-tiny {
+    font-size:8pt;
+}

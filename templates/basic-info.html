@@ -6,7 +6,7 @@
             Basic Info
         </p>
 
-        <div class="ragnarok-right">
+        <div class="ro-right">
             <div class="ragnarok-button ragnarok-window-button-minimize" hover="Alt + V"></div>
         </div>
     </div>
@@ -14,7 +14,7 @@
     <div class="ragnarok-window-content">
         <div class="ro-name">{{name}} &nbsp;</div>
 
-        <div class="ragnarok-small">
+        <div class="ro-small">
             <div class="ro-class">{{class}} &nbsp;</div>
 
             <div class="energy">
@@ -22,14 +22,14 @@
                 <div class="ro-sp"><label>SP</label> <div class="{{sp_class}} {{^sp_class}}ragnarok-progress-bar{{/sp_class}}"><div style="width: {{sp_percent}}"></div><span class="ragnarok-progress-value">{{sp.current}} / {{sp.total}}</span></div> <span class="ragnarok-progress-bar-total">{{sp_percent}}</span></div>
              </div>
             
-            <div class="ragnarok-gray exp">
+            <div class="ro-bg-gray exp">
                 <label class="ro-lvl">Base Lv. {{level.base}}</label> <div class="ragnarok-progress-bar-small ro-hover ro-exp" hover="{{exp_percent}}"><div style="width: {{exp_percent}};"></div></div><br />
                 <label class="ro-job-lvl">Job Lv. {{level.job}}</label> <div class="ragnarok-progress-bar-small ro-hover ro-job-exp" hover="{{job_exp_percent}}"><div style="width: {{job_exp_percent}};"></div></div>
             </div>
         </div>
     </div>
 
-    <div class="ragnarok-window-footer ragnarok-tiny">
+    <div class="ragnarok-window-footer ro-tiny">
         <span class="ro-hover ro-weight" hover="Weight {{weight_percent}}">Weight : {{weight.current}} / {{weight.total}}</span>
         &ensp;
         <span class="ro-zeny">{{zeny_text}}</span>

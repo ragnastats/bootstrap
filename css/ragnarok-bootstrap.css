@@ -1,85 +1,3 @@
-.ragnarok, .ragnarok * {
-    cursor:url(../assets/skin/ro-mouse-cursor.gif), auto;
-}
-
-.ragnarok .jspVerticalBar {
-    width: 14px;
-}
-
-.ragnarok .jspTrack {
-    background-image: url(../assets/skin/ro-bar-gry-vert.png);
-    width: 9px;
-    margin-left: 2px;
-}
-
-.ragnarok .jspArrowUp {
-    background-image: url(../assets/skin/ro-scroll-up.png);
-    background-repeat: no-repeat;
-    width: 14px;
-}
-
-.ragnarok .jspArrowDown {
-    background-image: url(../assets/skin/ro-scroll-down.png);
-    background-repeat: no-repeat;
-    width: 14px;
-    margin-top:-1px;
-}
-
-.ragnarok .jspDrag {
-    background-image:url(../assets/skin/ro-bar-blue-vert.png);
-    background-clip:content-box;
-    padding:4px 0px;
- //   margin-top:-5px;
-}
-
-.ragnarok .jspDragTop {
-    position: absolute;
-    top: 0px;
-    background-image:url(../assets/skin/ro-bar-top.png);
-    background-repeat: no-repeat;
-    background-position:top; 
-    height:50%;
-    width: 9px;
-}
-
-.ragnarok .jspDragBottom {
-    position: absolute;
-    bottom: 0px;
-    background-image:url(../assets/skin/ro-bar-bottom.png);
-    background-repeat: no-repeat;
-    background-position:bottom;
-    height:50%;
-    width: 9px;
-}
-
-.ragnarok-right, .ro-rt {
-    position: absolute;
-    left: auto;
-    right: 0;
-    top: auto;
-    bottom: 0;
-}
-
-.ragnarok-left, .ro-lft {
-    position: absolute;
-    left: 0;
-    right: auto;
-    top: auto;
-    bottom: 0;
-}
-
-.ragnarok-small, .ro-sm {
-    font-size:9pt;
-}
-
-.ragnarok-tiny, .ro-tny {
-    font-size:8pt;
-}
-
-.ragnarok-gray, .ro-gry {
-    background-color: #E7E7E7; 
-}
-
 .ragnarok-window, .ro-win {
     background-color: #fff;
     border-radius: 8px;
@@ -123,8 +41,8 @@
     position: relative;
 }
 
-.ragnarok-window-title .ragnarok-left, .ro-win-title .ro-lft,
-.ragnarok-window-title .ragnarok-right, .ro-win-title .ro-rt {
+.ragnarok-window-title .ro-left, .ro-win-title .ro-left,
+.ragnarok-window-title .ro-right, .ro-win-title .ro-right {
     height:13px;
     line-height:16px;
 }
@@ -878,12 +796,3 @@
     cursor:url(/assets/chat/pointer.gif), auto;
 }
 */
-
-.ro-chat-bar .yellow { color:yellow; }
-.ro-chat-bar .green { color:green; }
-.ro-chat-bar .white { color: #fff; }
-.ro-chat-bar .lightgreen { color:lightgreen; }
-.ro-chat-bar .lime { color:lime; }
-.ro-chat-bar .pink { color: #ffcccc; }
-.ro-chat-bar .orange { color: #ffcc00; }
-
