@@ -435,6 +435,9 @@ ragnarok.ui = {
 
     equip: function(item_id, slot)
     {
+        // Make sure there's nothing in the slot first~
+        ragnarok.ui.unequip(slot);
+        
         var item = ragnarok.items[item_id],
             icon = $('.equip .ro-item[slot="'+slot+'"]');
         
