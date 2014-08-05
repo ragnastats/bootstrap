@@ -20,6 +20,9 @@
     .chat-messages {
         height: 78px;
         margin-left: 2px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        overflow-x: hidden;
     }
     
     .chat-handle {
