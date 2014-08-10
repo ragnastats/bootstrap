@@ -6,7 +6,7 @@ if(typeof ragnarok !== "undefined")
 {
     ragnarok.template =
     {
-        template_path: '../templates/',
+        template_path: '/bootstrap/_interface/templates/',
         compiled: {},
         callback: false,
         loaded: 0,

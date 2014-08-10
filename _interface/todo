@@ -17,7 +17,6 @@ Todo
     
  - Replace load links with dropdown menu
  - Buttons to show / hide windows
- - MINIMAPPPPPPPPPPPP!
  - Keyboard shortcuts
 
 
@@ -33,5 +32,5 @@ Serious Changes
     - Rewrite everything to use observers or something
 
  - Use SASS
-	- Rewrite the current CSS mess into something a little nicer
+    - Rewrite the current CSS mess into something a little nicer
 

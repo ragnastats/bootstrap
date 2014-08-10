@@ -6,7 +6,7 @@
 
 // Add UI functions to main ragnarok object
 ragnarok.ui = {
-    root_path: '/bootstrap/',
+    root_path: '/bootstrap/_interface/',
     
     clear: {
         inventory: function(selector) {
