@@ -4,6 +4,12 @@ ragnarok.map = {
     background: '.ro-map-bg',
     foreground: '.ro-map-fg',
     scale: 32,
+    speed: 150, // Default character speed
+
+    calc_distance: function(a, b)
+    {
+        return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
+    },
 
     // Initialize the map with your character
     init: function(name, position)
@@ -22,6 +28,9 @@ ragnarok.map = {
     // Set your current position on the map (when going through portals / teleporting)
     position: function(position)
     {
+        // Clear old characters
+        ragnarok.map.character.clear();
+        
         var $my = $('.ro-map-char.me');
         var my = $my[0].dataset;
 
@@ -50,8 +59,8 @@ ragnarok.map = {
             y: my.y - position.y
         };
 
-        difference.top = difference.y * data.scale;
-        difference.left = difference.x * data.scale;
+        difference.top = difference.y * ragnarok.map.scale;
+        difference.left = difference.x * ragnarok.map.scale;
 
         if(typeof my.top == "undefined") my.top = 0;
         if(typeof my.left == "undefined") my.left = 0;
@@ -59,8 +68,8 @@ ragnarok.map = {
         my.top = parseInt(my.top) - difference.top;
         my.left = parseInt(my.left) + difference.left;
 
-        var distance = calc_distance(my, position);
-        var time = (distance * data.speed) / 1000;
+        var distance = ragnarok.map.calc_distance(my, position);
+        var time = (distance * ragnarok.map.speed) / 1000;
 
         $(ragnarok.map.foreground).css({
             transition: 'transform '+time+'s',
@@ -118,8 +127,8 @@ ragnarok.map = {
                 y: character.y - position.y
             };
 
-            difference.top = difference.y * data.scale;
-            difference.left = difference.x * data.scale;
+            difference.top = difference.y * ragnarok.map.scale;
+            difference.left = difference.x * ragnarok.map.scale;
 
             if(typeof character.top == "undefined") character.top = 0;
             if(typeof character.left == "undefined") character.left = 0;
@@ -127,8 +136,8 @@ ragnarok.map = {
             character.top = parseInt(character.top) + difference.top;
             character.left = parseInt(character.left) - difference.left;
 
-            var distance = calc_distance(character, position);
-            var time = (distance * data.speed) / 1000;
+            var distance = ragnarok.map.calc_distance(character, position);
+            var time = (distance * ragnarok.map.speed) / 1000;
 
             $character.css({
                 transition: 'transform '+time+'s',

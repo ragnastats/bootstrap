@@ -351,7 +351,7 @@ ragnarok.ui = {
         }
     },
 
-    load: function(url)
+    load: function(url, callback)
     {
         // Load all character information from a single file
         $.getJSON(url, function(response)
@@ -376,6 +376,8 @@ ragnarok.ui = {
 
             ragnarok.ui.populate.character('.basic-info');
             ragnarok.ui.populate.equip();
+
+            if(typeof callback == "function") callback();
         });
     },
 
