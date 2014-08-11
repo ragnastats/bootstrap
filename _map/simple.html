@@ -6,26 +6,31 @@
 
         <script>
             var data = {
-                my: {name: 'Poof~', x: 77, y: 58},
+                my: {name: 'Poof~', x: 73, y: 62},
                 scale: 32,
+                speed: 150, // Default movement speed on iRO
 
-                characters: [
-                    {name: 'Fiolina', x: 74, y: 62},
-                    {name: 'Dowlie', x: 74, y: 63},
-                    {name: 'SourSadnessBear', x: 75, y: 62},
-                    {name: 'Goddess Etro', x: 76, y: 62},
-                ]
+                characters: {
+                    123: {name: 'Fiolina', x: 74, y: 62},
+                    456: {name: 'Dowlie', x: 74, y: 63},
+                    111: {name: 'SourSadnessBear', x: 75, y: 62},
+                    222: {name: 'Goddess Etro', x: 76, y: 62},
+                }
             };
 
             function populate(background, foreground, data)
             {
                 $(background).prepend("<div class='character me' data-x='"+data.my.x+"' data-y='"+data.my.y+"'>"+data.my.name+"</div>");
 
-                for(var i = 0, l = data.characters.length; i < l; i++)
+                $.each(data.characters, function(id, character)
                 {
-                    var character = data.characters[i];
-                    $(foreground).prepend("<div class='character' data-x='"+character.x+"' data-y='"+character.y+"'>"+character.name+"</div>");
-                }
+                    $(foreground).prepend("<div class='character' id='"+id+"' data-x='"+character.x+"' data-y='"+character.y+"'>"+character.name+"</div>");
+                });
+            }
+
+            function calc_distance(a, b)
+            {
+                return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
             }
 
             function position(foreground, data)
@@ -38,17 +43,67 @@
                 $(foreground).find('.character').each(function()
                 {
                     var character = this.dataset;
-                    var distance = {
+                    var difference = {
                         x: data.my.x - character.x,
                         y: data.my.y - character.y
                     };
 
-                    distance.left = distance.x * data.scale;
-                    distance.top = distance.y * data.scale;
+                    difference.top = difference.y * data.scale;
+                    difference.left = difference.x * data.scale;
 
-                    $(this).css({top: center.top + distance.top, left: center.left - distance.left});
+                    character.top = center.top + difference.top - ($(this).outerHeight(true) / 2);
+                    character.left = center.left - difference.left - ($(this).outerWidth(true) / 2);
+
+                    $(this).css({top: character.top, left: character.left});
                 });
             }
+
+            $(window).on('update-self', function(event, update)
+            {
+                // Nothing to update if no data was passed
+                if(typeof update == "undefined") return;
+
+                if(update.name) $('.me').text(update.name);
+
+                if(update.x && update.y)
+                {
+                    var character = $('.me')[0].dataset;
+                    var difference = {
+                        x: data.my.x - update.x,
+                        y: data.my.y - update.y
+                    };
+
+                    difference.top = difference.y * data.scale;
+                    difference.left = difference.x * data.scale;
+
+                    if(typeof character.top == "undefined") character.top = 0;
+                    if(typeof character.left == "undefined") character.left = 0;
+                    
+                    character.top = parseInt(character.top) - difference.top;
+                    character.left = parseInt(character.left) + difference.left;
+
+                    var distance = calc_distance(data.my, update);
+                    var time = (distance * data.speed) / 1000;
+
+                    $('.foreground').css({
+                        transition: 'transform '+time+'s',
+                        transform: 'translate('+character.left+'px, '+character.top+'px)'
+                    });
+
+                    data.my.x = update.x;
+                    data.my.y = update.y;
+                }
+            });
+
+            $(window).on('update', function(event, update)
+            {
+
+            });
+
+            $(window).on('add', function(event, update)
+            {
+
+            });
             
             function center(parent, element)
             {
