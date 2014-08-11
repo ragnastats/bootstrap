@@ -20,7 +20,7 @@
 
             function populate(background, foreground, data)
             {
-                $(background).prepend("<div class='character me' data-x='"+data.my.x+"' data-y='"+data.my.y+"'>"+data.my.name+"</div>");
+                $(background).prepend("<div class='character me' data-x='"+data.my.x+"' data-y='"+data.my.y+"' data-top='0' data-left='0'>"+data.my.name+"</div>");
 
                 $.each(data.characters, function(id, character)
                 {
@@ -138,8 +138,8 @@
             $(window).on('add', function(event, update)
             {
                 var center = {
-                    top: $('.foreground').height() / 2 - $('.me')[0].dataset.top,
-                    left: $('.foreground').width() / 2 - $('.me')[0].dataset.left
+                    top: $('.foreground').height() / 2 - parseInt($('.me')[0].dataset.top),
+                    left: $('.foreground').width() / 2 - parseInt($('.me')[0].dataset.left)
                 };
 
                 $('.foreground').prepend("<div class='character' id='"+update.id+"' data-x='"+update.x+"' data-y='"+update.y+"'>"+update.name+"</div>");
