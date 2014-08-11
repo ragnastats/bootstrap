@@ -6,7 +6,7 @@
 
         <script>
             var data = {
-                my: {name: 'Poof~', x: 73, y: 62},
+                my: {name: 'Poof~', x: 81, y: 62},
                 scale: 32,
                 speed: 150, // Default movement speed on iRO
 
@@ -54,7 +54,7 @@
                     character.top = center.top + difference.top - ($(this).outerHeight(true) / 2);
                     character.left = center.left - difference.left - ($(this).outerWidth(true) / 2);
 
-                    $(this).css({top: character.top, left: character.left});
+                    $(this).css({transform: 'translate('+character.left+'px, '+character.top+'px)'});
                 });
             }
 
@@ -97,19 +97,80 @@
 
             $(window).on('update', function(event, update)
             {
+                // Nothing to update if no data or ID was passed
+                if(typeof update == "undefined" || typeof update.id == "undefined") return;
+                var $character = $('#'+update.id);
 
+                if(update.name) $character.text(update.name);
+
+                if(update.x && update.y)
+                {
+                    var character = $character[0].dataset;
+                    var difference = {
+                        x: character.x - update.x,
+                        y: character.y - update.y
+                    };
+
+                    difference.top = difference.y * data.scale;
+                    difference.left = difference.x * data.scale;
+
+                    if(typeof character.top == "undefined") character.top = 0;
+                    if(typeof character.left == "undefined") character.left = 0;
+                    
+                    character.top = parseInt(character.top) + difference.top;
+                    character.left = parseInt(character.left) - difference.left;
+
+                    var distance = calc_distance(character, update);
+                    var time = (distance * data.speed) / 1000;
+
+                    $character.css({
+                        transition: 'transform '+time+'s',
+                        transform: 'translate('+character.left+'px, '+character.top+'px)'
+                    });
+
+                    character.x = update.x;
+                    character.y = update.y;
+
+                    console.log(character, difference);
+                }
             });
 
             $(window).on('add', function(event, update)
             {
+                var center = {
+                    top: $('.foreground').height() / 2 - $('.me')[0].dataset.top,
+                    left: $('.foreground').width() / 2 - $('.me')[0].dataset.left
+                };
 
+                $('.foreground').prepend("<div class='character' id='"+update.id+"' data-x='"+update.x+"' data-y='"+update.y+"'>"+update.name+"</div>");
+
+                var $character = $('#'+update.id);
+                var character = $character[0].dataset;
+                 
+                var difference = {
+                    x: data.my.x - update.x,
+                    y: data.my.y - update.y
+                };
+
+                difference.top = difference.y * data.scale;
+                difference.left = difference.x * data.scale;
+
+                if(typeof character.top == "undefined") character.top = 0;
+                if(typeof character.left == "undefined") character.left = 0;
+
+                character.top = center.top + difference.top - ($character.outerHeight(true) / 2);
+                character.left = center.left - difference.left - ($character.outerWidth(true) / 2);
+
+                $character.css({transform: 'translate('+character.left+'px, '+character.top+'px)'});
             });
             
             function center(parent, element)
             {
+                var top = $(parent).height() / 2 - $(element).outerHeight(true) / 2;
+                var left = $(parent).width() / 2 - $(element).outerWidth(true) / 2;
+                
                 $(element).css({
-                    top: $(parent).height() / 2 - $(element).outerHeight(true) / 2,
-                    left: $(parent).width() / 2 - $(element).outerWidth(true) / 2
+                    transform: 'translate('+left+'px, '+top+'px)'
                 });
             }
             
@@ -118,6 +179,23 @@
                 populate('.background', '.foreground', data);
                 position('.foreground', data);
                 center('.background', '.me');
+
+                $('.move-self').on('click', function()
+                {
+                    $(window).trigger('update-self', {x: 66, y: 66});
+                });
+
+                $('.move-fiolina').on('click', function()
+                {
+                    $(window).trigger('update', {id: 123, x: 75, y: 61});
+                });
+
+                $('.move-multiple').on('click', function()
+                {
+                    $(window).trigger('update-self', {x: 73, y: 62});
+                    $(window).trigger('update', {id: 123, x: 74, y: 62});
+                    $(window).trigger('update', {id: 456, x: 79, y: 56});
+                });
             });
         </script>
 
@@ -129,6 +207,10 @@
     </head>
 
     <body>
+        <input type="button" value="Move Self" class="move-self">
+        <input type="button" value="Move Fiolina" class="move-fiolina">
+        <input type="button" value="Move Multiple" class="move-multiple">
+        
         <div class="background">            
             <div class="foreground"></div>
         </div>
