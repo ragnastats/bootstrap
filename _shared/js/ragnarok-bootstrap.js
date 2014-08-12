@@ -31,8 +31,8 @@ var ragnarok = (function()
         }
     };
     
-    // Information about your character
-    var character = {};
+    // Information about the current player
+    var player = {};
 
     // Functions for a character's personal inventory 
     var inventory = {
@@ -202,16 +202,16 @@ var ragnarok = (function()
         info_types:
         [
             {type: 'speed'},
-            {type: 'base_exp'}, // process: function(value) { ragnarok.character.exp.base.current = value; }},
-            {type: 'job_exp'}, // process: function(value) { ragnarok.character.exp.job.current = value; }},
+            {type: 'base_exp'}, // process: function(value) { ragnarok.player.exp.base.current = value; }},
+            {type: 'job_exp'}, // process: function(value) { ragnarok.player.exp.job.current = value; }},
             {type: 'mute'},
-            {type: 'hp', process: function(value) { ragnarok.character.hp.current = value; }},
-            {type: 'max_hp', process: function(value) { ragnarok.character.hp.total = value; }},
-            {type: 'sp', process: function(value) { ragnarok.character.sp.current = value; }},
-            {type: 'max_sp', process: function(value) { ragnarok.character.sp.total = value; }},
+            {type: 'hp', process: function(value) { ragnarok.player.hp.current = value; }},
+            {type: 'max_hp', process: function(value) { ragnarok.player.hp.total = value; }},
+            {type: 'sp', process: function(value) { ragnarok.player.sp.current = value; }},
+            {type: 'max_sp', process: function(value) { ragnarok.player.sp.total = value; }},
             {type: 'stat_points'},
             {type: 'hair_color'},
-            {type: 'base_level', process: function(value) { ragnarok.character.level.base = value; }},
+            {type: 'base_level', process: function(value) { ragnarok.player.level.base = value; }},
             {type: 'skill_points'},
             {type: 'str'},
             {type: 'agi'},
@@ -219,13 +219,13 @@ var ragnarok = (function()
             {type: 'int'},
             {type: 'dex'},
             {type: 'luk'},
-            {type: 'job_level', process: function(value) { ragnarok.character.level.job = value; }},
-            {type: 'zeny', process: function(value) { ragnarok.character.zeny = value; }},
+            {type: 'job_level', process: function(value) { ragnarok.player.level.job = value; }},
+            {type: 'zeny', process: function(value) { ragnarok.player.zeny = value; }},
             {type: 'gender'},
-            {type: 'max_base_exp', process: function(value) { ragnarok.character.exp.base.total = value; }},
-            {type: 'max_job_exp', process: function(value) { ragnarok.character.exp.job.total = value; }},
-            {type: 'weight', process: function(value) { ragnarok.character.weight.current = value / 10; }},
-            {type: 'max_weight', process: function(value) { ragnarok.character.weight.total = value / 10; }}
+            {type: 'max_base_exp', process: function(value) { ragnarok.player.exp.base.total = value; }},
+            {type: 'max_job_exp', process: function(value) { ragnarok.player.exp.job.total = value; }},
+            {type: 'weight', process: function(value) { ragnarok.player.weight.current = value / 10; }},
+            {type: 'max_weight', process: function(value) { ragnarok.player.weight.total = value / 10; }}
 
             /*
              * Commented out for now, may want to restructure this anyway.
@@ -274,7 +274,7 @@ var ragnarok = (function()
     
     return {
         api: api,
-        character: character,
+        player: player,
         lookup: lookup,
         data: data,
         inventory: inventory,
