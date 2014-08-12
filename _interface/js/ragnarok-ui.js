@@ -379,7 +379,7 @@ ragnarok.ui = {
             ragnarok.ui.populate.player('.basic-info');
             ragnarok.ui.populate.equip();
 
-            if(typeof callback == "function") callback();
+            if(typeof callback == "function") callback(response);
         });
     },
 
