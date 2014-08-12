@@ -23,6 +23,8 @@ ragnarok.ui = {
         {
             // Remove previous popups
             $('.ragnarok-item-popup').remove();
+
+            if(typeof ragnarok.items[item] == "undefined") return;
             
             // Fallback to ragnastats CDN if item image is unspecified
             if(typeof ragnarok.items[item].icon == "undefined")
@@ -220,7 +222,7 @@ ragnarok.ui = {
                 ragnarok.panes[pane].getContentPane().append("<div class='ro-item'></div>");
             }
 
-            // Set character weight
+            // Set player weight
             ragnarok.ui.set_weight();
             ragnarok.ui.panefix(pane);
         },
@@ -284,20 +286,20 @@ ragnarok.ui = {
             ragnarok.ui.panefix(pane);
         },
 
-        character: function()
+        player: function()
         {
-            var character_data = $.extend({
-                hp_percent: Math.round((ragnarok.character.hp.current / ragnarok.character.hp.total) * 100) +"%",
-                hp_class: (Math.round((ragnarok.character.hp.current / ragnarok.character.hp.total) * 100) < 25) ? 'ragnarok-progress-bar-red' : 'ragnarok-progress-bar',
-                sp_percent: Math.round((ragnarok.character.sp.current / ragnarok.character.sp.total) * 100) +"%",
-                sp_class: (Math.round((ragnarok.character.sp.current / ragnarok.character.sp.total) * 100) < 25) ? 'ragnarok-progress-bar-red' : 'ragnarok-progress-bar',
-                exp_percent: ((ragnarok.character.exp.base.current / ragnarok.character.exp.base.total) * 100).toFixed(1) +"%",
-                job_exp_percent: ((ragnarok.character.exp.job.current / ragnarok.character.exp.job.total) * 100).toFixed(1) +"%",
-                weight_percent: Math.round((ragnarok.character.weight.current / ragnarok.character.weight.total) * 100) +"%",
-                zeny_text: "Zeny : "+number_format(ragnarok.character.zeny)
-            }, ragnarok.character);
+            var player_data = $.extend({
+                hp_percent: Math.round((ragnarok.player.hp.current / ragnarok.player.hp.total) * 100) +"%",
+                hp_class: (Math.round((ragnarok.player.hp.current / ragnarok.player.hp.total) * 100) < 25) ? 'ragnarok-progress-bar-red' : 'ragnarok-progress-bar',
+                sp_percent: Math.round((ragnarok.player.sp.current / ragnarok.player.sp.total) * 100) +"%",
+                sp_class: (Math.round((ragnarok.player.sp.current / ragnarok.player.sp.total) * 100) < 25) ? 'ragnarok-progress-bar-red' : 'ragnarok-progress-bar',
+                exp_percent: ((ragnarok.player.exp.base.current / ragnarok.player.exp.base.total) * 100).toFixed(1) +"%",
+                job_exp_percent: ((ragnarok.player.exp.job.current / ragnarok.player.exp.job.total) * 100).toFixed(1) +"%",
+                weight_percent: Math.round((ragnarok.player.weight.current / ragnarok.player.weight.total) * 100) +"%",
+                zeny_text: "Zeny : "+number_format(ragnarok.player.zeny)
+            }, ragnarok.player);
             
-            ragnarok.template.update('basic-info', character_data);
+            ragnarok.template.update('basic-info', player_data);
             ragnarok.ui.populate.map();
             ragnarok.ui.set_weight();
         },
@@ -309,13 +311,13 @@ ragnarok.ui = {
         
         map: function()
         {
-            if(ragnarok.character.map !== undefined)
+            if(ragnarok.player.map !== undefined)
             {
-                ragnarok.minimap.init(ragnarok.character.map);
+                ragnarok.minimap.init(ragnarok.player.map);
                 
-                if(ragnarok.character.pos !== undefined)
+                if(ragnarok.player.pos !== undefined)
                 {
-                    ragnarok.minimap.add(ragnarok.character.pos);
+                    ragnarok.minimap.add(ragnarok.player.pos);
                 }
             }
         },
@@ -353,10 +355,10 @@ ragnarok.ui = {
 
     load: function(url, callback)
     {
-        // Load all character information from a single file
+        // Load all player information from a single file
         $.getJSON(url, function(response)
         {
-            ragnarok.character = response.character;
+            ragnarok.player = response.player;
             ragnarok.storage.items = response.storage;
             ragnarok.inventory.items = response.inventory;
 
@@ -374,7 +376,7 @@ ragnarok.ui = {
             else
                 $('.ragnarok-tab-storage, .ro-tab-stor').eq(0).trigger('click');
 
-            ragnarok.ui.populate.character('.basic-info');
+            ragnarok.ui.populate.player('.basic-info');
             ragnarok.ui.populate.equip();
 
             if(typeof callback == "function") callback();
@@ -424,7 +426,7 @@ ragnarok.ui = {
 
     set_weight: function()
     {
-        var weight_percent = Math.round((ragnarok.character.weight.current / ragnarok.character.weight.total) * 100);
+        var weight_percent = Math.round((ragnarok.player.weight.current / ragnarok.player.weight.total) * 100);
 
         if(weight_percent >= 50)
             $('.basic-info').find('.ro-weight').addClass('overweight');
@@ -432,7 +434,7 @@ ragnarok.ui = {
             $('.basic-info').find('.ro-weight').removeClass('overweight');
         
         $('.basic-info').find('.ro-weight').attr('hover', "Weight " + weight_percent+"%");
-        $('.basic-info').find('.ro-weight').text('Weight : ' + ragnarok.character.weight.current + " / " + ragnarok.character.weight.total);
+        $('.basic-info').find('.ro-weight').text('Weight : ' + ragnarok.player.weight.current + " / " + ragnarok.player.weight.total);
     },
 
     equip: function(item_id, slot)
