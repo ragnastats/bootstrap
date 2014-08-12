@@ -2,5 +2,7 @@
 .ro-map-char { position: absolute; z-index: 1; height: 10px; width: 10px; font-size: 0pt; border: 1px solid #000; background-color: rgba(0, 0, 0, 0.1); border-radius: 4px; padding: 4px; }
 .ro-map-char:hover { z-index: 10; height: auto; width: auto; font-size: 12pt; background-color: rgba(255, 255, 255, 0.8); }
 
-.ro-map-char.monster { background-color: rgba(255, 0, 0, 0.1); }
-.ro-map-char.npc { background-color: rgba(0, 255, 0, 0.1); }
+.ro-map-char.monster { background-color: rgba(255, 0, 0, 0.3); }
+.ro-map-char.npc { background-color: rgba(0, 255, 0, 0.3); }
+.ro-map-char.homunculus { background-color: rgba(255, 127, 0, 0.3); }
+.ro-map-char.portal { background-color: rgba(0, 0, 255, 0.2); box-shadow: 0px 0px 10px 3px rgba(196,242,245,0.75); }
