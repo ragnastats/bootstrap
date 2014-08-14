@@ -11,13 +11,33 @@ if(typeof ragnarok !== "undefined")
         callback: false,
         loaded: 0,
         count: 0,
-        
+
+        // This function preloads a template and saves the compiled response
+        preload: function(template)
+        {
+            // If this template hasn't been requested yet
+            if(typeof ragnarok.template.compiled[template] == "undefined")
+            {
+                ragnarok.template.count++;
+                var template_url = ragnarok.template.template_path+template+'.html';
+                
+                $.get(template_url, function(response)
+                {
+                    ragnarok.template.loaded++;
+                    var compiled = Hogan.compile(response);
+                    ragnarok.template.compiled[template] = compiled;
+
+                    if(ragnarok.template.count == ragnarok.template.loaded && typeof ragnarok.template.callback == "function")
+                        ragnarok.template.callback();
+                });
+            }
+        },
+
+        // This function loads a template and appends the rendered response to the page
         load: function(template, data)
         {
             ragnarok.template.count++;
-            
-            window.location
-            
+                        
             var template_url = ragnarok.template.template_path+template+'.html';
             
             $.get(template_url, function(response)
@@ -94,6 +114,18 @@ if(typeof ragnarok !== "undefined")
             // Simple replacement
             else
                 existing.innerHTML = $rendered.html();            
+        },
+
+        clone: function(template, data)
+        {
+            // We can only clone preloaded templates!
+            if(typeof ragnarok.template.compiled[template] != "undefined")
+            {
+                var compiled = ragnarok.template.compiled[template];
+
+                // Return the rendered result
+                return compiled.render(data);
+            }
         }
     }
 }

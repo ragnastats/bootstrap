@@ -14,7 +14,7 @@ ragnarok.map = {
     // Initialize the map with your character
     init: function(name, position)
     {
-        $(ragnarok.map.background).prepend("<div class='ro-map-char me' data-x='"+position.x+"' data-y='"+position.y+"' data-top='0' data-left='0'>"+name+"</div>");
+        $(ragnarok.map.background).prepend("<div class='ro-map-char me' data-x='"+position.x+"' data-y='"+position.y+"' data-top='0' data-left='0'><div class='relative'><div class='name'>"+name+"</div></div></div>");
 
         // Center yourself
         var top = $(ragnarok.map.background).height() / 2 - $('.ro-map-char.me').outerHeight(true) / 2;
@@ -94,7 +94,7 @@ ragnarok.map = {
                 left: $(ragnarok.map.foreground).width() / 2 - parseInt(my.left)
             };
 
-            $(ragnarok.map.foreground).prepend("<div class='ro-map-char "+type+"' id='"+id+"' data-x='"+position.x+"' data-y='"+position.y+"'>"+name+"</div>");
+            $(ragnarok.map.foreground).prepend("<div class='ro-map-char "+type+"' id='"+id+"' data-x='"+position.x+"' data-y='"+position.y+"'><div class='relative'><div class='name'>"+name+"</div></div></div>");
 
             var $character = $('#'+id);
             var character = $character[0].dataset;
