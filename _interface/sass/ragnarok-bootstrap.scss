@@ -1,4 +1,6 @@
 .ragnarok {
+    overflow: hidden;
+
     @import 'general/cursors';
     @import 'general/colors';
     @import 'general/scrollbars';
@@ -6,4 +8,5 @@
 
     @import 'templates/chat-bar';
     @import 'templates/vendor-title';
+    @import 'templates/chat-title';
 }
