@@ -10,9 +10,27 @@
     }
 
     .chat-title {
+        margin-left: 24px;
         height: 15px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+
+        &::before {
+            position: absolute;
+            top: 3px;
+            left: 4px;
+            width: 24px;
+            height: 24px;
+            content: " ";
+        }
+
+        &.public-chat::before {
+            background-image:url(../assets/skin/title-chat-public.png);
+        }
+
+        &.private-chat::before {
+            background-image:url(../assets/skin/title-chat-private.png);
+        }
     }
 }
