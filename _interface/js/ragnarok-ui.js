@@ -674,12 +674,12 @@ $(document).on('initialize', function()
                 hidden = true;
                 
             $(this).show();
-        
+
             var sidebar = {
                 width: $(this).find('.ragnarok-sidebar, .ro-side').outerWidth(true),
                 height: $(this).find('.ragnarok-sidebar, .ro-side div').outerHeight(true),
             };
-
+            
             var footer = {
                 height: $(this).find('.ragnarok-window-footer, .ro-win-foot').outerHeight(true)
             };
@@ -766,6 +766,11 @@ $(document).on('initialize', function()
     $('body').on('mouseup', '.ragnarok-button, .ro-btn', function()
     {
         $(this).removeClass('click');
+
+        if(this.dataset.action == 'close')
+        {
+            $(this).parents('.ro-win').hide()
+        }
     });
 
     $('body').on('mousedown', '.ragnarok-checkbox, .ro-check', function()

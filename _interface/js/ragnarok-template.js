@@ -106,14 +106,14 @@ if(typeof ragnarok !== "undefined")
             {
                 $existing = $(existing);
                 var rendered_pane = $rendered.find('.ragnarok-scroll-pane, .ro-scroll-pane').html();                
-                var pane = $existing.find('.ragnarok-scroll-pane, .ro-scroll-pane').attr('ro-pane-id');
+                var pane = $existing.find('.ragnarok-scroll-pane, .ro-scroll-pane');
+                var pane_id = pane.attr('ro-pane-id');
                 
-                ragnarok.panes[pane].getContentPane().html(rendered_pane);
-                ragnarok.ui.panefix(pane);
+                ragnarok.panes[pane_id].getContentPane().html(rendered_pane);
+                ragnarok.ui.panefix(pane_id);
             }
-            // Simple replacement
             else
-                existing.innerHTML = $rendered.html();            
+                existing.innerHTML = $rendered.html();
         },
 
         clone: function(template, data)

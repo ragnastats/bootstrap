@@ -1,0 +1,30 @@
+<div class="ro-win ro-vendor-items" style="display: none">
+    <div class="ro-win-title">
+        <div class="ro-btn ro-win-btn" style="opacity: 0"></div>
+
+        <p class="ro-handle">
+            Merchant Shop - {{name}}
+        </p>
+    </div>
+
+    <div class="ro-win-content">
+        <div class="ro-side"></div>
+        <div class="ro-items ragnarok-scroll">
+            {{#items}}
+                <div class="ro-item-wrap">
+                    <p>{{name}}</p>
+                    <p class="ro-right {{price_color}}">{{price}}</p>
+                    <div class="ro-item ro-hover ro-hovering" hover="{{name}}">
+                        <div><img src="http://cdn.ragnastats.com/item/{{id}}.png" item="{{id}}"></div>
+                        <span>{{amount}}</span>
+                    </div>
+                </div>
+            {{/items}}
+        </div>
+    </div>
+
+    <div class="ro-win-foot ro-handle">
+        <div class="ro-btn ro-text-btn" data-action="close"><div>Close</div></div>
+        <div class="ro-btn ro-win-resize"></div>
+    </div>
+</div>
