@@ -5,6 +5,7 @@ ragnarok.map = {
     foreground: '.ro-map-fg',
     scale: 32,
     speed: 150, // Default character speed
+    ready: false,
 
     calc_distance: function(a, b)
     {
@@ -23,11 +24,15 @@ ragnarok.map = {
         $('.ro-map-char.me').css({
             transform: 'translate('+left+'px, '+top+'px)'
         });
+
+        ragnarok.map.ready = true;
     },
     
     // Set your current position on the map (when going through portals / teleporting)
     position: function(position)
     {
+        if(!ragnarok.map.ready) return;
+        
         // Clear old characters
         ragnarok.map.character.clear();
         
@@ -51,6 +56,8 @@ ragnarok.map = {
     // Move to a new location on the map
     move: function(position)
     {
+        if(!ragnarok.map.ready) return;
+
         var $my = $('.ro-map-char.me');
         var my = $my[0].dataset;
         
@@ -85,6 +92,8 @@ ragnarok.map = {
         // Add a new character to the map
         add: function(id, name, type, position)
         {
+            if(!ragnarok.map.ready) return;
+
             var $my = $('.ro-map-char.me');
             var my = $my[0].dataset;
             
@@ -119,6 +128,8 @@ ragnarok.map = {
         // Move a character
         move: function(id, position)
         {
+            if(!ragnarok.map.ready) return;
+
             var $character = $('#'+id);
             var character = $character[0].dataset;
             
