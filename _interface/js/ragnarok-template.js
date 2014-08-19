@@ -97,6 +97,9 @@ if(typeof ragnarok !== "undefined")
 
         update: function(template, data)
         {
+            // Make sure this template has already been compiled before trying to update it
+            if(!ragnarok.template.compiled[template]) return;
+            
             var existing = document.getElementById(template);
             var rendered = ragnarok.template.compiled[template].render(data);
             var $rendered = $(rendered);
