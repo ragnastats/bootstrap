@@ -481,6 +481,19 @@ ragnarok.ui = {
         
         // Remove text
         parent.find('span').remove();
+    },
+
+    // Misc helper function to determine vendor colors
+    vendor_color: function(price)
+    {
+        var colors = ragnarok.lookup.vendor_colors;
+
+        for(var i = 0, l = colors.length; i < l; i++)
+        {
+            // Return once we find a matching color
+            if(price >= colors[i].min && price <= colors[i].max)
+                return colors[i].name;
+        }
     }
 };
 

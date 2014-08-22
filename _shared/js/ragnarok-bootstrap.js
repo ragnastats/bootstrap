@@ -259,7 +259,19 @@ var ragnarok = (function()
             136: 'accessory',
             256: 'upper-headgear',
             512: 'mid-headgear',             
-        }
+        },
+
+        vendor_colors:
+        [
+            {name: 'turquoise',    min: 0, max: 9},
+            {name: 'purple',       min: 10, max: 99},
+            {name: 'light-blue',   min: 100, max: 999},
+            {name: 'orange',       min: 1000, max: 9999},
+            {name: 'pink',         min: 10000, max: 99999},
+            {name: 'blue',         min: 100000, max: 999999},
+            {name: 'green',        min: 1000000, max: 9999999},
+            {name: 'red',          min: 10000000, max: 99999999}
+        ]
     };
     
     var data = 
