@@ -279,7 +279,8 @@ var ragnarok = (function()
         chat:
         {
             active: '',
-            messages: [],
+            output: [],
+            input: [],
             status: 0
         }
     }
