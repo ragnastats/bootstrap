@@ -167,7 +167,7 @@
         if($(this).is('.ragnarok-item, .ro-item, .ro-hotkey'))
             item_drag(this, opt, callback);
 
-        else if($(this).is('.ragnarok-window, .ro-win'))
+        else if($(this).is('.ragnarok-window, .window'))
             window_drag(this, opt);
     }
 
@@ -282,8 +282,8 @@
 
                 selector.css({'width': width, 'height': height});
 
-                if(parent.parents('.ragnarok-window, .ro-win').length)
-                    parent.parents('.ragnarok-window, .ro-win').css({height: 'auto', width: 'auto'});
+                if(parent.parents('.ragnarok-window, .window').length)
+                    parent.parents('.ragnarok-window, .window').css({height: 'auto', width: 'auto'});
 
                 var offset = 8;
 
@@ -315,7 +315,7 @@
                 var pane = parent.find('.ragnarok-scroll-pane').attr('ro-pane-id');
 
                 // Panefix
-                var scrollbar = ragnarok.panes[pane].getContentPane().parents('.ragnarok-window, .ro-win').find('.jspDrag');
+                var scrollbar = ragnarok.panes[pane].getContentPane().parents('.ragnarok-window, .window').find('.jspDrag');
                 scrollbar.height(scrollbar.height() - 8);
                 
                 $('.jspTrack, .jspArrow').addClass('ro-btn');

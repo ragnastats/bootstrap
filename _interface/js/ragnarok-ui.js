@@ -171,7 +171,7 @@ ragnarok.ui = {
     populate: {
         inventory: function(selector, type) {
             var pane = $(selector).attr('ro-pane-id');
-            var height = $(selector).parents('.ragnarok-window, .ro-win').height();
+            var height = $(selector).parents('.ragnarok-window, .window').height();
             
             // Function to build inventory HTML from ragnarok.inventory.items
             $.each(ragnarok.inventory.items, function(index, inventory)
@@ -230,7 +230,7 @@ ragnarok.ui = {
         storage: function(selector, type)
         {
             var pane = $(selector).attr('ro-pane-id');
-            var parent = $(selector).parents('.ragnarok-window, .ro-win');
+            var parent = $(selector).parents('.ragnarok-window, .window');
             var height = parent.height();
 
             // Function to build storage HTML from ragnarok.storage.items
@@ -676,7 +676,7 @@ $(document).on('initialize', function()
     });
     
     // Auto-correct the content's margin based on sidebar and footer
-    $('.ragnarok-window, .ro-win').each(function()
+    $('.ragnarok-window, .window').each(function()
     {
         var hidden = false;
         
@@ -721,7 +721,7 @@ $(document).on('initialize', function()
     
     $('.ragnarok-checkbox, .ro-check').addClass('ro-btn');
 
-    $('.ragnarok-window, .ro-win').each(function()
+    $('.ragnarok-window, .window').each(function()
     {
         if($(this).find('.ragnarok-window-title, .ro-win-title').length)
         {
@@ -782,7 +782,7 @@ $(document).on('initialize', function()
 
         if(this.dataset.action == 'close')
         {
-            $(this).parents('.ro-win').hide()
+            $(this).parents('.window').hide()
         }
     });
 
@@ -818,13 +818,13 @@ $(document).on('initialize', function()
 
     $('.ragnarok-window-button-close, .ro-win-btn-close').on('click', function()
     {
-        $(this).parents('.ragnarok-window, .ro-win').hide();
+        $(this).parents('.ragnarok-window, .window').hide();
     });
 
     $('.ragnarok-window-button-minimize, .ro-win-btn-min').on('click', function()
     {
         // This is so gross
-        var parent = $(this).parents('.ragnarok-window, .ro-win');
+        var parent = $(this).parents('.ragnarok-window, .window');
 
         var height = parent.height();
         var previous_height = parent.attr('previous-height');
@@ -872,7 +872,7 @@ $(document).on('initialize', function()
     $('body').on('mouseenter', '.ragnarok-hover, .ro-hover', function(event)
     {
         // Prevent hover when window is being dragged
-        if($(this).parents('.ragnarok-window, .ro-win').length && $(this).parents('.ragnarok-window, .ro-win').hasClass('drag'))
+        if($(this).parents('.ragnarok-window, .window').length && $(this).parents('.ragnarok-window, .window').hasClass('drag'))
             return;
 
         // Remove any previously created hover boxes
@@ -887,17 +887,17 @@ $(document).on('initialize', function()
         var hover = $("<div class='ro-hover-box'>"+$(this).attr('hover')+"</div>");
         var handle = $("<div class='ro-hover-handle'></div>");
 
-        if($(this).parents('.ragnarok-window, .ro-win'))
+        if($(this).parents('.ragnarok-window, .window'))
         {
-            var parent_offset = $(this).parents('.ragnarok-window, .ro-win').offset();
+            var parent_offset = $(this).parents('.ragnarok-window, .window').offset();
 
             offset = {
                 top: offset.top - parent_offset.top,
                 left: offset.left - parent_offset.left
             };
             
-            $(this).parents('.ragnarok-window, .ro-win').append(hover);
-            $(this).parents('.ragnarok-window, .ro-win').append(handle);
+            $(this).parents('.ragnarok-window, .window').append(hover);
+            $(this).parents('.ragnarok-window, .window').append(handle);
         }
         else
         {
@@ -956,7 +956,7 @@ $(document).on('initialize', function()
     });
 
     // General behaviors when clicking on windows
-    $('body').on('click', '.ragnarok-window, .ro-win', function(event)
+    $('body').on('click', '.ragnarok-window, .window', function(event)
     {
         // Remove quantity popups
         $('.ragnarok-quantity-popup').remove();
